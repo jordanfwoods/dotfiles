@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Exec=thunderbird %u
+X-GNOME-Autostart-enabled=true
+NoDisplay=false
+Hidden=false
+Name[en_US]=Thunderbird
+Comment[en_US]=Open E-mail Client
+X-GNOME-Autostart-Delay=0

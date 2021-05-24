@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Exec=terminator
+X-GNOME-Autostart-enabled=true
+NoDisplay=false
+Hidden=false
+Name[en_US]=Terminator
+Comment[en_US]=Open the Terminal automatically
+X-GNOME-Autostart-Delay=0

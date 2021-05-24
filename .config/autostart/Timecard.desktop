@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Exec=libreoffice /home/jwoods/jwoods/personal/TimeCard.xlsx
+X-GNOME-Autostart-enabled=true
+NoDisplay=false
+Hidden=false
+Name[en_US]=Timecard
+Comment[en_US]=Open the time card for easy access.
+X-GNOME-Autostart-Delay=0
