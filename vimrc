@@ -28,9 +28,9 @@ call plug#begin('~/.vim/plugged')
    " Plug 'xuhdev/vim-latex-live-preview'  " requires Okular and/or pdflatex, <leader>llp to open pdf preview
 call plug#end()
 
-set background=dark
-colo gruvbox     " scheme from offline
-" colo jordan      " Based on colo ron
+set background=dark " gruvbox requires external background to be set.
+colo gruvbox        " scheme from offline
+"colo jordan        " Based on colo ron
 
 " Disable the Arrow keys in Normal Mode
 " NOTE: Use imap to update insert mode key bindings.
@@ -171,6 +171,9 @@ endfunc
 """"""""""""""""""""""""""""""""
 "" LEGACY / UNUSED
 """"""""""""""""""""""""""""""""
+" highlight OverLength ctermbg=52 guibg=#592929
+" match OverLength /\%81v.\+/
+
 "" " Enables using ':make --compile' or ':make --scenario loopback', etc
 "" set makeprg=perl\ -S\ MakePLD.pl
 
