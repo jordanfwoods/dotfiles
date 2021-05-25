@@ -53,10 +53,11 @@ set showcmd        " display incomplete commands in bottom right
 set number         " show line numbers.
 set relativenumber " change to show number of lines from current line.
 set nowrap         " Don't wrap text to the next line.
+set hlsearch       " Highlight all items that match search
 set laststatus=2   " Display StatusLine always
 set textwidth=80   " Set max width of inserted code to 80 lines before splitting
 set colorcolumn=+1 " Set Color Column just after columnn of textwidth
-set hlsearch       " Highlight all items that match search
+set cursorline     " Lightly highlight current line.
 
 " Never use tabs and backspace more efficiently
 set tabstop=3      " set the tabs to display as three whitespaces.
