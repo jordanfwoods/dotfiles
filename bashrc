@@ -70,4 +70,7 @@ alias .....='cd ../../../..'
 alias    l='ls -hN   --color=auto --group-directories-first'
 alias   ll='ls -lhN  --color=auto --group-directories-first'
 alias   la='ls -lahN --color=auto --group-directories-first'
+
+alias diff='colordiff' # Spruce up the regular diff, please and thank you
+
 [ -f ~/.bash_aliases ] && source ~/.bash_aliases

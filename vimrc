@@ -57,7 +57,7 @@ set hlsearch       " Highlight all items that match search
 set laststatus=2   " Display StatusLine always
 set textwidth=80   " Set max width of inserted code to 80 lines before splitting
 set colorcolumn=+1 " Set Color Column just after columnn of textwidth
-set cursorline     " Lightly highlight current line.
+" set cursorline     " Lightly highlight current line.
 
 " Never use tabs and backspace more efficiently
 set tabstop=3      " set the tabs to display as three whitespaces.
@@ -87,8 +87,8 @@ set path+=./**
 "" To Update Tags file, Guac into a linux comp, update svn, and run ctags!
 set tags=./tags,./TAGS,tags,TAGS
 " " Make Tags for interfile autofill (from branch/csp-gse)
-command! MakeTags ! ctags --langmap=Verilog:+.sv --languages=vhdl,Verilog -R ./
-         \ --languages=vhdl,Verilog -R ./
+command! MakeTags ! ctags --langmap=Verilog:+.sv --languages=vhdl,Verilog
+         \ -R --exclude=temp --exclude=_Archive ./
 
 """"""""""""""""""""""""""""""""
 "" REMAPS
@@ -129,8 +129,10 @@ nnoremap <F10>     :w<CR>:SourceVimrc<CR>
 " Reload the current file for any external changes.
 nnoremap <F9>      :e<CR>
 " Output Basic syntax Name, i.e. Comment, and the colors associated.
+nnoremap <F8>      :verbose highlight
  \ <C-r>=synIDattr(synIDtrans(synID(line("."), col("."), 1)), "name")<CR><CR>
 " Output Specific syntax name, i.e. vimLineComment, and the associated linking.
+nnoremap <F7>      :verbose highlight
  \ <C-r>=synIDattr(synstack(line("."), col("."))[-1], "name")<CR><CR>
 " Display list of color groups that character under cursor belongs to.
 nnoremap <F6>      :call <SID>SynStack()<CR>
@@ -146,7 +148,7 @@ command! SourceVimrc source ~/.vimrc
 " Edit the vimrc in new window
 command! EditVimrc   sp ~/.vimrc
 " Edit my color scheme
-command! EditJordan  sp ~/.vim/colors/jordan.vim
+" command! EditJordan  sp ~/.vim/colors/jordan.vim
 
 " Function to determine what color group character under cursor belongs to.
 function! <SID>SynStack()
