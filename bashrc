@@ -3,12 +3,18 @@
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
 # export SYSTEMD_PAGER=
 
+# Update bash prompt to look pretty.
+PS1="\n["                                # Newline and open bracket
 # change color when running as su
 if [ "`id -u`" -eq 0 ]; then
-   PS1="\n[ \[\e[1;30m\]jwoods\[\e[0m\] : \[\e[1;35m\]\h \[\e[0;33m\]\$PWD \[\e[0m\]]\n$ "
+   PS1="$PS1\[\e[1;31m\]\u\[\e[0m\]"     # display username in bold red
 else
-   PS1="\n[ \[\e[0;36m\]jwoods\[\e[0m\] : \[\e[1;35m\]\h \[\e[0;33m\]\$PWD \[\e[0m\]]\n$ "
+   PS1="$PS1\[\e[0;36m\]\u\[\e[0m\]"     # display username in teal
 fi
+PS1="$PS1 : "                            # colon separator
+PS1="$PS1\[\e[1;35m\]\h\[\e[0m\] "       # Display hostname in bold purple
+PS1="$PS1\[\e[0;33m\]\$PWD\[\e[0m\]"     # display full pathname in gold
+PS1="$PS1]\n$ "                          # Close bracket, newline, and '$ '
 
 # adding /bin causes issues with buildroot
 def_path=/usr/bin:/usr/sbin:/usr/local/bin:$HOME/.local/bin:/var/lib/snapd/snap/bin
