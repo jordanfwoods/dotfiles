@@ -72,5 +72,7 @@ alias   ll='ls -lhN  --color=auto --group-directories-first'
 alias   la='ls -lahN --color=auto --group-directories-first'
 
 alias diff='colordiff' # Spruce up the regular diff, please and thank you
+alias gcalc='gnome-calculator --mode=basic'
+alias gcpro='gnome-calculator --mode=programming'
 
 [ -f ~/.bash_aliases ] && source ~/.bash_aliases
