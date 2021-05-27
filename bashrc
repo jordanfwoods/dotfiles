@@ -4,14 +4,14 @@
 # export SYSTEMD_PAGER=
 
 # Update bash prompt to look pretty.
-PS1="\n["                                # Newline and open bracket
+PS1="\n["                                # Newline and open bracket in default
 # change color when running as su
 if [ "`id -u`" -eq 0 ]; then
    PS1="$PS1\[\e[1;31m\]\u\[\e[0m\]"     # display username in bold red
 else
    PS1="$PS1\[\e[0;36m\]\u\[\e[0m\]"     # display username in teal
 fi
-PS1="$PS1 : "                            # colon separator
+PS1="$PS1 : "                            # colon separator in default color
 PS1="$PS1\[\e[1;35m\]\h\[\e[0m\] "       # Display hostname in bold purple
 PS1="$PS1\[\e[0;33m\]\$PWD\[\e[0m\]"     # display full pathname in gold
 PS1="$PS1]\n$ "                          # Close bracket, newline, and '$ '
@@ -60,25 +60,24 @@ export vivado_path_20191=$vivado_path_20191:$vpath/Vivado/2019.1/bin
 export PATH=$vivado_path_20191:$PATH
 
 alias reload='source ~/.bashrc'
-alias  vima='vim ~/.bash_aliases'
-alias  vimb='vim ~/.bashrc'
-alias  vimj='vim ~/.vim/colors/jordan.vim'
-alias  vimv='vim ~/.vimrc'
+alias   vima='vim ~/.bash_aliases'
+alias   vimb='vim ~/.bashrc'
+alias   vimj='vim ~/.vim/colors/jordan.vim'
+alias   vimv='vim ~/.vimrc'
 
-alias mkdir='mkdir -pv'
-alias    ..='cd ..'
-alias   ...='cd ../..'
-alias  ....='cd ../../..'
-alias .....='cd ../../../..'
+alias  mkdir='mkdir -pv'
+alias     ..='cd ..'
+alias    ...='cd ../..'
+alias   ....='cd ../../..'
+alias  .....='cd ../../../..'
 
 # Adding color
-# alias ls='ls -hN   --color=auto --group-directories-first'
-alias    l='ls -hN   --color=auto --group-directories-first'
-alias   ll='ls -lhN  --color=auto --group-directories-first'
-alias   la='ls -lahN --color=auto --group-directories-first'
+alias      l='ls -hNv   --color=auto --group-directories-first'
+alias     ll='ls -lhNv  --color=auto --group-directories-first'
+alias     la='ls -lahNv --color=auto --group-directories-first'
 
-alias diff='colordiff' # Spruce up the regular diff, please and thank you
-alias gcalc='gnome-calculator --mode=basic'
-alias gcpro='gnome-calculator --mode=programming'
+alias   diff='colordiff' # Spruce up the regular diff, please and thank you
+alias  gcalc='gnome-calculator --mode=basic'
+alias  gcpro='gnome-calculator --mode=programming'
 
 [ -f ~/.bash_aliases ] && source ~/.bash_aliases
