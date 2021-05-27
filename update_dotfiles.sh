@@ -27,8 +27,7 @@ do
         [ $dot_file != "svnvimdiffwrap.sh" ]
    then
       printf "cp -rf ~/.%-18s ./%0s\n" $dot_file $dot_file
-      # echo "cp -rf ~/.$dot_file ./$dot_file"
-            cp -rf ~/.$dot_file ./$dot_file
+              cp -rf ~/.$dot_file ./$dot_file
    fi
 done
 
