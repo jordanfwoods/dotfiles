@@ -59,25 +59,31 @@ export vivado_path_20191=$vivado_path_20191:$vpath/SDK/2019.1/bin
 export vivado_path_20191=$vivado_path_20191:$vpath/Vivado/2019.1/bin
 export PATH=$vivado_path_20191:$PATH
 
+# make updating the terminal and editing rc files easy.
 alias reload='source ~/.bashrc'
 alias   vima='vim ~/.bash_aliases'
 alias   vimb='vim ~/.bashrc'
 alias   vimj='vim ~/.vim/colors/jordan.vim'
 alias   vimv='vim ~/.vimrc'
 
+# abbreviate common directory commands
 alias  mkdir='mkdir -pv'
 alias     ..='cd ..'
 alias    ...='cd ../..'
 alias   ....='cd ../../..'
 alias  .....='cd ../../../..'
 
-# Adding color
+# Adding color and auto sorting common 'ls' commands
 alias      l='ls -hNv   --color=auto --group-directories-first'
 alias     ll='ls -lhNv  --color=auto --group-directories-first'
 alias     la='ls -lahNv --color=auto --group-directories-first'
 
-alias   diff='colordiff' # Spruce up the regular diff, please and thank you
+# Spruce up the regular diff, please and thank you
+alias   diff='colordiff'
+# shortcuts for the basic calculator and Binary calc.
 alias  gcalc='gnome-calculator --mode=basic'
 alias  gcpro='gnome-calculator --mode=programming'
+# common shortcut for screenshotting.
+alias scnsht='gnome-screenshot --clipboard --area'
 
 [ -f ~/.bash_aliases ] && source ~/.bash_aliases
