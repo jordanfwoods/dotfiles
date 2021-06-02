@@ -4,7 +4,7 @@
 # export SYSTEMD_PAGER=
 
 # Update bash prompt to look pretty.
-PS1="\n["                                # Newline and open bracket in default
+PS1="\n"                                 # Newline in default color
 # change color when running as su
 if [ "`id -u`" -eq 0 ]; then
    PS1="$PS1\[\e[1;31m\]\u\[\e[0m\]"     # display username in bold red
@@ -14,7 +14,7 @@ fi
 PS1="$PS1 : "                            # colon separator in default color
 PS1="$PS1\[\e[1;35m\]\h\[\e[0m\] "       # Display hostname in bold purple
 PS1="$PS1\[\e[0;33m\]\$PWD\[\e[0m\]"     # display full pathname in gold
-PS1="$PS1]\n$ "                          # Close bracket, newline, and '$ '
+PS1="$PS1\n$ "                           # newline, and '$ ' in defaut color
 
 # adding /bin causes issues with buildroot
 def_path=/usr/bin:/usr/sbin:/usr/local/bin:$HOME/.local/bin:/var/lib/snapd/snap/bin
@@ -78,6 +78,8 @@ alias      l='ls -hNv   --color=auto --group-directories-first'
 alias     ll='ls -lhNv  --color=auto --group-directories-first'
 alias     la='ls -lahNv --color=auto --group-directories-first'
 
+# Xilinx DocNav shortcut
+alias docnav='/opt/Xilinx/DocNav/docnav'
 # Spruce up the regular diff, please and thank you
 alias   diff='colordiff'
 # shortcuts for the basic calculator and Binary calc.
