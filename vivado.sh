@@ -9,7 +9,6 @@ then
    do
       if [ "${file:(-4)}" == ".xpr" ]
       then
-         echo "Found $file, opening as project"
          xpr="$file"
       fi
    done
@@ -19,7 +18,7 @@ fi
 
 if [ "$xpr" == "temp" ]
 then
-   echo "No XPR Specified, opening Viv18.1"
+   echo "No XPR Specified, opening Viv18.1 with any given file"
    /opt/Xilinx/Vivado/2018.1/bin/vivado $1
 else
    # need index to know which line we are on
