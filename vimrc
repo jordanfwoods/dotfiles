@@ -21,6 +21,7 @@ call plug#begin('~/.vim/plugged')
    Plug 'vim-scripts/vim-xdc-syntax'     " xdc syntax file
    Plug 'vhda/verilog_systemverilog.vim' " SystemVerilog syntax file
    Plug 'preservim/nerdtree'             " Use a capable file manager
+   Plug 'dhruvasagar/vim-table-mode'     " create ascii tables easily :)
    " " Gutel Plugins to research
    " Plug 'junegunn/fzf'
    " Plug 'amal-khailtash/vim-xdc-syntax'

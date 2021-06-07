@@ -3,7 +3,10 @@
 alias  viv4='/opt/Xilinx/Vivado/2014.4/bin/vivado'
 alias  viv6='/opt/Xilinx/Vivado/2016.2/bin/vivado'
 alias  viv8='/opt/Xilinx/Vivado/2018.1/bin/vivado'
+alias  viv2='/opt/Xilinx/Vivado/2018.2/bin/vivado'
 alias  viv9='/opt/Xilinx/Vivado/2019.1/bin/vivado'
+# created vivado.sh automatically opens correct version of vivado
+alias   viv='/home/jwoods/junk/github/jordanfwoods/jfw_dotfiles/vivado.sh'
 
 # Common FW locations
 alias cdsvn='cd /home/jwoods/svn/'

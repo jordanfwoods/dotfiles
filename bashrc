@@ -47,17 +47,13 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 # duh
 export EDITOR='vim'
 
-# User specific aliases and functions
+# assuming Vivado/SDK tools installed to /opt/Xilinx
 export vpath=/opt/Xilinx
-
-export vivado_path_20191=$vivado_path_20191:$vpath/SDK/2019.1/gnu/arm/lin/bin
-export vivado_path_20191=$vivado_path_20191:$vpath/SDK/2019.1/bin
-
-export vivado_path_20191=$nbsp/SDK/2019.1/gnu/aarch32/lin/gcc-arm-linux-gnueabi/bin
-export vivado_path_20191=$vivado_path_20191:$vpath/SDK/2019.1/gnu/arm/lin/bin
-export vivado_path_20191=$vivado_path_20191:$vpath/SDK/2019.1/bin
-export vivado_path_20191=$vivado_path_20191:$vpath/Vivado/2019.1/bin
-export PATH=$vivado_path_20191:$PATH
+export vivado_path_20182=$vpath/SDK/2018.2/gnu/aarch32/lin/gcc-arm-linux-gnueabi/bin
+export vivado_path_20182=$vivado_path_20182:$vpath/SDK/2018.2/gnu/arm/lin/bin
+export vivado_path_20182=$vivado_path_20182:$vpath/SDK/2018.2/bin
+export vivado_path_20182=$vivado_path_20182:$vpath/Vivado/2018.2/bin
+export PATH=$vivado_path_20182:$PATH
 
 # make updating the terminal and editing rc files easy.
 alias reload='source ~/.bashrc'

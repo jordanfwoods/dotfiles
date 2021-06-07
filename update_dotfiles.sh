@@ -24,6 +24,7 @@ do
    # ignore a few files, but otherwise copy all files in.
    elif [ $dot_file != "update_dotfiles.sh" ] &&
         [ $dot_file != "README.md" ]          &&
+        [ $dot_file != "vivado.sh" ]          &&
         [ $dot_file != "svnvimdiffwrap.sh" ]
    then
       printf "cp -rf ~/.%-18s ./%0s\n" $dot_file $dot_file
