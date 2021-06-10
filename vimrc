@@ -140,6 +140,12 @@ nnoremap <F6>      :call <SID>SynStack()<CR>
 " Toggle Tab/Endline Viewer
 nnoremap <F5>      <Esc>:set list!<CR>
 
+" Reliably prompt for file changes upon changing buffers.
+au FocusGained,BufEnter     * :silent! checktime
+au CursorHold,CursorHoldI   * :silent! checktime
+" au CursorMoved,CursorMovedI * :silent! checktime
+let v:fcs_choice="ask"
+
 """"""""""""""""""""""""""""""""
 "" COMMANDS
 """"""""""""""""""""""""""""""""
