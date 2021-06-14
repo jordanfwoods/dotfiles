@@ -25,6 +25,7 @@ do
    elif [ $dot_file != "update_dotfiles.sh" ] &&
         [ $dot_file != "README.md" ]          &&
         [ $dot_file != "vivado.sh" ]          &&
+        [ $dot_file != "svn-color.py" ]       &&
         [ $dot_file != "svnvimdiffwrap.sh" ]
    then
       printf "cp -rf ~/.%-18s ./%0s\n" $dot_file $dot_file

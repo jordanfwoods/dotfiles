@@ -74,6 +74,12 @@ alias      l='ls -hNv   --color=auto --group-directories-first'
 alias     ll='ls -lhNv  --color=auto --group-directories-first'
 alias     la='ls -lahNv --color=auto --group-directories-first'
 
+# SVN Commands to make it more like git
+# svn add - begins tracking file. svn_add makes changelist act like staging area
+alias svnadd='svn cl staging_area'
+alias  svnci='svn ci --cl staging_area -m'
+
+# Misc commands that are helpful
 # Xilinx DocNav shortcut
 alias docnav='/opt/Xilinx/DocNav/docnav'
 # Spruce up the regular diff, please and thank you
