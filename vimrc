@@ -6,11 +6,6 @@
 set nocompatible " always use this feature to bring it to the 21st century...
 syntax on        " enable syntax highlighting
 
-" Enable mouse if possible
-if has('mouse')
-  set mouse=a
-endif
-
 call plug#begin('~/.vim/plugged')
    " Time Pope - the patron saint of VIM
    Plug 'tpope/vim-commentary'           " #gcc Toggles comments on # lines
@@ -99,15 +94,8 @@ command! MakeTags ! ctags --langmap=Verilog:+.sv --languages=vhdl,Verilog
 "" :h keycodes for more info on <> nomenclature
 " Add single spaces in normal mode
 nnoremap <Space>   i<Space><Right><ESC>
-" Add indentation where cursor is (internal indentation)
-" execute  "set <S-Tab>=\e[Z"
-" nnoremap <S-Tab> i<Tab><Right><ESC>
-" execute  "set <C-Space>=^@"
-" nnoremap <C-Space> i<Tab><Right><ESC>
 " Make 'Y' operate like 'D', 'C', etc instead of 'yy'
 nnoremap Y         y$
-" Reverse Tab
-" imap     <S-Tab>   <C-D>
 
 "" Helpful reused operations
 " Count the number of occurences of the last search
@@ -127,8 +115,6 @@ nnoremap ,nf       :NERDTreeFind<CR>
 
 " Auto save and reload vimrc (good for editing vimrc / colorscheme)
 nnoremap <F10>     :w<CR>:SourceVimrc<CR>
-" Reload the current file for any external changes.
-nnoremap <F9>      :e<CR>
 " Output Basic syntax Name, i.e. Comment, and the colors associated.
 nnoremap <F8>      :verbose highlight
  \ <C-r>=synIDattr(synIDtrans(synID(line("."), col("."), 1)), "name")<CR><CR>
@@ -139,6 +125,11 @@ nnoremap <F7>      :verbose highlight
 nnoremap <F6>      :call <SID>SynStack()<CR>
 " Toggle Tab/Endline Viewer
 nnoremap <F5>      <Esc>:set list!<CR>
+" Use F3 to toggle paste mode for easy copy pasting from system clipboard.
+nnoremap <F3>      :set invpaste<CR>
+" use F2 to toggle line numbers on/off for easy copy pasting to system
+" clipboard with the mouse
+noremap <F2>       :set invnumber<CR>:set invrelativenumber<CR>
 
 " Reliably prompt for file changes upon changing buffers.
 au FocusGained,BufEnter     * :silent! checktime
@@ -181,6 +172,13 @@ endfunc
 """"""""""""""""""""""""""""""""
 "" LEGACY / UNUSED
 """"""""""""""""""""""""""""""""
+
+" I have become a VIM super user, and I don't need it... right?
+" " Enable mouse if possible
+" if has('mouse')
+"   set mouse=a
+" endif
+
 " highlight OverLength ctermbg=52 guibg=#592929
 " match OverLength /\%81v.\+/
 
@@ -202,6 +200,13 @@ endfunc
 "   execute( 'silent !mycommand' )
 " endfunc
 
+" Add indentation where cursor is (internal indentation)
+" nnoremap <Tab> i<Tab><Right><ESC>
+" Reverse Tab
+" imap     <S-Tab>   <C-D>
+
+" " Reload the current file for any external changes.
+" nnoremap <F9>      :e<CR>
 " " Turn on/off FileChangedShell Autocommand
 " nnoremap <S-F5>    :call ChangeThisBuffer()<CR>
 " nnoremap <F5>      :exe "au! FileChangedShell " . expand("%")<CR>
