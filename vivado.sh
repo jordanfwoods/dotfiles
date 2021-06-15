@@ -24,7 +24,13 @@ fi
 # If no xpr was found then just use Vivado 2018.1
 if [ "$xpr" == "temp" ]
 then
-   echo "No XPR Specified, opening Viv18.1 with any given file"
+   # If no file specified, then don't confuse them...
+   if [ $# -eq 0 ] 
+   then
+      echo "No XPR Specified, opening Vivado 2018.1"
+   else
+      echo "No XPR Specified, opening $1 in Vivado 2018.1"
+   fi
    /opt/Xilinx/Vivado/2018.1/bin/vivado $1
 
 # If there is a valid XPR file, then parse the file to find the correct Vivado
