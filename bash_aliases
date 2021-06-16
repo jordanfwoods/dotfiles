@@ -15,8 +15,7 @@ cam="$svn/Camera/CameraFirmware/"
 centroid="$svn/Firmware/trunk/core/08_misc/Centroiding"
 gse="$svn/csp-em-05/fw/branch/csp-gse"
 las="$svn/irad-lasercomm/FW/FPGA/branch/PAT_FFT"
-mis="$svn/mist-so13239/FW/BRANCH/MIST_tag1p8_Vivado2018p1/projects/MIST/proj/"
-
+mis="$svn/mist-so13239/FW/BRANCH/MIST_tag1p10/projects/MIST"
 
 ################
 # Vivado Aliases
