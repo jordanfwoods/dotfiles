@@ -9,11 +9,11 @@ PS1="\n"                                 # Newline in default color
 if [ "`id -u`" -eq 0 ]; then
    PS1="$PS1\[\e[1;31m\]\u\[\e[0m\]"     # display username in bold red
 else
-   PS1="$PS1\[\e[0;36m\]\u\[\e[0m\]"     # display username in teal
+   PS1="$PS1\[\e[1;34m\]\u\[\e[0m\]"     # display username in bold blue
 fi
 PS1="$PS1 : "                            # colon separator in default color
 PS1="$PS1\[\e[1;35m\]\h\[\e[0m\] "       # Display hostname in bold purple
-PS1="$PS1\[\e[0;33m\]\$PWD\[\e[0m\]"     # display full pathname in gold
+PS1="$PS1\[\e[1;33m\]\$PWD\[\e[0m\]"     # display full pathname in gold
 PS1="$PS1\n$ "                           # newline, and '$ ' in defaut color
 
 # adding /bin causes issues with buildroot

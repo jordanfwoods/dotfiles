@@ -24,14 +24,14 @@ colorizedSubcommands = (
 )
 
 statusColors = {
-    "M"     : "34",     # yellow 
-    "\?"    : "",       # default
-    "A"     : "32",     # green
-    "X"     : "35",     # purple
-    "C"     : "30;41",  # black on red
-    "-"     : "",       # default
-    "D"     : "31",     # red
-    "\+"    : "32",     # green
+    "M"     : "34;1", # blue 
+    "\?"    : "",     # default
+    "A"     : "32;1", # green
+    "X"     : "35;1", # purple
+    "C"     : "30;41",# black on red
+    "-"     : "",     # default
+    "D"     : "31;1", # red
+    "\+"    : "32;1", # green
 }
 
 def colorize(line): 
