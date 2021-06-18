@@ -2,7 +2,6 @@
 
 ############################
 # create directory variables
-homeserver="/run/user/461400263/gvfs/sftp:host=homeserver/home/jwoods"
 xilinx="/opt/Xilinx"
 dot="/home/jwoods/junk/github/jordanfwoods/jfw_dotfiles"
 svn="/home/jwoods/svn"
@@ -38,8 +37,6 @@ alias svns="$dot/svn-color.py status ."
 
 ##########################
 # Change Directory Aliases
-# homeserver
-alias cdhom="cd $homeserver"
 # Common FW locations
 alias cdsvn="cd $svn"
 alias cdbfm="cd $bfm"
