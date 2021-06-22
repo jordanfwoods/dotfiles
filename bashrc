@@ -1,7 +1,4 @@
 # .bashrc
-# export SYSTEMD_PAGER=
-# Uncomment the following line if you don't like systemctl's auto-paging feature:
-# export SYSTEMD_PAGER=
 
 # Update bash prompt to look pretty.
 PS1="\n"                                 # Newline in default color
@@ -59,7 +56,6 @@ export PATH=$vivado_path_20182:$PATH
 alias reload='source ~/.bashrc'
 alias   vima='vim ~/.bash_aliases'
 alias   vimb='vim ~/.bashrc'
-alias   vimj='vim ~/.vim/colors/jordan.vim'
 alias   vimv='vim ~/.vimrc'
 
 # abbreviate common directory commands

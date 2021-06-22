@@ -16,20 +16,21 @@ call plug#begin('~/.vim/plugged')
    Plug 'vhda/verilog_systemverilog.vim'  " SystemVerilog syntax file.
    Plug 'preservim/nerdtree'              " Use a capable file manager.
    Plug 'dhruvasagar/vim-table-mode'      " create ascii tables <leader>tm.
-   " Gutel Plugins to research
-   " Plug 'junegunn/fzf'
-   " Plug 'amal-khailtash/vim-xdc-syntax'
-   " Plug 'gutelfuldead/vim-tex-fold'      " fork from matze/vim-tex-fold add chapter, sub&subsub section support
-   " Plug 'xuhdev/vim-latex-live-preview'  " requires Okular and/or pdflatex, <leader>llp to open pdf preview
+   Plug 'amal-khailtash/vim-xdc-syntax'   " XDC Syntax.
    " VIM  Colorschemes
    Plug 'morhetz/gruvbox'                 " gruvbox is the goat of colorschemes.
    Plug 'sonph/onehalf', { 'rtp': 'vim' } " Other Interesting colorscheme.
    Plug 'gosukiwi/vim-atom-dark'          " Other Interesting colorscheme.
+   " Gutel Plugins to research
+   " Plug 'junegunn/fzf'                  " Fuzzy Finder for VIM
+   " fork from matze/vim-tex-fold add chapter, sub&subsub section support
+   " Plug 'gutelfuldead/vim-tex-fold'
+   " requires Okular and/or pdflatex, <leader>llp to open pdf preview
+   " Plug 'xuhdev/vim-latex-live-preview'
 call plug#end()
 
 set background=dark " gruvbox requires external background to be set.
-colo gruvbox        " scheme from offline
-"colo jordan        " Based on colo ron
+colo gruvbox        " scheme from Plugin
 
 " Disable the Arrow keys in Normal Mode
 " NOTE: Use imap to update insert mode key bindings.
@@ -95,11 +96,13 @@ command! MakeTags ! ctags --langmap=Verilog:+.sv --languages=vhdl,Verilog
 let mapleader = ","
 
 " Add single spaces in normal mode
-nnoremap <Space>       i<Space><Right><ESC>
+nnoremap <Space>         i<Space><Right><ESC>
 " Add a Tab while in Normal Mode
-nnoremap <Leader><Tab> i<Tab><Right><ESC>
+nnoremap <Leader><Tab>   i<Tab><Right><ESC>
+" Remove a Tab while in Normal Mode
+nnoremap <Leader><S-Tab> 3hdwi<Tab><Right><ESC>
 " Make 'Y' operate like 'D', 'C', etc instead of 'yy'
-nnoremap Y             y$
+nnoremap Y               y$
 
 " Count the number of occurences of the last search
 nnoremap <leader>/       :%s///gni<CR><C-O>
