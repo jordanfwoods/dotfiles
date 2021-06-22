@@ -1,4 +1,7 @@
 # .bashrc
+# export SYSTEMD_PAGER=
+# Uncomment the following line if you don't like systemctl's auto-paging feature
+# export SYSTEMD_PAGER=
 
 # Update bash prompt to look pretty.
 PS1="\n"                                 # Newline in default color
