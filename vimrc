@@ -31,6 +31,13 @@ call plug#end()
 
 set background=dark " gruvbox requires external background to be set.
 colo gruvbox        " scheme from Plugin
+" colo atom-dark-256 " other interesting colorscheme
+" colo onehalfdark  " other interesting Plugin theme
+if g:colors_name=="onehalfdark" " onehalfdark has a lame commenting scheme...
+  hi Comment guifg=#282c34 ctermfg=236
+  hi Comment guibg=#5c6370 ctermbg=241
+  hi Comment gui=italic    cterm=italic
+endif
 
 " Disable the Arrow keys in Normal Mode
 " NOTE: Use imap to update insert mode key bindings.
@@ -144,6 +151,11 @@ nnoremap <F2>   :set invnumber<CR>:set invrelativenumber<CR>
 """"""""""""""""""""""""""""""""
 "" AUTO COMMANDS
 """"""""""""""""""""""""""""""""
+
+" Prefer // style to /* stuff */ 
+autocmd FileType verilog_systemverilog setlocal commentstring=//%s
+" VHDL doesn't work for some reason
+autocmd FileType vhdl setlocal commentstring=--%s
 
 " Reliably prompt for file changes upon changing buffers.
 au FocusGained,BufEnter     * :silent! checktime

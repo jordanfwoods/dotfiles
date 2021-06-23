@@ -1,0 +1,8 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/home/jwoods/svn/csp-em-05/fw/branch/csp-gse/temp/cl_frame_grabber_0/project_1/project_1.srcs'
+let g:netrw_dirhist_2='/home/jwoods/svn/csp-em-05/fw/branch/csp-gse/temp/cl_frame_grabber_0/project_1'
+let g:netrw_dirhist_3='/home/jwoods/svn/csp-em-05/fw/branch/csp-gse/temp/cl_frame_grabber_0'
+let g:netrw_dirhist_4='/home/jwoods/svn/csp-em-05/fw/branch/csp-gse/temp'
+let g:netrw_dirhist_5='/home/jwoods/svn/csp-em-05/fw/branch/csp-gse/temp/cl_frame_grabber_0/project_1/project_1.srcs/sources_1/ip'
+let g:netrw_dirhist_6='/usr/share/vim/vim74/doc'

@@ -21,6 +21,14 @@ do
       echo "cp -rf ~/.fonts/*            ./fonts/"
             cp -rf ~/.fonts/*            ./fonts/
 
+   elif [ $dot_file == "vim" ]
+   then
+      echo "cp -rf ~/.vim/autoload/*     ./vim/autoload/"
+            cp -rf ~/.vim/autoload/*     ./vim/autoload/
+      echo "cp -rf ~/.vim/colors/*       ./vim/colors/"
+            cp -rf ~/.vim/colors/*       ./vim/colors/
+      echo "cp -rf ~/.vim/syntax/*       ./vim/syntax/"
+            cp -rf ~/.vim/syntax/*       ./vim/syntax/
    # ignore a few files, but otherwise copy all files in.
    elif [ $dot_file != "update_dotfiles.sh" ] &&
         [ $dot_file != "README.md" ]          &&
