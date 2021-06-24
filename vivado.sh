@@ -18,7 +18,7 @@ then
    done
 else
    # if an xpr was explicitly given then use that
-   $xpr="$1"
+   xpr="$1"
 fi
 
 # If no xpr was found then just use Vivado 2018.1
