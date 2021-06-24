@@ -4,7 +4,7 @@
 # export SYSTEMD_PAGER=
 
 # Update bash prompt to look pretty.
-PS1="\n"                                 # Newline in default color
+PS1=""                                   # Newline in default color
 # change color when running as su
 if [ "`id -u`" -eq 0 ]; then
    PS1="$PS1\[\e[1;31m\]\u\[\e[0m\]"     # display username in bold red
@@ -13,8 +13,9 @@ else
 fi
 PS1="$PS1 : "                            # colon separator in default color
 PS1="$PS1\[\e[1;35m\]\h\[\e[0m\] "       # Display hostname in bold purple
-PS1="$PS1\[\e[1;33m\]\$PWD\[\e[0m\]"     # display full pathname in gold
+PS1="$PS1\[\e[1;33m\]\$PWD\[\e[0m\] "    # display full pathname in gold
 PS1="$PS1\n$ "                           # newline, and '$ ' in defaut color
+
 
 # adding /bin causes issues with buildroot
 def_path=/usr/bin:/usr/sbin:/usr/local/bin:$HOME/.local/bin:/var/lib/snapd/snap/bin
@@ -27,7 +28,10 @@ export HISTTIMEFORMAT="%Y/%m/%d %H:%M:%S:   "
 # Causes bash to append to history instead of overwriting it so if you start a
 # new terminal, you have old session history
 shopt -s histappend
-PROMPT_COMMAND='history -a'
+PROMPT_COMMAND='/home/jwoods/junk/github/jordanfwoods/jfw_dotfiles/gitprompt.pl'
+export PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
+
+# PROMPT_COMMAND='~/jwoods/personal/NG/git/gitprompt.pl'
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
