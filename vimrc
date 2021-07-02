@@ -18,6 +18,7 @@ call plug#begin('~/.vim/plugged')
    Plug 'dhruvasagar/vim-table-mode'      " create ascii tables <leader>tm.
    Plug 'amal-khailtash/vim-xdc-syntax'   " XDC Syntax.
    " VIM  Colorschemes
+   Plug 'flazz/vim-colorschemes'          " All in one place...
    Plug 'morhetz/gruvbox'                 " gruvbox is the goat of colorschemes.
    Plug 'sonph/onehalf', { 'rtp': 'vim' } " Other Interesting colorscheme.
    Plug 'gosukiwi/vim-atom-dark'          " Other Interesting colorscheme.
@@ -153,7 +154,7 @@ nnoremap <F2>   :set invnumber<CR>:set invrelativenumber<CR>
 """"""""""""""""""""""""""""""""
 
 " Prefer // style to /* stuff */ 
-autocmd FileType verilog_systemverilog setlocal commentstring=//%s
+autocmd FileType verilog_systemverilog setlocal commentstring=//\ %s
 " VHDL doesn't work for some reason
 autocmd FileType vhdl setlocal commentstring=--%s
 
