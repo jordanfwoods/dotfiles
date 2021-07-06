@@ -28,8 +28,10 @@ export HISTTIMEFORMAT="%Y/%m/%d %H:%M:%S:   "
 # Causes bash to append to history instead of overwriting it so if you start a
 # new terminal, you have old session history
 shopt -s histappend
-PROMPT_COMMAND='/home/jwoods/junk/github/jordanfwoods/jfw_dotfiles/gitprompt.pl'
-export PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
+# check for SVN / GIT statuses
+PROMPT_COMMAND="/home/jwoods/junk/github/jordanfwoods/jfw_dotfiles/svnprompt.pl"
+export PROMPT_COMMAND="/home/jwoods/junk/github/jordanfwoods/jfw_dotfiles/gitprompt.pl;$PROMPT_COMMAND"
+# export PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
 
 # PROMPT_COMMAND='~/jwoods/personal/NG/git/gitprompt.pl'
 

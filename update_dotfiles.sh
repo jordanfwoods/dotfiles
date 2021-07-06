@@ -37,6 +37,7 @@ do
         [ $dot_file != "vivado.sh" ]          &&
         [ $dot_file != "svn-color.py" ]       &&
         [ $dot_file != "gitprompt.pl" ]       &&
+        [ $dot_file != "svnprompt.pl" ]       &&
         [ $dot_file != "svnvimdiffwrap.sh" ]
    then
       printf "cp -rf ~/.%-18s ./%0s\n" $dot_file $dot_file

@@ -112,6 +112,8 @@ nnoremap <Leader><S-Tab> 3hdwi<Tab><Right><ESC>
 " Make 'Y' operate like 'D', 'C', etc instead of 'yy'
 nnoremap Y               y$
 
+" Update the Date in MM/DD/YY format
+nnoremap <leader>d       R<C-R>=strftime("%m/%d/%y")<CR><Esc>
 " Count the number of occurences of the last search
 nnoremap <leader>/       :%s///gni<CR><C-O>
 " Remove trailing whitespace on entire file (with confirms).
