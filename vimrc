@@ -119,9 +119,9 @@ nnoremap <leader>/       :%s///gni<CR><C-O>
 " Remove trailing whitespace on entire file (with confirms).
 nnoremap <leader><Space> :%s/\s\+$//gc<CR>
 " Dump a VHDL Header template to the file
-nnoremap <leader>vhd     :-1read /home/jwoods/jwoods/personal/vim/header.vhd<CR>
+nnoremap <leader>vhd     :-1read ~/.vim/templates/header.vhd<CR>
 " Dump a procedure template to the file
-nnoremap <leader>ver     :-1read /home/jwoods/jwoods/personal/vim/header.sv<CR>
+nnoremap <leader>ver     :-1read ~/.vim/templates/header.sv<CR>
 
 " Open/Close Nerdtree.
 nnoremap <leader>nn :NERDTreeToggle<CR>

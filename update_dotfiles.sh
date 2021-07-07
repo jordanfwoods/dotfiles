@@ -31,6 +31,8 @@ do
             cp -rf ~/.vim/syntax/*       ./vim/syntax/
       echo "cp -rf ~/.vim/plugin/*       ./vim/plugin/"
             cp -rf ~/.vim/plugin/*       ./vim/plugin/
+      echo "cp -rf ~/.vim/templates/*       ./vim/templates/"
+            cp -rf ~/.vim/templates/*       ./vim/templates/
    # ignore a few files, but otherwise copy all files in.
    elif [ $dot_file != "update_dotfiles.sh" ] &&
         [ $dot_file != "README.md" ]          &&
