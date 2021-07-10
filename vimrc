@@ -7,27 +7,14 @@ set nocompatible " always use this feature to bring it to the 21st century...
 syntax on        " enable syntax highlighting
 
 call plug#begin('~/.vim/plugged')
-   " Time Pope - the patron saint of VIM
-   Plug 'tpope/vim-commentary'            " #gcc Toggles comments on # lines.
-   Plug 'tpope/vim-fugitive'              " Adds :Git command.
-   " Plug 'tpope/vim-surround'            " Surrounds text in quotes, {}, etc.
+   Plug 'tpope/vim-commentary'            " Time Pope - the patron saint of VIM
    Plug 'vim-airline/vim-airline'         " Creates a fancy status line.
    Plug 'vim-scripts/vim-xdc-syntax'      " xdc syntax file.
    Plug 'vhda/verilog_systemverilog.vim'  " SystemVerilog syntax file.
    Plug 'preservim/nerdtree'              " Use a capable file manager.
    Plug 'dhruvasagar/vim-table-mode'      " create ascii tables <leader>tm.
    Plug 'amal-khailtash/vim-xdc-syntax'   " XDC Syntax.
-   " VIM  Colorschemes
-   Plug 'flazz/vim-colorschemes'          " All in one place...
    Plug 'morhetz/gruvbox'                 " gruvbox is the goat of colorschemes.
-   Plug 'sonph/onehalf', { 'rtp': 'vim' } " Other Interesting colorscheme.
-   Plug 'gosukiwi/vim-atom-dark'          " Other Interesting colorscheme.
-   " Gutel Plugins to research
-   " Plug 'junegunn/fzf'                  " Fuzzy Finder for VIM
-   " fork from matze/vim-tex-fold add chapter, sub&subsub section support
-   " Plug 'gutelfuldead/vim-tex-fold'
-   " requires Okular and/or pdflatex, <leader>llp to open pdf preview
-   " Plug 'xuhdev/vim-latex-live-preview'
 call plug#end()
 
 set background=dark " gruvbox requires external background to be set.
@@ -93,7 +80,8 @@ set spr            " New Vertical Splits open to the right
 set tags=./tags,./TAGS,tags,TAGS
 " " Make Tags for interfile autofill (from branch/csp-gse)
 command! MakeTags ! ctags --langmap=Verilog:+.sv --languages=vhdl,Verilog
-         \ -R --exclude=proj --exclude=temp --exclude=_Archive ./
+         \ -R --Verilog-kinds=-prn --exclude=proj --exclude=temp
+         \ --exclude=_Archive ./
 
 """"""""""""""""""""""""""""""""
 "" REMAPS
@@ -129,11 +117,13 @@ nnoremap <leader>nn :NERDTreeToggle<CR>
 nnoremap <leader>nf :NERDTreeFind<CR>
 
 " Don't use <F11>, or <F12>
+" Auto save and don't reload vimrc (good for most files.)
+nnoremap <F10>   :w<CR>
 " Auto save and reload vimrc (good for editing vimrc / colorscheme)
-nnoremap <F10>  :w<CR>:source ~/.vimrc<CR>
+nnoremap <C-F10> :w<CR>:source ~/.vimrc<CR>
 " Increase / Decrease Tabstop for looking at foreign files.
-nnoremap <F9>   :set ts+=1<CR>:set ts?<CR>
-nnoremap <S-F9> :set ts-=1<CR>:set ts?<CR>
+nnoremap <F9>    :set ts+=1<CR>:set ts?<CR>
+nnoremap <S-F9>  :set ts-=1<CR>:set ts?<CR>
 
 " Output Basic syntax Name, i.e. Comment, and the colors associated.
 nnoremap <F8>   :verbose highlight
@@ -243,3 +233,13 @@ set guioptions=i " by default, hide gui menus
 " " save the location of vimfiles
 " cmap <A-f> /home/jwoods/.vim/
 
+" Plug 'tpope/vim-fugitive'            " Adds :Git command.
+" Plug 'tpope/vim-surround'            " Surrounds text in quotes, {}, etc.
+" VIM  Colorschemes
+" Plug 'flazz/vim-colorschemes'        " All in one place...
+" Plug 'sonph/onehalf', { 'rtp': 'vim' } " Other Interesting colorscheme.
+" Plug 'gosukiwi/vim-atom-dark'        " Other Interesting colorscheme.
+" Gutel Plugins to research
+" Plug 'junegunn/fzf'                  " Fuzzy Finder for VIM fork from matze/vim-tex-fold add chapter, sub&subsub section support
+" Plug 'gutelfuldead/vim-tex-fold'     " requires Okular and/or pdflatex, <leader>llp to open pdf preview
+" Plug 'xuhdev/vim-latex-live-preview'
