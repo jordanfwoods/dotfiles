@@ -120,7 +120,8 @@ nnoremap <C-F8>  :verbose highlight
 nnoremap <S-F8>  :verbose highlight
   \ <C-r>=synIDattr(synstack(line("."), col("."))[-1], "name")<CR><CR>
 " Display list of color groups that character under cursor belongs to.
-nnoremap <F8>    :echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+nnoremap <F8>    :echo
+  \ map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')<CR>
 " Toggle Tab/Endline Viewer
 nnoremap <F7>    <Esc>:set list!<CR>
 
@@ -130,7 +131,7 @@ nnoremap <F7>    <Esc>:set list!<CR>
 " Prefer // style to /* stuff */ 
 autocmd FileType verilog_systemverilog setlocal commentstring=//\ %s
 " VHDL doesn't work for some reason
-autocmd FileType vhdl setlocal commentstring=--%s
+autocmd FileType vhdl setlocal commentstring=--\ %s
 
 " Reliably prompt for file changes upon changing buffers.
 au FocusGained,BufEnter     * :silent! checktime
