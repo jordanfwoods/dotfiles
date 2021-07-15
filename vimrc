@@ -1,46 +1,38 @@
 """"""""""""""""""""""""""""""""
 "" Initial Random Settings
-"" (syntax/font/colorscheme/mouse/arrows)
+"" (syntax/plugins/font/colorscheme/arrows)
 """"""""""""""""""""""""""""""""
-
 set nocompatible " always use this feature to bring it to the 21st century...
 syntax on        " enable syntax highlighting
 
 call plug#begin('~/.vim/plugged')
-   Plug 'tpope/vim-commentary'            " Time Pope - the patron saint of VIM
-   Plug 'vim-airline/vim-airline'         " Creates a fancy status line.
-   Plug 'vim-scripts/vim-xdc-syntax'      " xdc syntax file.
-   Plug 'vhda/verilog_systemverilog.vim'  " SystemVerilog syntax file.
-   Plug 'preservim/nerdtree'              " Use a capable file manager.
-   Plug 'dhruvasagar/vim-table-mode'      " create ascii tables <leader>tm.
-   Plug 'amal-khailtash/vim-xdc-syntax'   " XDC Syntax.
-   Plug 'morhetz/gruvbox'                 " gruvbox is the goat of colorschemes.
+  " Time Pope - the patron saint of VIM
+  Plug 'tpope/vim-commentary'           " Make Block comments easier (gcc)
+  " VIM Appearance
+  Plug 'vim-airline/vim-airline'        " Creates a fancy status line.
+  " Syntax Highlighting / Color Schemes
+  Plug 'amal-khailtash/vim-xdc-syntax'  " XDC Syntax.
+  Plug 'vhda/verilog_systemverilog.vim' " SystemVerilog syntax file.
+  Plug 'morhetz/gruvbox'                " gruvbox is the goat of colorschemes.
+  " Updated file system...
+  Plug 'preservim/nerdtree'             " Use a capable file manager.
 call plug#end()
 
 set background=dark " gruvbox requires external background to be set.
 colo gruvbox        " scheme from Plugin
-" colo atom-dark-256 " other interesting colorscheme
-" colo onehalfdark  " other interesting Plugin theme
-if g:colors_name=="onehalfdark" " onehalfdark has a lame commenting scheme...
-  hi Comment guifg=#282c34 ctermfg=236
-  hi Comment guibg=#5c6370 ctermbg=241
-  hi Comment gui=italic    cterm=italic
-endif
 
 " Disable the Arrow keys in Normal Mode
-" NOTE: Use imap to update insert mode key bindings.
 map <Up>    <nop>
-map <down>  <nop>
-map <left>  <nop>
-map <right> <nop>
+map <Down>  <nop>
+map <Left>  <nop>
+map <Right> <nop>
 
 """"""""""""""""""""""""""""""""
 "" Basic Settings
 """"""""""""""""""""""""""""""""
-
 " What VIM saves
 set nobackup       " do not keep a backup file, use versions instead
-set history=250    " keep 250 lines of command line history
+set history=250    " Number of lines of command line history to keep
 
 " How VIM Looks
 set number         " show line numbers.
@@ -59,7 +51,7 @@ set expandtab      " inserts spaces for tabs.
 set backspace=indent,eol,start " allow backspacing over anything in insert mode
 
  " Allow 'list' option to see EOL($), Tab(>-), Space(·), nowrap(<>)
-set listchars=eol:$,tab:>-,nbsp:·,extends:>,precedes:< " Used with <F9>
+set listchars=eol:$,tab:>-,nbsp:·,extends:>,precedes:< " Used with <F7>
 
 " Update the way searching occurs
 set hlsearch       " Highlight all items that match search
@@ -76,18 +68,10 @@ set ai             " Turn on Auto Indent
 set sb             " New Split Windows open below
 set spr            " New Vertical Splits open to the right
 
-"" To Update Tags file, Guac into a linux comp, update svn, and run ctags!
-set tags=./tags,./TAGS,tags,TAGS
-" " Make Tags for interfile autofill (from branch/csp-gse)
-command! MakeTags ! ctags --langmap=Verilog:+.sv --languages=vhdl,Verilog
-         \ -R --Verilog-kinds=-prn --exclude=proj --exclude=temp
-         \ --exclude=_Archive ./
-
 """"""""""""""""""""""""""""""""
 "" REMAPS
 """"""""""""""""""""""""""""""""
 "" :h keycodes for more info on <> nomenclature
-
 " Change the <leader> to be ",", not "\"
 let mapleader = ","
 
@@ -116,7 +100,11 @@ nnoremap <leader>nn :NERDTreeToggle<CR>
 " Find location of current file.
 nnoremap <leader>nf :NERDTreeFind<CR>
 
-" Don't use <F11>, or <F12>
+" Don't use <F11>, or <F12>. <S-F11>, etc. is fine.
+" Toggle paste mode for easy pasting from system clipboard.
+nnoremap <C-F12> :set invpaste<CR>
+" Toggle line numbers on/off for easy copying to system clipboard with the mouse
+nnoremap <S-F12> :set invnumber<CR>:set invrelativenumber<CR>
 " Auto save and don't reload vimrc (good for most files.)
 nnoremap <F10>   :w<CR>
 " Auto save and reload vimrc (good for editing vimrc / colorscheme)
@@ -126,25 +114,19 @@ nnoremap <F9>    :set ts+=1<CR>:set ts?<CR>
 nnoremap <S-F9>  :set ts-=1<CR>:set ts?<CR>
 
 " Output Basic syntax Name, i.e. Comment, and the colors associated.
-nnoremap <F8>   :verbose highlight
- \ <C-r>=synIDattr(synIDtrans(synID(line("."), col("."), 1)), "name")<CR><CR>
+nnoremap <C-F8>  :verbose highlight
+  \ <C-r>=synIDattr(synIDtrans(synID(line("."), col("."), 1)), "name")<CR><CR>
 " Output Specific syntax name, i.e. vimLineComment, and the associated linking.
-nnoremap <F7>   :verbose highlight
- \ <C-r>=synIDattr(synstack(line("."), col("."))[-1], "name")<CR><CR>
+nnoremap <S-F8>  :verbose highlight
+  \ <C-r>=synIDattr(synstack(line("."), col("."))[-1], "name")<CR><CR>
 " Display list of color groups that character under cursor belongs to.
-nnoremap <F6>   :call <SID>SynStack()<CR>
+nnoremap <F8>    :echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 " Toggle Tab/Endline Viewer
-nnoremap <F5>   <Esc>:set list!<CR>
-
-" Toggle paste mode for easy pasting from system clipboard.
-nnoremap <F3>   :set invpaste<CR>
-" Toggle line numbers on/off for easy copying to system clipboard with the mouse
-nnoremap <F2>   :set invnumber<CR>:set invrelativenumber<CR>
+nnoremap <F7>    <Esc>:set list!<CR>
 
 """"""""""""""""""""""""""""""""
 "" AUTO COMMANDS
 """"""""""""""""""""""""""""""""
-
 " Prefer // style to /* stuff */ 
 autocmd FileType verilog_systemverilog setlocal commentstring=//\ %s
 " VHDL doesn't work for some reason
@@ -159,48 +141,34 @@ let v:fcs_choice="ask"
 """"""""""""""""""""""""""""""""
 "" COMMANDS
 """"""""""""""""""""""""""""""""
-
 " Edit the vimrc in new window
 command! EditVimrc   sp ~/.vimrc
-
+" " Make Tags for interfile autofill (from branch/csp-gse)
+command! MakeTags ! ctags --langmap=Verilog:+.sv --languages=vhdl,Verilog
+         \ -R --Verilog-kinds=-prn --exclude=proj --exclude=temp
+         \ --exclude=_Archive ./
 """"""""""""""""""""""""""""""""
 "" FUNCTIONS
 """"""""""""""""""""""""""""""""
 
-" Function to determine what color group character under cursor belongs to.
-function! <SID>SynStack()
-   if !exists("*synstack")
-      return
-   endif
-   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
-
-" Only for GVIM
-" Toggle gvim Menu / Scrollbars See <F11> above for shortcut
-function! ToggleGUICruft()
-  if &guioptions=='i'
-    exec('set guioptions=imTrL')
-  else
-    exec('set guioptions=i')
-  endif
-endfunction
-
-""""""""""""""""""""""""""""""""
-"" Helpful Commands to Remember
-""""""""""""""""""""""""""""""""
-" - Use :find <filename> to open some stuff
-
 """"""""""""""""""""""""""""""""
 "" LEGACY / UNUSED
 """"""""""""""""""""""""""""""""
-
-" I have become a VIM super user, and I don't need it... right?
-" " Enable mouse if possible
-" if has('mouse')
-"   set mouse=a
+" Other vim colorschemes in unused plugins
+" colo atom-dark-256 " other interesting colorscheme
+" colo onehalfdark  " other interesting Plugin theme
+" if g:colors_name=="onehalfdark" " onehalfdark has a lame commenting scheme...
+"   hi Comment guifg=#282c34 ctermfg=236
+"   hi Comment guibg=#5c6370 ctermbg=241
+"   hi Comment gui=italic    cterm=italic
 " endif
 
-" " Wipe all registers
+" - Use :find <filename> to open some stuff
+
+" I have become a VIM super user, and I don't need it... right?
+" if has('mouse') | set mouse=a | endif
+
+" SMI version of vim can't use [] ... " Wipe all registers
 " command! WipeReg for i in range(34,122) |
 "                \    silent! call setreg(nr2char(i),[]) |
 "                \ endfor
@@ -211,8 +179,8 @@ endfunction
 " let g:netrw_browse_split=4 " open in prior window
 " let g:netrw_altv=1         " opens splits to the right
 " let g:netrw_liststyle=3    " tree view
-" " let g:netrw_list_hide=netrw_gitignore#Hide()
-" " let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
+" let g:netrw_list_hide=netrw_gitignore#Hide()
+" let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
 
 """"""""""""""""""""""""""""""""
 "" GVIM
@@ -220,6 +188,16 @@ endfunction
 
 set guifont=Consolas:h10:cANSI:qDRAFT " Preferred Font for gvim
 set guioptions=i " by default, hide gui menus
+
+" " Only for GVIM
+" " Toggle gvim Menu / Scrollbars See <F11> above for shortcut
+" function! ToggleGUICruft()
+"   if &guioptions=='i'
+"     exec('set guioptions=imTrL')
+"   else
+"     exec('set guioptions=i')
+"   endif
+" endfunction
 
 " Toggle gvim Menu / Scrollbars See Function below
 " nnoremap <F12>     <Esc>:call ToggleGUICruft()<cr>
@@ -233,6 +211,8 @@ set guioptions=i " by default, hide gui menus
 " " save the location of vimfiles
 " cmap <A-f> /home/jwoods/.vim/
 
+" Comment these out until needed
+" Plug 'dhruvasagar/vim-table-mode'    " create ascii tables <leader>tm.
 " Plug 'tpope/vim-fugitive'            " Adds :Git command.
 " Plug 'tpope/vim-surround'            " Surrounds text in quotes, {}, etc.
 " VIM  Colorschemes
