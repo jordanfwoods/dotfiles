@@ -6,8 +6,9 @@ set nocompatible " always use this feature to bring it to the 21st century...
 syntax on        " enable syntax highlighting
 
 call plug#begin('~/.vim/plugged')
-  " Time Pope - the patron saint of VIM
+  " Added Features / commands
   Plug 'tpope/vim-commentary'           " Make Block comments easier (gcc)
+  Plug 'junegunn/vim-easy-align'        " Align using ga...
   " VIM Appearance
   Plug 'vim-airline/vim-airline'        " Creates a fancy status line.
   " Syntax Highlighting / Color Schemes
@@ -86,6 +87,7 @@ nnoremap Y               y$
 
 " Update the Date in MM/DD/YY format
 nnoremap <leader>d       R<C-R>=strftime("%m/%d/%y")<CR><Esc>
+nnoremap <leader>D       R<C-R>=strftime("%m/%d/%Y")<CR><Esc>
 " Count the number of occurences of the last search
 nnoremap <leader>/       :%s///gni<CR><C-O>
 " Remove trailing whitespace on entire file (with confirms).
@@ -124,6 +126,12 @@ nnoremap <F8>    :echo
   \ map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')<CR>
 " Toggle Tab/Endline Viewer
 nnoremap <F7>    <Esc>:set list!<CR>
+
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 
 """"""""""""""""""""""""""""""""
 "" AUTO COMMANDS
