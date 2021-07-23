@@ -24,6 +24,7 @@ colorizedSubcommands = (
 )
 
 statusColors = {
+    "\ M"   : "34;1", # blue 
     "M"     : "34;1", # blue 
     "\?"    : "",     # default
     "A"     : "32;1", # green
