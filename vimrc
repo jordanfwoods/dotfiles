@@ -105,6 +105,7 @@ nnoremap <leader>nf :NERDTreeFind<CR>
 " Don't use <F11>, or <F12>. <S-F11>, etc. is fine.
 " Toggle paste mode for easy copy/pasting from system clipboard with the mouse
 nnoremap <S-F12> :set invnumber<CR>:set invrelativenumber<CR>:set invpaste<CR>
+nnoremap <C-F12> :set invpaste<CR>
 " Auto save and don't reload vimrc (good for most files.)
 nnoremap <F10>   :w<CR>
 " Auto save and reload vimrc (good for editing vimrc / colorscheme)
