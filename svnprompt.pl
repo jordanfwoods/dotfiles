@@ -21,7 +21,16 @@ close IF;
 
 # check to see if there are any local changes to repo
 open IF, "/usr/bin/svn status . 2>/dev/null|" or exit;
-while(<IF>) { $count++; }
+while(<IF>) { 
+  # Ignore External definitioned directories.
+  if    (/^\X (.*)/)         { }
+  # Ignore Empty lines
+  elsif (/^$/)               { }
+  # Ignore secondary lines for External defitions.
+  elsif (/^Performing (.*)/) { }
+  # Count any other changes.
+  else                       { $count++; }
+}
 close IF;
 
 # Saves the Color based on current working branch name.
