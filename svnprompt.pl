@@ -23,7 +23,7 @@ close IF;
 open IF, "/usr/bin/svn status . 2>/dev/null|" or exit;
 while(<IF>) { 
   # Ignore External definitioned directories.
-  if    (/^\X (.*)/)         { }
+  if    (/^X (.*)/)          { }
   # Ignore Empty lines
   elsif (/^$/)               { }
   # Ignore secondary lines for External defitions.
