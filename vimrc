@@ -8,8 +8,9 @@ syntax on        " enable syntax highlighting
 call plug#begin('~/.vim/plugged')
   " Added Features / commands
   Plug 'tpope/vim-commentary'           " Make Block comments easier (gcc)
-  Plug 'junegunn/vim-easy-align'        " Align using ga...
-  " VIM Appearance
+  Plug 'tpope/vim-surround'             " Surrounds text in quotes, {}, etc.
+  Plug 'tpope/vim-repeat'               " Allows better . repeating for plugins
+  .". VIM Appearance
   Plug 'vim-airline/vim-airline'        " Creates a fancy status line.
   " Syntax Highlighting / Color Schemes
   Plug 'amal-khailtash/vim-xdc-syntax'  " XDC Syntax.
@@ -220,9 +221,9 @@ set guioptions=i " by default, hide gui menus
 " cmap <A-f> /home/jwoods/.vim/
 
 " Comment these out until needed
+" Plug 'junegunn/vim-easy-align'       " Align using ga...
 " Plug 'dhruvasagar/vim-table-mode'    " create ascii tables <leader>tm.
 " Plug 'tpope/vim-fugitive'            " Adds :Git command.
-" Plug 'tpope/vim-surround'            " Surrounds text in quotes, {}, etc.
 " VIM  Colorschemes
 " Plug 'flazz/vim-colorschemes'        " All in one place...
 " Plug 'sonph/onehalf', { 'rtp': 'vim' } " Other Interesting colorscheme.
