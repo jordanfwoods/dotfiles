@@ -79,6 +79,7 @@ alias     ..='cd ..'
 alias    ...='cd ../..'
 alias   ....='cd ../../..'
 alias  .....='cd ../../../..'
+alias ......='cd ../../../../..'
 
 # Adding color and auto sorting common 'ls' commands
 alias      l='ls -hNv   --color=auto --group-directories-first'

@@ -11,8 +11,9 @@ per="$jwoods/personal"
 
 bfm="$svn/fpga_common_lib/trunk/common/sim/models"
 cam="$svn/Camera/CameraFirmware/"
-centroid="$svn/Firmware/trunk/core/08_misc/Centroiding"
+cen="$svn/Firmware/trunk/core/08_misc/Centroiding"
 gse="$svn/csp-em-05/fw/branch/csp-gse"
+hei="$svn/heimdall-development/FW/Trunk"
 las="$svn/irad-lasercomm/FW/FPGA/branch/PAT_FFT"
 mis="$svn/mist-so13239/FW/TRUNK/Zynq_PL_Design"
 
@@ -40,12 +41,14 @@ alias svns="$dot/svn-color.py status ."
 # Common FW locations
 alias cdsvn="cd $svn"
 alias cdbfm="cd $bfm"
-alias cdcen="cd $centroid"
+alias cdcen="cd $cen"
 # SpaceCam
 alias cdcam="cd $cam"
 alias cdgse="cd $gse"
 # Lasercomm - IRAD
 alias cdlas="cd $las"
+# Heimdall - Combine MIST with SpaceCam
+alias cdhei="cd $hei"
 # MIST
 alias cdmis="cd $mis"
 # Personal Aliases
