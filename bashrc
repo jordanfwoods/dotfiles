@@ -7,11 +7,11 @@
 PS1=""                                   # Newline in default color
 # change color when running as su
 if [ "`id -u`" -eq 0 ]; then
-   PS1="$PS1\[\e[1;31m\]\u\[\e[0m\]"     # display username in bold red
+   PS1="$PS1\[\e[1;31m\]\u\[\e[0m\] "    # display username in bold red
 else
-   PS1="$PS1\[\e[1;34m\]\u\[\e[0m\]"     # display username in bold blue
+   PS1="$PS1\[\e[1;34m\]\u\[\e[0m\] "    # display username in bold blue
 fi
-PS1="$PS1 : "                            # colon separator in default color
+PS1="$PS1\[\e[38;5;231m\]:\[\e[0m\] "    # colon separator in bold white
 PS1="$PS1\[\e[1;35m\]\h\[\e[0m\] "       # Display hostname in bold purple
 PS1="$PS1\[\e[1;33m\]\$PWD\[\e[0m\] "    # display full pathname in gold
 PS1="$PS1\n$ "                           # newline, and '$ ' in defaut color
