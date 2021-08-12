@@ -32,14 +32,14 @@ shopt -s histappend
 if [ -z ${SVN_PROMPT+x} ]; then
   export PROMPT_COMMAND="echo \"\""
 else
-  PROMPT_COMMAND="/home/jwoods/junk/github/jordanfwoods/jfw_dotfiles/svnprompt.pl"
-  export PROMPT_COMMAND="/home/jwoods/junk/github/jordanfwoods/jfw_dotfiles/gitprompt.pl;$PROMPT_COMMAND"
+  PROMPT_COMMAND="/home/jwoods/junk/jordanfwoods/dotfiles/svnprompt.pl"
+  export PROMPT_COMMAND="/home/jwoods/junk/jordanfwoods/dotfiles/gitprompt.pl;$PROMPT_COMMAND"
 fi
 alias svnprompt='if [ -z ${SVN_PROMPT+x} ]; then SVN_PROMPT="SET"; else unset SVN_PROMPT; fi; source ~/.bashrc'
 alias svnp='svnprompt'
 # export PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
 
-# PROMPT_COMMAND='~/jwoods/personal/NG/git/gitprompt.pl'
+# PROMPT_COMMAND='~/junk/personal/NG/git/gitprompt.pl'
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.

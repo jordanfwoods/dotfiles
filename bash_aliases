@@ -3,11 +3,10 @@
 ############################
 # create directory variables
 xilinx="/opt/Xilinx"
-dot="/home/jwoods/junk/github/jordanfwoods/jfw_dotfiles"
+dot="/home/jwoods/junk/jordanfwoods/jfw_dotfiles"
 svn="/home/jwoods/svn"
 junk="/home/jwoods/junk"
-jwoods="/home/jwoods/jwoods"
-per="$jwoods/personal"
+per="$junk/personal"
 
 bfm="$svn/fpga_common_lib/trunk/common/sim/models"
 cam="$svn/Camera/CameraFirmware/"

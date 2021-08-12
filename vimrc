@@ -72,8 +72,8 @@ set spr            " New Vertical Splits open to the right
 
 """"""""""""""""""""""""""""""""
 "" REMAPS
-""""""""""""""""""""""""""""""""
 "" :h keycodes for more info on <> nomenclature
+""""""""""""""""""""""""""""""""
 " Change the <leader> to be ",", not "\"
 let mapleader = ","
 
@@ -127,16 +127,10 @@ nnoremap <F8>    :echo
 " Toggle Tab/Endline Viewer
 nnoremap <F7>    <Esc>:set list!<CR>
 
-" Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga <Plug>(EasyAlign)
-
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
-
 """"""""""""""""""""""""""""""""
 "" AUTO COMMANDS
 """"""""""""""""""""""""""""""""
-" Prefer // style to /* stuff */ 
+" Prefer // style to /* stuff */
 autocmd FileType verilog_systemverilog setlocal commentstring=//\ %s
 " VHDL doesn't work for some reason
 autocmd FileType vhdl setlocal commentstring=--\ %s
@@ -158,6 +152,7 @@ command! EditVimrc   sp ~/.vimrc
 command! MakeTags ! ctags --langmap=Verilog:+.sv --languages=vhdl,Verilog
          \ -R --Verilog-kinds=-prn --exclude=proj --exclude=temp
          \ --exclude=_Archive ./
+
 """"""""""""""""""""""""""""""""
 "" FUNCTIONS
 """"""""""""""""""""""""""""""""
@@ -184,19 +179,9 @@ command! MakeTags ! ctags --langmap=Verilog:+.sv --languages=vhdl,Verilog
 "                \    silent! call setreg(nr2char(i),[]) |
 "                \ endfor
 
-" LEGACY - NETRW
-" Don't use NETRW, use NERDTree
-" let g:netrw_banner=0       " disable annoying banner
-" let g:netrw_browse_split=4 " open in prior window
-" let g:netrw_altv=1         " opens splits to the right
-" let g:netrw_liststyle=3    " tree view
-" let g:netrw_list_hide=netrw_gitignore#Hide()
-" let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
-
 """"""""""""""""""""""""""""""""
 "" GVIM
 """"""""""""""""""""""""""""""""
-
 set guifont=Consolas:h10:cANSI:qDRAFT " Preferred Font for gvim
 set guioptions=i " by default, hide gui menus
 
@@ -209,18 +194,25 @@ set guioptions=i " by default, hide gui menus
 "     exec('set guioptions=i')
 "   endif
 " endfunction
-
 " Toggle gvim Menu / Scrollbars See Function below
 " nnoremap <F12>     <Esc>:call ToggleGUICruft()<cr>
 
-" " save the location of the vim files on Personal Folder
-" cmap <A-a> /home/jwoods/Documents/jwoods/Personal/vim/
-" " save the location of svn
-" cmap <A-s> /home/jwoods/Documents/svn/
-" " save the location of vim files (colors, syntax, etc)
-" cmap <A-d> /usr/share/vim/
-" " save the location of vimfiles
-" cmap <A-f> /home/jwoods/.vim/
+" LEGACY - NETRW
+" Don't use NETRW, use NERDTree
+" let g:netrw_banner=0       " disable annoying banner
+" let g:netrw_browse_split=4 " open in prior window
+" let g:netrw_altv=1         " opens splits to the right
+" let g:netrw_liststyle=3    " tree view
+" let g:netrw_list_hide=netrw_gitignore#Hide()
+" let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
+
+""""""""""""""""""""""""""""""""
+"" Unused Plugins To Remember
+""""""""""""""""""""""""""""""""
+" " Start interactive EasyAlign in visual mode (e.g. vipga)
+" xmap ga <Plug>(EasyAlign)
+" " Start interactive EasyAlign for a motion/text object (e.g. gaip)
+" nmap ga <Plug>(EasyAlign)
 
 " Comment these out until needed
 " Plug 'junegunn/vim-easy-align'       " Align using ga...
