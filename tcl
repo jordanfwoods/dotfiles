@@ -1,3 +1,11 @@
+proc tc {f} { set_property top $f [get_filesets sim_1]
+              set_property top_lib xil_defaultlib [get_filesets sim_1]
+            }
+proc cc {f} { close_sim
+              set_property top $f [get_filesets sim_1]
+              set_property top_lib xil_defaultlib [get_filesets sim_1]
+              launch_sim
+            }
 proc l  {} {launch_simulation}
 proc c  {} {relaunch_sim}
 proc r  {} {restart; run all}
