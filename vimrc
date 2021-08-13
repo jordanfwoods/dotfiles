@@ -10,7 +10,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-commentary'           " Make Block comments easier (gcc)
   Plug 'tpope/vim-surround'             " Surrounds text in quotes, {}, etc.
   Plug 'tpope/vim-repeat'               " Allows better . repeating for plugins
-  .". VIM Appearance
+  " VIM Appearance
   Plug 'vim-airline/vim-airline'        " Creates a fancy status line.
   " Syntax Highlighting / Color Schemes
   Plug 'amal-khailtash/vim-xdc-syntax'  " XDC Syntax.
@@ -77,16 +77,18 @@ set spr            " New Vertical Splits open to the right
 " Change the <leader> to be ",", not "\"
 let mapleader = ","
 
+" Random Remaps
 " Add single spaces in normal mode
 nnoremap <Space>         i<Space><Right><ESC>
+" Make 'Y' operate like 'D', 'C', etc instead of 'yy'
+nnoremap Y               y$
+
+" <leader> Remaps
 " Add a Tab while in Normal Mode
 nnoremap <Leader><Tab>   i<Tab><Right><ESC>
 " Remove a Tab while in Normal Mode
 nnoremap <Leader><S-Tab> 3hdwi<Tab><Right><ESC>
-" Make 'Y' operate like 'D', 'C', etc instead of 'yy'
-nnoremap Y               y$
-
-" Update the Date in MM/DD/YY format
+" Update the Date in MM/DD/YY format (MM/DD/YY for <leader>D)
 nnoremap <leader>d       R<C-R>=strftime("%m/%d/%y")<CR><Esc>
 nnoremap <leader>D       R<C-R>=strftime("%m/%d/%Y")<CR><Esc>
 " Count the number of occurences of the last search
@@ -97,13 +99,12 @@ nnoremap <leader><Space> :%s/\s\+$//gc<CR>
 nnoremap <leader>vhd     :-1read ~/.vim/templates/header.vhd<CR>
 " Dump a procedure template to the file
 nnoremap <leader>ver     :-1read ~/.vim/templates/header.sv<CR>
-
 " Open/Close Nerdtree.
-nnoremap <leader>nn :NERDTreeToggle<CR>
+nnoremap <leader>nn      :NERDTreeToggle<CR>
 " Find location of current file.
-nnoremap <leader>nf :NERDTreeFind<CR>
+nnoremap <leader>nf      :NERDTreeFind<CR>
 
-" Don't use <F11>, or <F12>. <S-F11>, etc. is fine.
+" F-Keys - Don't use <F11>, or <F12>. <S-F11>, etc. is fine.
 " Toggle paste mode for easy copy/pasting from system clipboard with the mouse
 nnoremap <S-F12> :set invnumber<CR>:set invrelativenumber<CR>:set invpaste<CR>
 nnoremap <C-F12> :set invpaste<CR>

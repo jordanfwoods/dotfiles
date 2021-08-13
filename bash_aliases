@@ -3,7 +3,7 @@
 ############################
 # create directory variables
 xilinx="/opt/Xilinx"
-dot="/home/jwoods/junk/jordanfwoods/jfw_dotfiles"
+dot="/home/jwoods/junk/jordanfwoods/dotfiles"
 svn="/home/jwoods/svn"
 junk="/home/jwoods/junk"
 per="$junk/personal"
