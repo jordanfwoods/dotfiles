@@ -110,6 +110,7 @@ nnoremap <S-F12> :set invnumber<CR>:set invrelativenumber<CR>:set invpaste<CR>
 nnoremap <C-F12> :set invpaste<CR>
 " Auto save and don't reload vimrc (good for most files.)
 nnoremap <F10>   :w<CR>
+inoremap <F10>   <Esc>:w<CR>
 " Auto save and reload vimrc (good for editing vimrc / colorscheme)
 nnoremap <C-F10> :w<CR>:source ~/.vimrc<CR>
 " Increase / Decrease Tabstop for looking at foreign files.
