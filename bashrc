@@ -13,9 +13,12 @@ else
 fi
 PS1="$PS1\[\e[38;5;231m\]:\[\e[0m\] "    # colon separator in bold white
 PS1="$PS1\[\e[1;35m\]\h\[\e[0m\] "       # Display hostname in bold purple
-PS1="$PS1\[\e[1;33m\]\$PWD\[\e[0m\] "    # display full pathname in gold
+if [ -z ${DISP_PATH+x} ]; then
+  PS1="$PS1\[\e[1;33m\]\$PWD\[\e[0m\] "  # display full pathname in gold
+else
+  PS1="$PS1\[\e[1;33m\]\W\[\e[0m\] "     # display full pathname in gold
+fi
 PS1="$PS1\n$ "                           # newline, and '$ ' in defaut color
-
 
 # adding /bin causes issues with buildroot
 def_path=/usr/bin:/usr/sbin:/usr/local/bin:$HOME/.local/bin:/var/lib/snapd/snap/bin
@@ -35,8 +38,6 @@ else
   PROMPT_COMMAND="/home/jwoods/junk/jordanfwoods/dotfiles/svnprompt.pl"
   export PROMPT_COMMAND="/home/jwoods/junk/jordanfwoods/dotfiles/gitprompt.pl;$PROMPT_COMMAND"
 fi
-alias svnprompt='if [ -z ${SVN_PROMPT+x} ]; then SVN_PROMPT="SET"; else unset SVN_PROMPT; fi; source ~/.bashrc'
-alias svnp='svnprompt'
 # export PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
 
 # PROMPT_COMMAND='~/junk/personal/NG/git/gitprompt.pl'
@@ -69,6 +70,8 @@ export PATH=$vivado_path_20182:$PATH
 
 # make updating the terminal and editing rc files easy.
 alias reload='source ~/.bashrc'
+alias     pp='if [ -z ${DISP_PATH+x} ]; then DISP_PATH="SET"; else unset DISP_PATH; fi; reload'
+alias   svnp='if [ -z ${SVN_PROMPT+x} ]; then SVN_PROMPT="SET"; else unset SVN_PROMPT; fi; reload'
 alias   vima='vim ~/.bash_aliases'
 alias   vimb='vim ~/.bashrc'
 alias   vimv='vim ~/.vimrc'
