@@ -70,6 +70,10 @@ set ai             " Turn on Auto Indent
 set sb             " New Split Windows open below
 set spr            " New Vertical Splits open to the right
 
+" VIMDIFF
+set diffopt+=iwhite " Tell Vim to ignore whitespace
+" set diffepxr=     " only skips all whitespace when this is empty
+
 """"""""""""""""""""""""""""""""
 "" REMAPS
 "" :h keycodes for more info on <> nomenclature
