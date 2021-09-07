@@ -154,9 +154,12 @@ let v:fcs_choice="ask"
 """"""""""""""""""""""""""""""""
 " Edit the vimrc in new window
 command! EditVimrc   sp ~/.vimrc
-" " Make Tags for interfile autofill (from branch/csp-gse)
+" Make Tags for interfile autofill (from branch/csp-gse)
 command! MakeTags ! ctags --langmap=Verilog:+.sv --languages=vhdl,Verilog
          \ -R --Verilog-kinds=-prn --exclude=@.ctagsignore ./
+" Generic ctags call
+command! MakeTagsAll ! ctags --langmap=Verilog:+.sv -R --Verilog-kinds=-prn
+         \ --exclude=@.ctagsignore ./
 
 """"""""""""""""""""""""""""""""
 "" FUNCTIONS
@@ -187,8 +190,8 @@ command! MakeTags ! ctags --langmap=Verilog:+.sv --languages=vhdl,Verilog
 """"""""""""""""""""""""""""""""
 "" GVIM
 """"""""""""""""""""""""""""""""
-set guifont=Consolas:h10:cANSI:qDRAFT " Preferred Font for gvim
-set guioptions=i " by default, hide gui menus
+" set guifont=Consolas:h10:cANSI:qDRAFT " Preferred Font for gvim
+" set guioptions=i " by default, hide gui menus
 
 " " Only for GVIM
 " " Toggle gvim Menu / Scrollbars See <F11> above for shortcut
