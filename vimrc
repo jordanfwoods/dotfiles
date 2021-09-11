@@ -66,13 +66,35 @@ set path+=**       " Allows recursive searching through current directory.
 set wildmenu       " Enables menu to pop up to help with finishing wordsearch
 
 " Experimental VIM Options...
-set ai             " Turn on Auto Indent
-set sb             " New Split Windows open below
-set spr            " New Vertical Splits open to the right
+set autoindent     " Turn on Auto Indent
+set splitbelow     " New Split Windows open below
+set splitright     " New Vertical Splits open to the right
 
 " VIMDIFF
 set diffopt+=iwhite " Tell Vim to ignore whitespace
 " set diffepxr=     " only skips all whitespace when this is empty
+
+"""""""""""""""""""""""""""""""""
+""" Gutel Additions
+"""""""""""""""""""""""""""""""""
+set wildmode=longest,list,full
+nnoremap <silent> <Leader><CR> :noh<CR>
+
+" resize current buffer by +/- 5
+nnoremap <C-left>  :vertical resize +5<cr>
+nnoremap <C-down>  :resize -5<cr>
+nnoremap <C-up>    :resize +5<cr>
+nnoremap <C-right> :vertical resize -5<cr>
+
+" Allows to see diff in current file before saving with :diffSaved
+function! s:DiffWithSaved()
+  let filetype=&ft
+  diffthis
+  vnew | r # | normal! 1Gdd
+  diffthis
+  exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
+endfunction
+com! DiffSaved call s:DiffWithSaved()
 
 """"""""""""""""""""""""""""""""
 "" REMAPS
@@ -92,11 +114,13 @@ nnoremap Y               y$
 nnoremap <Leader><Tab>   i<Tab><Right><ESC>
 " Remove a Tab while in Normal Mode
 nnoremap <Leader><S-Tab> 3hdwi<Tab><Right><ESC>
-" Update the Date in MM/DD/YY format (MM/DD/YY for <leader>D)
+" Update the Date in MM/DD/YY format (MM/DD/YYYY for <leader>D)
 nnoremap <leader>d       R<C-R>=strftime("%m/%d/%y")<CR><Esc>
 nnoremap <leader>D       R<C-R>=strftime("%m/%d/%Y")<CR><Esc>
+" Count the number of occurences of the current word
+nnoremap <leader>/       :%s/\<<C-R><C-W>\>//gni<CR><C-O>
 " Count the number of occurences of the last search
-nnoremap <leader>/       :%s///gni<CR><C-O>
+nnoremap <leader>?       :%s///gni<CR><C-O>
 " Remove trailing whitespace on entire file (with confirms).
 nnoremap <leader><Space> :%s/\s\+$//gc<CR>
 " Dump a VHDL Header template to the file
@@ -142,6 +166,7 @@ autocmd FileType verilog_systemverilog setlocal commentstring=//\ %s
 autocmd FileType vhdl setlocal commentstring=--\ %s
 " XDC also doesn't work.
 autocmd FileType xdc setlocal commentstring=#\ %s
+autocmd FileType xdc setlocal commentstring=#\ %s
 
 " Reliably prompt for file changes upon changing buffers.
 au FocusGained,BufEnter     * :silent! checktime
@@ -186,6 +211,27 @@ command! MakeTagsAll ! ctags --langmap=Verilog:+.sv -R --Verilog-kinds=-prn
 " command! WipeReg for i in range(34,122) |
 "                \    silent! call setreg(nr2char(i),[]) |
 "                \ endfor
+
+" " Spell-check (underline misspelled words in md,rst files)
+" hi clear SpellBad
+" hi SpellBad cterm=underline
+" set spellfile=$HOME/.spellen.utf-8.add
+" set spell
+" " autocmd BufRead,BufNewFile *.md setlocal spell
+" " autocmd BufRead,BufNewFile *.rst setlocal spell
+" " autocmd BufRead,BufNewFile *.tex setlocal spell
+" map <leader>sn ]s
+" map <leader>sp [s
+" map <leader>sa zg
+" map <leader>s? z=
+
+" set cursorline
+" set pastetoggle=<F3>
+" set autochdir   " this is such trash.... WHY
+" set noesckeys  " AGAIN, WHY
+
+" nnoremap n nzz
+" nnoremap N Nzz
 
 """"""""""""""""""""""""""""""""
 "" GVIM
