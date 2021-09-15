@@ -78,7 +78,6 @@ set diffopt+=iwhite " Tell Vim to ignore whitespace
 """ Gutel Additions
 """""""""""""""""""""""""""""""""
 set wildmode=longest,list,full
-nnoremap <silent> <Leader><CR> :noh<CR>
 
 " resize current buffer by +/- 5
 nnoremap <C-left>  :vertical resize +5<cr>
@@ -108,6 +107,8 @@ let mapleader = ","
 nnoremap <Space>         i<Space><Right><ESC>
 " Make 'Y' operate like 'D', 'C', etc instead of 'yy'
 nnoremap Y               y$
+" Clear Search coloring
+nnoremap <silent> <Leader><CR> :noh<CR>
 
 " <leader> Remaps
 " Add a Tab while in Normal Mode
@@ -118,9 +119,9 @@ nnoremap <Leader><S-Tab> 3hdwi<Tab><Right><ESC>
 nnoremap <leader>d       R<C-R>=strftime("%m/%d/%y")<CR><Esc>
 nnoremap <leader>D       R<C-R>=strftime("%m/%d/%Y")<CR><Esc>
 " Count the number of occurences of the current word
-nnoremap <leader>/       :%s/\<<C-R><C-W>\>//gni<CR><C-O>
+nnoremap <leader>?       :%s/\<<C-R><C-W>\>//gni<CR><C-O>
 " Count the number of occurences of the last search
-nnoremap <leader>?       :%s///gni<CR><C-O>
+nnoremap <leader>/       :%s///gni<CR><C-O>
 " Remove trailing whitespace on entire file (with confirms).
 nnoremap <leader><Space> :%s/\s\+$//gc<CR>
 " Dump a VHDL Header template to the file
@@ -165,7 +166,6 @@ autocmd FileType verilog_systemverilog setlocal commentstring=//\ %s
 " VHDL doesn't work for some reason
 autocmd FileType vhdl setlocal commentstring=--\ %s
 " XDC also doesn't work.
-autocmd FileType xdc setlocal commentstring=#\ %s
 autocmd FileType xdc setlocal commentstring=#\ %s
 
 " Reliably prompt for file changes upon changing buffers.
