@@ -118,6 +118,10 @@ nnoremap <Leader><S-Tab> 3hdwi<Tab><Right><ESC>
 " Update the Date in MM/DD/YY format (MM/DD/YYYY for <leader>D)
 nnoremap <leader>d       R<C-R>=strftime("%m/%d/%y")<CR><Esc>
 nnoremap <leader>D       R<C-R>=strftime("%m/%d/%Y")<CR><Esc>
+" Insert filename (no path or suffix)
+nnoremap <leader>>       "=expand("%:t")<CR>pdF.x
+" Remove <> and paste in filename (without path)
+nnoremap <leader><       da<"=expand("%:t")<CR>p
 " Count the number of occurences of the current word
 nnoremap <leader>?       :%s/\<<C-R><C-W>\>//gni<CR><C-O>
 " Count the number of occurences of the last search

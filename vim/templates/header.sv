@@ -6,7 +6,7 @@
 //////////////////////////////////////////////
 //
 ////////////////////////////////////////////////////////////////////////////////
-// <Module Name>.sv = <Basic Description>                                     //
+// <Module Name> = <Basic Description>                                        //
 // This module does the following:                                            //
 // 1) TBD                                                                     //
 //                                                                            //
