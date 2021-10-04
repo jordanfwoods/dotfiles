@@ -139,12 +139,12 @@ enable-auto-props = yes
 ### 'enable-auto-props' option.
 
 # Scriptish formats
-*.cgi        = svn:eol-style=native; svn:keywords=Author Revision Date Id; svn-mine-type=text/plain
-*.php        = svn:eol-style=native; svn:keywords=Author Revision Date Id; svn:mime-type=text/x-php
-*.pl         = svn:eol-style=native; svn:keywords=Author Revision Date Id; svn:mime-type=text/x-perl
-*.pm         = svn:eol-style=native; svn:keywords=Author Revision Date Id; svn:mime-type=text/x-perl
-*.py         = svn:eol-style=native; svn:keywords=Author Revision Date Id; svn:mime-type=text/x-python
-*.sh         = svn:eol-style=native; svn:keywords=Author Revision Date Id; svn:mime-type=text/x-sh; svn:executable
+*.cgi        = svn:eol-style=native; svn:keywords=Author Revision Date Id URL; svn-mine-type=text/plain
+*.php        = svn:eol-style=native; svn:keywords=Author Revision Date Id URL; svn:mime-type=text/x-php
+*.pl         = svn:eol-style=native; svn:keywords=Author Revision Date Id URL; svn:mime-type=text/x-perl
+*.pm         = svn:eol-style=native; svn:keywords=Author Revision Date Id URL; svn:mime-type=text/x-perl
+*.py         = svn:eol-style=native; svn:keywords=Author Revision Date Id URL; svn:mime-type=text/x-python
+*.sh         = svn:eol-style=native; svn:keywords=Author Revision Date Id URL; svn:mime-type=text/x-sh; svn:executable
 
 # Image formats
 *.bmp        = svn:mime-type=image/bmp
@@ -167,8 +167,8 @@ enable-auto-props = yes
 *.ppt        = svn:mime-type=application/vnd.ms-powerpoint
 *.ps         = svn:mime-type=application/postscript
 *.psd        = svn:mime-type=application/photoshop
-*.rdf        = svn:eol-style=native; svn:keywords=Id
-*.rss        = svn:eol-style=native; svn:keywords=Id
+*.rdf        = svn:eol-style=native; svn:keywords=Author Revision Date Id URL
+*.rss        = svn:eol-style=native; svn:keywords=Author Revision Date Id URL
 *.rtf        = svn:mime-type=text/rtf
 *.swf        = svn:mime-type=application/x-shockwave-flash
 *.tgz        = svn:mime-type=application/gzip
@@ -177,30 +177,34 @@ enable-auto-props = yes
 *.zip        = svn:mime-type=application/zip
 
 # Text formats
-.htaccess    = svn:eol-style=native; svn:keywords=Id; svn:mime-type=text/plain
-*.css        = svn:eol-style=native; svn:keywords=Id; svn:mime-type=text/css
-*.dtd        = svn:eol-style=native; svn:keywords=Id; svn:mime-type=text/xml
-*.html       = svn:eol-style=native; svn:keywords=Id; svn:mime-type=text/html
-*.ini        = svn:eol-style=native; svn:keywords=Id; svn:mime-type=text/plain
-*.sql        = svn:eol-style=native; svn:keywords=Id; svn:mime-type=text/x-sql
-*.txt        = svn:eol-style=native; svn:keywords=Id; svn:mime-type=text/plain
-*.xhtml      = svn:eol-style=native; svn:keywords=Id; svn:mime-type=text/xhtml+xml
-*.xml        = svn:eol-style=native; svn:keywords=Id; svn:mime-type=text/xml
-*.xsd        = svn:eol-style=native; svn:keywords=Id; svn:mime-type=text/xml
-*.xsl        = svn:eol-style=native; svn:keywords=Id; svn:mime-type=text/xml
-*.xslt       = svn:eol-style=native; svn:keywords=Id; svn:mime-type=text/xml
-*.xul        = svn:eol-style=native; svn:keywords=Id; svn:mime-type=text/xul
-*.xdc        = svn:eol-style=native; svn:keywords=Id; svn:mime-type=text/plain
-*.yaml       = svn:eol-style=native; svn:keywords=Id; svn:mime-type=text/plain
-CHANGES      = svn:eol-style=native; svn:keywords=Id; svn:mime-type=text/plain
-COPYING      = svn:eol-style=native; svn:keywords=Id; svn:mime-type=text/plain
-INSTALL      = svn:eol-style=native; svn:keywords=Id; svn:mime-type=text/plain
-Makefile*    = svn:eol-style=native; svn:keywords=Id; svn:mime-type=text/plain
-README       = svn:eol-style=native; svn:keywords=Id; svn:mime-type=text/plain
-TODO         = svn:eol-style=native; svn:keywords=Id; svn:mime-type=text/plain
+.htaccess    = svn:eol-style=native; svn:keywords=Author Revision Date Id URL; svn:mime-type=text/plain
+*.css        = svn:eol-style=native; svn:keywords=Author Revision Date Id URL; svn:mime-type=text/css
+*.dtd        = svn:eol-style=native; svn:keywords=Author Revision Date Id URL; svn:mime-type=text/xml
+*.html       = svn:eol-style=native; svn:keywords=Author Revision Date Id URL; svn:mime-type=text/html
+*.ini        = svn:eol-style=native; svn:keywords=Author Revision Date Id URL; svn:mime-type=text/plain
+*.sql        = svn:eol-style=native; svn:keywords=Author Revision Date Id URL; svn:mime-type=text/x-sql
+*.txt        = svn:eol-style=native; svn:keywords=Author Revision Date Id URL; svn:mime-type=text/plain
+*.xhtml      = svn:eol-style=native; svn:keywords=Author Revision Date Id URL; svn:mime-type=text/xhtml+xml
+*.xml        = svn:eol-style=native; svn:keywords=Author Revision Date Id URL; svn:mime-type=text/xml
+*.xsd        = svn:eol-style=native; svn:keywords=Author Revision Date Id URL; svn:mime-type=text/xml
+*.xsl        = svn:eol-style=native; svn:keywords=Author Revision Date Id URL; svn:mime-type=text/xml
+*.xslt       = svn:eol-style=native; svn:keywords=Author Revision Date Id URL; svn:mime-type=text/xml
+*.xul        = svn:eol-style=native; svn:keywords=Author Revision Date Id URL; svn:mime-type=text/xul
+*.xdc        = svn:eol-style=native; svn:keywords=Author Revision Date Id URL; svn:mime-type=text/plain
+*.yaml       = svn:eol-style=native; svn:keywords=Author Revision Date Id URL; svn:mime-type=text/plain
+CHANGES      = svn:eol-style=native; svn:keywords=Author Revision Date Id URL; svn:mime-type=text/plain
+COPYING      = svn:eol-style=native; svn:keywords=Author Revision Date Id URL; svn:mime-type=text/plain
+INSTALL      = svn:eol-style=native; svn:keywords=Author Revision Date Id URL; svn:mime-type=text/plain
+Makefile*    = svn:eol-style=native; svn:keywords=Author Revision Date Id URL; svn:mime-type=text/plain
+README       = svn:eol-style=native; svn:keywords=Author Revision Date Id URL; svn:mime-type=text/plain
+TODO         = svn:eol-style=native; svn:keywords=Author Revision Date Id URL; svn:mime-type=text/plain
 
 # Code formats
-*.c          = svn:eol-style=native; svn:keywords=Id; svn:mime-type=text/plain
-*.cpp        = svn:eol-style=native; svn:keywords=Id; svn:mime-type=text/plain
-*.h          = svn:eol-style=native; svn:keywords=Id; svn:mime-type=text/plain
-*.java       = svn:eol-style=native; svn:keywords=Id; svn:mime-type=text/plain
+*.c          = svn:eol-style=native; svn:keywords=Author Revision Date Id URL; svn:mime-type=text/plain
+*.cpp        = svn:eol-style=native; svn:keywords=Author Revision Date Id URL; svn:mime-type=text/plain
+*.h          = svn:eol-style=native; svn:keywords=Author Revision Date Id URL; svn:mime-type=text/plain
+*.java       = svn:eol-style=native; svn:keywords=Author Revision Date Id URL; svn:mime-type=text/plain
+*.vhd        = svn:eol-style=native; svn:keywords=Author Revision Date Id URL;
+*.vhdl       = svn:eol-style=native; svn:keywords=Author Revision Date Id URL;
+*.v          = svn:eol-style=native; svn:keywords=Author Revision Date Id URL;
+*.sv         = svn:eol-style=native; svn:keywords=Author Revision Date Id URL;

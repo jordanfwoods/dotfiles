@@ -1,15 +1,16 @@
-/////////////////////////////////////
-// Originator       : Jordan Woods //
-// Last Modified By : Jordan Woods //
-// Last Modified    : <>/<>/<>     //
-/////////////////////////////////////
+//////////////////////////////////////////////
+// Originator       : Jordan Woods          //
+// Last Modified By : $Author::           $ //
+// Last Modified    : $Date::             $ //
+// SVN Revision     : $Rev::              $ //
+//////////////////////////////////////////////
 //
 ////////////////////////////////////////////////////////////////////////////////
 // <Module Name>.sv = <Basic Description>                                     //
 // This module does the following:                                            //
 // 1) TBD                                                                     //
 //                                                                            //
-// Revision History                                                           //
+// Manual Revision History                                                    //
 // <>/<>/<> - JFW - Initial Release                                           //
 ////////////////////////////////////////////////////////////////////////////////
 //
