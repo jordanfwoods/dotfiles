@@ -52,8 +52,8 @@ set shiftwidth=2   " on indenting with '>', use 2 spaces.
 set expandtab      " inserts spaces for tabs.
 set backspace=indent,eol,start " allow backspacing over anything in insert mode
 
- " Allow 'list' option to see EOL($), Tab(>-), Space(·), nowrap(<>)
-set listchars=eol:$,tab:>-,nbsp:·,extends:>,precedes:< " Used with <F7>
+ " Allow 'list' option to see EOL($), Tab(>-), Space(·), etc. Used with <F7>
+set listchars=eol:$,tab:>-,trail:·,extends:>,precedes:<,conceal:&,nbsp:·
 
 " Update the way searching occurs
 set hlsearch       " Highlight all items that match search
