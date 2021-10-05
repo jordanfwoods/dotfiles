@@ -121,7 +121,7 @@ nnoremap <leader>D       R<C-R>=strftime("%m/%d/%Y")<CR><Esc>
 " Insert filename (no path or suffix)
 nnoremap <leader>>       "=expand("%:t")<CR>pdF.x
 " Remove <> and paste in filename (without path)
-nnoremap <leader><       da<"=expand("%:t")<CR>p
+nnoremap <leader><       da<"=expand("%:t")<CR>P
 " Count the number of occurences of the current word
 nnoremap <leader>?       :%s/\<<C-R><C-W>\>//gni<CR><C-O>
 " Count the number of occurences of the last search
