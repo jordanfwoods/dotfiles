@@ -8,6 +8,7 @@ proc cc {f} { close_sim
             }
 proc l  {} {launch_simulation}
 proc c  {} {relaunch_sim}
+proc cr {} {relaunch_sim; run all}
 proc r  {} {restart; run all}
 proc rr {} {restart}
 
