@@ -76,6 +76,13 @@ export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
 ##############################
+## BC CONFIGURATION (The simplest calc available)
+
+# Ensure that the math library is used (for sine, cosine, etc).
+# remember the special variables: scale, last, ibase, and obase
+alias bc="BC_ENV_ARGS=<(echo \"pi=4*a(1);scale=6\") \bc -l"
+
+##############################
 ## VIM CONFIGURATION
 
 # duh
