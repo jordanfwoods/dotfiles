@@ -1,5 +1,5 @@
 #!/bin/bash
-dot_list=$(ls /home/jwoods/junk/jordanfwoods/dotfiles/)
+dot_list=$(ls /home/jwoods/junk/dotfiles/)
 
 for dot_file in $dot_list
 do
