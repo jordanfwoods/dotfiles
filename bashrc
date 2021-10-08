@@ -140,11 +140,11 @@ alias  svnci='svn ci --cl staging_area -m'
 alias docnav='/opt/Xilinx/DocNav/docnav'
 # Spruce up the regular diff, please and thank you
 alias   diff='colordiff'
-# shortcuts for the basic calculator and Binary calc.
-alias  gcalc='gnome-calculator --mode=basic'
-alias  gcpro='gnome-calculator --mode=programming'
 # common shortcut for screenshotting.
 alias scnsht='gnome-screenshot --clipboard --area'
+
+# remote logout command
+alias logoff='pkill -u jwoods'
 
 ##############################
 ## SOURCE BASH ALIASES
