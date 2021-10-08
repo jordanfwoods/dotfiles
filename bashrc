@@ -144,7 +144,8 @@ alias   diff='colordiff'
 alias scnsht='gnome-screenshot --clipboard --area'
 
 # remote logout command
-alias logoff='pkill -u jwoods'
+alias logoff='cinnamon-session-quit --logout'
+# alias logoff='pkill -u jwoods'
 
 ##############################
 ## SOURCE BASH ALIASES
