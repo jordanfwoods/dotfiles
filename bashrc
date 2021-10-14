@@ -8,10 +8,10 @@
 
 # check for SVN / GIT statuses
 if [ -z ${BRANCH_PROMPT+x} ]; then
-  export PROMPT_COMMAND="echo \"\""
-else
   PROMPT_COMMAND="/home/jwoods/junk/dotfiles/svnprompt.pl"
   export PROMPT_COMMAND="/home/jwoods/junk/dotfiles/gitprompt.pl;$PROMPT_COMMAND"
+else
+  export PROMPT_COMMAND="echo \"\""
 fi
 
 # export PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
@@ -32,14 +32,14 @@ fi
 PS1="$PS1\[\e[38;5;231m\]:\[\e[0m\] "    # colon separator in bold white
 PS1="$PS1\[\e[1;35m\]\h\[\e[0m\] "       # Display hostname in bold purple
 if [ -z ${PATH_PROMPT+x} ]; then
-  PS1="$PS1\[\e[1;33m\]\$PWD\[\e[0m\]"   # display full pathname in gold
-else
   PS1="$PS1\[\e[1;33m\]\W\[\e[0m\]"      # display current directory in gold
+else
+  PS1="$PS1\[\e[1;33m\]\$PWD\[\e[0m\]"   # display full pathname in gold
 fi
 if [ -z ${PROMPT1+x} ]; then
-  PS1="$PS1\n$ "                         # newline, and '$ ' in defaut color
-else
   PS1="$PS1 $ "                          # no newline, but '$ ' in defaut color
+else
+  PS1="$PS1\n$ "                         # newline, and '$ ' in defaut color
 fi
 
 ##############################

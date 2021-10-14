@@ -22,6 +22,7 @@ call plug#end()
 
 set background=dark " gruvbox requires external background to be set.
 colo gruvbox        " scheme from Plugin
+hi Normal ctermbg=NONE
 
 " Disable the Arrow keys in Normal Mode
 map <Up>    <nop>
