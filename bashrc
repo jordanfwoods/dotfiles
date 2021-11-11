@@ -8,10 +8,10 @@
 
 # check for SVN / GIT statuses
 if [ -z ${BRANCH_PROMPT+x} ]; then
+  export PROMPT_COMMAND="echo \"\""
+else
   PROMPT_COMMAND="/home/jwoods/junk/dotfiles/svnprompt.pl"
   export PROMPT_COMMAND="/home/jwoods/junk/dotfiles/gitprompt.pl;$PROMPT_COMMAND"
-else
-  export PROMPT_COMMAND="echo \"\""
 fi
 
 # export PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
@@ -111,6 +111,8 @@ alias     pp='if [ -z ${PATH_PROMPT+x} ]; then PATH_PROMPT="SET"; else unset PAT
 alias     bp='if [ -z ${BRANCH_PROMPT+x} ]; then BRANCH_PROMPT="SET"; else unset BRANCH_PROMPT; fi; reload'
 # Toggle on/off the bash prompt spanning 2 lines
 alias     1p='if [ -z ${PROMPT1+x} ]; then PROMPT1="SET"; else unset PROMPT1; fi; reload'
+# Toggle all
+alias      p='pp && bp && 1p'
 
 # vim aliases that are frequently used.
 alias   vima='vim ~/.bash_aliases'
