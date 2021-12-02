@@ -102,6 +102,8 @@ export PATH=$vivado_path_20182:$PATH
 ##############################
 ## ALIASES
 
+# quit should equal exit ...
+alias quit='exit'
 # make updating the terminal and editing rc files easy.
 alias reload='source ~/.bashrc'
 
