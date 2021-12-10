@@ -154,6 +154,8 @@ else
   alias logoff='pkill -u jwoods'
 fi
 
+alias octave='/usr/bin/flatpak run --branch=stable --arch=x86_64 \
+--command=/app/bin/octave --file-forwarding org.octave.Octave --gui &'
 ##############################
 ## SOURCE BASH ALIASES
 

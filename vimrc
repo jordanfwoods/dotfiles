@@ -172,6 +172,8 @@ autocmd FileType verilog_systemverilog setlocal commentstring=//\ %s
 autocmd FileType vhdl setlocal commentstring=--\ %s
 " XDC also doesn't work.
 autocmd FileType xdc setlocal commentstring=#\ %s
+" XDC also doesn't work.
+autocmd FileType matlab setlocal commentstring=%\ %s
 
 " Reliably prompt for file changes upon changing buffers.
 au FocusGained,BufEnter     * :silent! checktime
