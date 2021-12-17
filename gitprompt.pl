@@ -10,7 +10,7 @@ use Socket;
 use Cwd qw(cwd);
 
 # Variables
-my $prompt = "\n";  # What will be printed to prompt
+my $prompt = "";  # What will be printed to prompt
 my $GITBR  = "";  # Where the current working github branch is stored
 
 # Saves the current working branch name

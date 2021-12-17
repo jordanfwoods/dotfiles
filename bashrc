@@ -8,10 +8,12 @@
 
 # check for SVN / GIT statuses
 if [ -z ${BRANCH_PROMPT+x} ]; then
-  export PROMPT_COMMAND="echo \"\""
+  export PROMPT_COMMAND=""
 else
   PROMPT_COMMAND="/home/jwoods/junk/dotfiles/svnprompt.pl"
-  export PROMPT_COMMAND="/home/jwoods/junk/dotfiles/gitprompt.pl;$PROMPT_COMMAND"
+  PROMPT_COMMAND="/home/jwoods/junk/dotfiles/gitprompt.pl;$PROMPT_COMMAND"
+  # export PROMPT_COMMAND="echo '';$PROMPT_COMMAND"
+  export PROMPT_COMMAND="$PROMPT_COMMAND"
 fi
 
 # export PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
