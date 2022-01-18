@@ -122,6 +122,7 @@ alias      p='pp && bp && 1p'
 alias   vima='vim ~/.bash_aliases'
 alias   vimb='vim ~/.bashrc'
 alias   vimv='vim ~/.vimrc'
+alias   vimt='vim ~/.tmux.conf'
 
 # abbreviate common directory commands
 alias  mkdir='mkdir -pv'
