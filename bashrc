@@ -133,9 +133,9 @@ alias  .....='cd ../../../..'
 alias ......='cd ../../../../..'
 
 # Adding color and auto sorting common 'ls' commands
-alias      l='ls -hNv   --color=auto --group-directories-first'
-alias     ll='ls -lhNv  --color=auto --group-directories-first'
-alias     la='ls -lahNv --color=auto --group-directories-first'
+alias      l='/bin/ls -hNv   --color=auto --group-directories-first'
+alias     ll='/bin/ls -lhNv  --color=auto --group-directories-first'
+alias     la='/bin/ls -lahNv --color=auto --group-directories-first'
 
 # SVN Commands to make it more like git
 # svn add - begins tracking file. svn_add makes changelist act like staging area
