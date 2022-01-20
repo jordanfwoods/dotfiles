@@ -21,6 +21,12 @@ do
       echo "cp -rf ~/.fonts/*            ./fonts/"
             cp -rf ~/.fonts/*            ./fonts/
 
+   # Only copy contents out of tmux directory, not directory again
+   elif [ $dot_file == "tmux" ]
+   then
+      echo "cp -rf ~/.tmux/*             ./tmux/"
+            cp -rf ~/.tmux/*             ./tmux/
+
    elif [ $dot_file == "vim" ]
    then
       echo "cp -rf ~/.vim/autoload/*     ./vim/autoload/"
