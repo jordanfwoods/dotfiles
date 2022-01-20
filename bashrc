@@ -32,7 +32,7 @@ else
    PS1="$PS1\[\e[1;34m\]\u\[\e[0m\] "    # display username in bold blue
 fi
 PS1="$PS1\[\e[38;5;231m\]:\[\e[0m\] "    # colon separator in bold white
-PS1="$PS1\[\e[1;35m\]\h\[\e[0m\] "       # Display hostname in bold purple
+PS1="$PS1\[\e[1;35m\]\H\[\e[0m\] "       # Display hostname in bold purple
 if [ -z ${PATH_PROMPT+x} ]; then
   PS1="$PS1\[\e[1;33m\]\W\[\e[0m\]"      # display current directory in gold
 else
