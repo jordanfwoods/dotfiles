@@ -119,10 +119,11 @@ alias     1p='if [ -z ${PROMPT1+x} ]; then PROMPT1="SET"; else unset PROMPT1; fi
 alias      p='pp && bp && 1p'
 
 # vim aliases that are frequently used.
-alias   vima='vim ~/.bash_aliases'
-alias   vimb='vim ~/.bashrc'
-alias   vimv='vim ~/.vimrc'
-alias   vimt='vim ~/.tmux.conf'
+alias  vima='vim ~/.bash_aliases'
+alias  vimb='vim ~/.bashrc'
+alias  vimv='vim ~/.vimrc'
+alias  vimt='vim ~/.tmux.conf'
+alias vimtt='vim ~/.tmux/tmux-theme.conf'
 
 # abbreviate common directory commands
 alias  mkdir='mkdir -pv'
