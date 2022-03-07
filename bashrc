@@ -152,9 +152,9 @@ alias   diff='colordiff'
 # common shortcut for screenshotting.
 alias scnsht='gnome-screenshot --clipboard --area'
 
-# remote logout command
-if [ -z ${XRDP_SESSION+x} ]; then
-  alias logoff='cinnamon-session-quit --logout'
+# remote logout command is pkill if using cinnamon...
+if [ -z ${XRDP_SESSION+x} ] || [ $(head -n 1 ~/.Xclients) == "gnome-session" ]; then
+  alias logoff='gnome-session-quit --logout'
 else
   alias logoff='pkill -u jwoods'
 fi
