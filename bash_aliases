@@ -6,7 +6,7 @@ xilinx="/opt/Xilinx"
 dot="/home/jwoods/junk/dotfiles"
 svn="/home/jwoods/svn"
 junk="/home/jwoods/junk"
-per="$junk/personal"
+per="$junk/personal/doc"
 
 bfm="$svn/fpga_common_lib/trunk/common/sim/models"
 cam="$svn/Camera/CameraFirmware/"

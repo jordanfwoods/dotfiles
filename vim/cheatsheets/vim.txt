@@ -1,0 +1,102 @@
+<C-a>             # Increment
+<C-x>             # Decrement
+:set nrformats?   # View Number Formats
+
+q<reg>            # Record a macro to a register
+q<reg>yyp<C-a>q   # Records yank line, print below, increment first number to register <reg>
+@<reg>            # executes contents of <reg>
+2@<reg>           # executes the contents of <reg> twice.
+@@                # Executes last command
+
+:help Q_op        # Short Explanation of every option (or *option-list*)
+
+To Access "Insert Mode":
+
+    i   Enters Insert  Mode
+    Esc Enters Command Mode
+
+In "Command Mode":
+
+   Movement
+    Ctrl-d   Moves the cursor down half of the screen.
+    Ctrl-u   Moves the cursor up half of the screen.
+    H        Moves the cursor to the top of the screen without scrolling.
+    M        Moves the cursor to the Middle of the screen without scrolling.
+    L        Moves the cursor to the Bottom of the screen without scrolling.
+    h        Moves the cursor one character to the left.
+    j        moves the cursor down one line.
+    k        Moves the cursor up one line.
+    l        moves the cursor one character to the right.
+    0        Moves the cursor to the beginning of the line.
+    $        moves the cursor to the end of the line.
+    w        Move  forward one word.
+    b        move  backward one word.
+    e        move  to the end of the word.
+    )/(      Moves to the start of the next/previous sentence.
+    }/{      Moves to the start of the next/previous paragraph.
+    G        Move  to the end of the file.
+    #G       Move  to the precise line number.
+    gg       move  to the beginning of the file.
+    `.       Move  to the last edit.
+    Ctrl+f/b Takes you forward / back one page.
+
+   Editing
+    x        Deletes the current character.
+    d        Starts the delete operation.
+    u        will undo the last operation.
+    Ctrl-r   will redo the last undo.
+    DiffOrig Creates Diff for you!
+    Ctrl-V   Highlight Columns
+    Shift-i  insert text at the beginning of column
+    Shift-a  append text, hit Esc when done
+    Shift-r  replace text, hit Esc when done
+    Shift-d  delete text, hit Esc when done
+    Shift-c  change text, hit Esc when done
+
+   Copy / Paste
+    v        Highlight one Character at a time.
+    V        Highlight one line at a time.
+    Ctrl-V   Highlight by Columns.
+    p        paste text after the current line.
+    P        paste text on the current line.
+    gp/P     paste text after/on the current line and move the cursor.
+    y        yank text into the copy buffer.
+    yiw      yank the current word NOT including whitespace.
+    yaw      yank the current word including whitespace.
+    ytx      yank up to a character (yank till x)
+    yfx      yank up to and including a character (yank find x)
+
+   Split Windows
+    :e                 opens a new file in same window.
+    Ctrl-W, v(h)       Splits VIM Vertically(Horizontally)
+    Ctrl-W, h(j/k/l)   Moves to the Window to the Left(Below/Above/Right)
+    :split <file path> Splits VIM into two windows with different files.
+    Ctrl-W,Ctrl-W      Switches between split windows.
+    Ctrl-W, q          Quits the window.
+    Ctrl-W, _/|/=      Maximize screen vertically/Horzontally/Equally.
+    Ctrl-W, +/-/</>    Move Screen domain down/up/left/right.
+
+   Searching and Replacing
+    /text                        search for text in the document, going forward.
+    ?text                        search for text in the document, going backward.
+    n                            move the cursor to the next instance of the text
+                                 from the last search. This will wrap to the
+                                 beginning of the document.
+    N                            move the cursor to the previous instance of the
+                                 text from the last search.
+    :%s/text/replacement text/g  search through the entire document for text and
+                                 replace it with replacement text.
+    :%s/text/replacement text/gc search through the entire document for text and
+                                 replace it with replacement text,
+                                 and confirm before replacing text.
+    :%s/\s\+$//ec                search for unused whitespace at the end of lines
+                                 and remove.
+     
+Other helpful shell commands:
+
+grep -r -n -i --include \*.vhd <path> "string"
+
+find <path> -type f -iname "<filename>"
+
+sed -i 's/old/new/g' ./filename
+sed -i 's_old_new_g' ./filename

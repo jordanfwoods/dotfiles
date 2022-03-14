@@ -1,0 +1,55 @@
+vim_increment.txt
+
+q<reg>                # Record a Macro to the <reg> register
+yy                    # copy an entire line
+p                     # paste line below
+<C-a>                 # Increment the next number
+<C-x>                 # Decrement the number
+q                     # Save the macro
+:set nf?              # nf = nrformats
+:set nrformats?       # Lists Acceptable Number Formats
+:set nrformats+=alpha # Adds the alpha option.
+   octal              # Octal numbers start with O/0??
+   hex                # Hex Numbers start with 0x or 0X
+   dec                # can have +/- preceding.
+   alpha              # the next letter is in(de)cremented.
+   # There is no Binary
+
+<#>@<reg> # Perform the Macro Stored in <reg> <#> times.
+@@        # Reperform the last macro.
+
+Normal Register use:
+1. The unnamed register ""
+2. 10 numbered registers "0 to "9
+3. The small delete register "-
+4. 26 named registers "a to "z or "A to "Z
+5. three read-only registers ":, "., "%
+7. alternate buffer register "#
+7. the expression register "=
+8. The selection and drop registers "*, "+ and "~ 
+9. The black hole register "_
+10. Last search pattern register "/
+
+".        # Most Recent Inserted Text (Typing before last Exit of insert Mode)
+"%        # File Pathname. 
+"#        # Alternate File.
+"+        # Clipboard Register (If available...)
+""        # Most Recent Yank ('p' command)
+"=        # Expression Register (try <C-r>=system('ls')<Enter> from insert mode)
+"-        # Most recently deleted text.
+":        # Most Recent : Command (execute again with @:)
+"/(?,*,#) # Most recent Search(es?)
+"0        # Most Recent Yanked Text
+"<1-9>    # Most Recent Deleted Text.
+"<a-z>    # Additional Registers for storage.
+
+Insert Mode:
+<C-r><reg>  # Prints Register Contents.
+
+Command Mode:
+"<reg>p          # Prints Register Contents.
+"<reg>y(d/c/s/x) # Copies Contents to Register.
+:let @<REG>='i;' # Appends the command i; to <reg> macro
+# Re-applies the macro for modifications to same <reg> macro
+:let @<reg>='<C-r><reg>(modifications)'
+

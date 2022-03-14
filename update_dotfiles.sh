@@ -29,16 +29,20 @@ do
 
    elif [ $dot_file == "vim" ]
    then
-      echo "cp -rf ~/.vim/autoload/*     ./vim/autoload/"
-            cp -rf ~/.vim/autoload/*     ./vim/autoload/
-      echo "cp -rf ~/.vim/colors/*       ./vim/colors/"
-            cp -rf ~/.vim/colors/*       ./vim/colors/
-      echo "cp -rf ~/.vim/syntax/*       ./vim/syntax/"
-            cp -rf ~/.vim/syntax/*       ./vim/syntax/
-      echo "cp -rf ~/.vim/plugin/*       ./vim/plugin/"
-            cp -rf ~/.vim/plugin/*       ./vim/plugin/
-      echo "cp -rf ~/.vim/templates/*    ./vim/templates/"
-            cp -rf ~/.vim/templates/*    ./vim/templates/
+      for vim_dir in $(ls /home/jwoods/.vim/)
+      do
+        echo "cp -rf ~/.vim/$vim_dir/*      ./vim/$vim_dir/"
+              cp -rf ~/.vim/$vim_dir/*      ./vim/$vim_dir/
+      done
+
+      # echo "cp -rf ~/.vim/autoload/*     ./vim/autoload/"
+      #       cp -rf ~/.vim/autoload/*     ./vim/autoload/
+      # echo "cp -rf ~/.vim/colors/*       ./vim/colors/"
+      #       cp -rf ~/.vim/colors/*       ./vim/colors/
+      # echo "cp -rf ~/.vim/plugin/*       ./vim/plugin/"
+      #       cp -rf ~/.vim/plugin/*       ./vim/plugin/
+      # echo "cp -rf ~/.vim/templates/*    ./vim/templates/"
+      #       cp -rf ~/.vim/templates/*    ./vim/templates/
    # ignore a few files, but otherwise copy all files in.
    elif [ $dot_file != "update_dotfiles.sh" ] &&
         [ $dot_file != "README.md" ]          &&
