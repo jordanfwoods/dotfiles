@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
-Exec=libreoffice /home/jwoods/junk/personal/TimeCard.xlsx
+Exec=libreoffice /home/jwoods/junk/personal/doc/TimeCard.xlsx
 X-GNOME-Autostart-enabled=true
 NoDisplay=false
 Hidden=false
