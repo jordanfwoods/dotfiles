@@ -109,7 +109,7 @@ nnoremap <Space>         i<Space><Right><ESC>
 " Make 'Y' operate like 'D', 'C', etc instead of 'yy'
 nnoremap Y               y$
 " Clear Search coloring
-nnoremap <silent> <Leader><CR> :noh<CR>
+nnoremap <silent> <Leader><CR> :noh<CR>:echo "Clearing Search"<CR>
 
 " <leader> Remaps
 " Add a Tab while in Normal Mode
