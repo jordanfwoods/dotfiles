@@ -26,8 +26,17 @@ while(<IF>) {
 }
 close IF;
 
+# Saves if there are local modifications
 open IF, "/usr/bin/git status --porcelain 2>/dev/null|" or exit;
 while(<IF>) { $GITST++; }  # Count number of files to check in
+close IF;
+
+# Saves if there are commits to push
+open IF, "/usr/bin/git status 2>/dev/null|" or exit;
+while(my $String = <IF>) {
+  # Increment if something regarding git push is found
+  if ($String =~ /git\ push/) { $GITPUSH++; last; }
+}
 close IF;
 
 # Saves the Color based on current working branch name.
@@ -35,9 +44,10 @@ my $COL="0;37m"; # Always Grey
 
 # Earmarks the Colored Branch to be printed in parentheses.
 # An Asterisk identifies need for commit.
+# An Exclamation identifies need for push.
 if ( $GITBR ne "" ) {
   $prompt .= "\033[$COL\(${GITBR}";
-  $prompt .= "*" if ( ${GITST} > 0 );
+  $prompt .= "*" if ( ${GITST}   > 0 );
   $prompt .= "!" if ( ${GITPUSH} > 0 );
   $prompt .= "\)\033[0m ";
 }
