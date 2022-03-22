@@ -17,6 +17,7 @@ my $GITBR  = "";  # Where the current working github branch is stored
 open IF, "/usr/bin/git branch 2>/dev/null|" or exit;
 while(<IF>) {
   if (/^\* (.*)/) {
+
     $GITBR=$1;
     last;
   }
