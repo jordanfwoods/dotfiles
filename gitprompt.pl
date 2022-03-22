@@ -10,8 +10,10 @@ use Socket;
 use Cwd qw(cwd);
 
 # Variables
-my $prompt = "";  # What will be printed to prompt
-my $GITBR  = "";  # Where the current working github branch is stored
+my $prompt  = "";  # What will be printed to prompt
+my $GITBR   = "";  # Where the current working github branch is stored
+my $GITST   =  0;  # Saves the Number of files to commit.
+my $GITPUSH =  0;  # Saves the Number of files to commit.
 
 # Saves the current working branch name
 open IF, "/usr/bin/git branch 2>/dev/null|" or exit;
@@ -24,8 +26,6 @@ while(<IF>) {
 }
 close IF;
 
-# Saves the Number of files to commit.
-my $GITST=0;
 open IF, "/usr/bin/git status --porcelain 2>/dev/null|" or exit;
 while(<IF>) { $GITST++; }  # Count number of files to check in
 close IF;
@@ -38,6 +38,7 @@ my $COL="0;37m"; # Always Grey
 if ( $GITBR ne "" ) {
   $prompt .= "\033[$COL\(${GITBR}";
   $prompt .= "*" if ( ${GITST} > 0 );
+  $prompt .= "!" if ( ${GITPUSH} > 0 );
   $prompt .= "\)\033[0m ";
 }
 
