@@ -80,12 +80,6 @@ set diffopt+=iwhite " Tell Vim to ignore whitespace
 """""""""""""""""""""""""""""""""
 set wildmode=longest,list,full
 
-" resize current buffer by +/- 5
-nnoremap <C-left>  :vertical resize +5<cr>
-nnoremap <C-down>  :resize -5<cr>
-nnoremap <C-up>    :resize +5<cr>
-nnoremap <C-right> :vertical resize -5<cr>
-
 " Allows to see diff in current file before saving with :diffSaved
 function! s:DiffWithSaved()
   let filetype=&ft
@@ -146,7 +140,7 @@ nnoremap <C-F12> :set invpaste<CR>
 nnoremap <F10>   :w<CR>
 inoremap <F10>   <Esc>:w<CR>
 " Auto save and reload vimrc (good for editing vimrc / colorscheme)
-nnoremap <C-F10> :w<CR>:source ~/.vimrc<CR>
+nnoremap <Leader><F10> :w<CR>:source ~/.vimrc<CR>
 " Increase / Decrease Tabstop for looking at foreign files.
 nnoremap <F9>    :set ts+=1<CR>:set ts?<CR>
 nnoremap <S-F9>  :set ts-=1<CR>:set ts?<CR>
@@ -162,6 +156,12 @@ nnoremap <F8>    :echo
   \ map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')<CR>
 " Toggle Tab/Endline Viewer
 nnoremap <F7>    <Esc>:set list!<CR>
+
+" resize current buffer by +/- 5
+nnoremap <leader>H :vertical resize +5<cr>
+nnoremap <leader>J :resize -5<cr>
+nnoremap <leader>K :resize +5<cr>
+nnoremap <leader>L :vertical resize -5<cr>
 
 """"""""""""""""""""""""""""""""
 "" AUTO COMMANDS
