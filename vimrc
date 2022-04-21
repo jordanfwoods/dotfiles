@@ -134,8 +134,7 @@ nnoremap <leader>nf      :NERDTreeFind<CR>
 
 " F-Keys - Don't use <F11>, or <F12>. <S-F11>, etc. is fine.
 " Toggle paste mode for easy copy/pasting from system clipboard with the mouse
-nnoremap <S-F12> :set invnumber<CR>:set invrelativenumber<CR>:set invpaste<CR>
-nnoremap <C-F12> :set invpaste<CR>
+nnoremap <Leader><F12> :set invnumber<CR>:set invrelativenumber<CR>:set invpaste<CR>
 " Auto save and don't reload vimrc (good for most files.)
 nnoremap <F10>   :w<CR>
 inoremap <F10>   <Esc>:w<CR>
@@ -147,13 +146,13 @@ nnoremap <S-F9>  :set ts-=1<CR>:set ts?<CR>
 
 " Output Basic syntax Name, i.e. Comment, and the colors associated.
 nnoremap <C-F8>  :verbose highlight
-  \ <C-r>=synIDattr(synIDtrans(synID(line("."), col("."), 1)), "name")<CR><CR>
+\ <C-r>=synIDattr(synIDtrans(synID(line("."), col("."), 1)), "name")<CR><CR>
 " Output Specific syntax name, i.e. vimLineComment, and the associated linking.
 nnoremap <S-F8>  :verbose highlight
-  \ <C-r>=synIDattr(synstack(line("."), col("."))[-1], "name")<CR><CR>
+\ <C-r>=synIDattr(synstack(line("."), col("."))[-1], "name")<CR><CR>
 " Display list of color groups that character under cursor belongs to.
 nnoremap <F8>    :echo
-  \ map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')<CR>
+\ map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')<CR>
 " Toggle Tab/Endline Viewer
 nnoremap <F7>    <Esc>:set list!<CR>
 
@@ -163,17 +162,23 @@ nnoremap <leader>J :resize -5<cr>
 nnoremap <leader>K :resize +5<cr>
 nnoremap <leader>L :vertical resize -5<cr>
 
+" " resize current buffer by +/- 5
+" nnoremap <expr> <leader>h v:count1 . '<C-w><'
+" nnoremap <expr> <leader>j v:count1 . '<C-w>-'
+" nnoremap <expr> <leader>k v:count1 . '<C-w>+'
+" nnoremap <expr> <leader>l v:count1 . '<C-w>>'
+
 """"""""""""""""""""""""""""""""
 "" AUTO COMMANDS
 """"""""""""""""""""""""""""""""
 " Prefer // style to /* stuff */
 autocmd FileType verilog_systemverilog setlocal commentstring=//\ %s
 " VHDL doesn't work for some reason
-autocmd FileType vhdl setlocal commentstring=--\ %s
+autocmd FileType vhdl                  setlocal commentstring=--\ %s
 " XDC also doesn't work.
-autocmd FileType xdc setlocal commentstring=#\ %s
-" XDC also doesn't work.
-autocmd FileType matlab setlocal commentstring=%\ %s
+autocmd FileType xdc                   setlocal commentstring=#\ %s
+" matlab also doesn't work.
+autocmd FileType matlab                setlocal commentstring=%\ %s
 
 " Reliably prompt for file changes upon changing buffers.
 au FocusGained,BufEnter     * :silent! checktime
