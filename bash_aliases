@@ -16,6 +16,9 @@ hei="$svn/heimdall-development/FW/Trunk"
 las="$svn/irad-lasercomm/FW/FPGA/branch/PAT_FFT"
 mis="$svn/mist-so13239/FW/TRUNK/Zynq_PL_Design"
 
+# Make scp a LOT shorter
+scp="jwoods@homeserver:/home/jwoods/lab"
+
 ################
 # Vivado Aliases
 # Legacy - Uses "viv" in most applications.

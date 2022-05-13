@@ -101,6 +101,9 @@ export vivado_path_20182=$vivado_path_20182:$vpath/SDK/2018.2/bin
 export vivado_path_20182=$vivado_path_20182:$vpath/Vivado/2018.2/bin
 export PATH=$vivado_path_20182:$PATH
 
+# Vivado License
+export LM_LICENSE_FILE=2100@hyperlynxlsvm.spacemicro.com 
+
 ##############################
 ## ALIASES
 
