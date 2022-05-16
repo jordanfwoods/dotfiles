@@ -70,10 +70,10 @@ set wildmenu       " Enables menu to pop up to help with finishing wordsearch
 set autoindent     " Turn on Auto Indent
 set splitbelow     " New Split Windows open below
 set splitright     " New Vertical Splits open to the right
+set noesckeys      " Make <Esc> Immediate in Insert Mode
 
 " VIMDIFF
 set diffopt+=iwhite " Tell Vim to ignore whitespace
-" set diffepxr=     " only skips all whitespace when this is empty
 
 """""""""""""""""""""""""""""""""
 """ Gutel Additions
@@ -136,13 +136,13 @@ nnoremap <leader>nf      :NERDTreeFind<CR>
 " Toggle paste mode for easy copy/pasting from system clipboard with the mouse
 nnoremap <Leader><F12> :set invnumber<CR>:set invrelativenumber<CR>:set invpaste<CR>
 " Auto save and don't reload vimrc (good for most files.)
-nnoremap <F10>   :w<CR>
-inoremap <F10>   <Esc>:w<CR>
+nnoremap <F10>         :w<CR>
+inoremap <F10>         <Esc>:w<CR>
 " Auto save and reload vimrc (good for editing vimrc / colorscheme)
 nnoremap <Leader><F10> :w<CR>:source ~/.vimrc<CR>
 " Increase / Decrease Tabstop for looking at foreign files.
-nnoremap <F9>    :set ts+=1<CR>:set ts?<CR>
-nnoremap <S-F9>  :set ts-=1<CR>:set ts?<CR>
+nnoremap <F9>          :set ts+=1<CR>:set ts?<CR>
+nnoremap <S-F9>        :set ts-=1<CR>:set ts?<CR>
 
 " Output Basic syntax Name, i.e. Comment, and the colors associated.
 nnoremap <C-F8>  :verbose highlight
@@ -205,15 +205,6 @@ command! MakeTagsAll ! ctags --langmap=Verilog:+.sv -R --Verilog-kinds=-prn
 """"""""""""""""""""""""""""""""
 "" LEGACY / UNUSED
 """"""""""""""""""""""""""""""""
-" Other vim colorschemes in unused plugins
-" colo atom-dark-256 " other interesting colorscheme
-" colo onehalfdark  " other interesting Plugin theme
-" if g:colors_name=="onehalfdark" " onehalfdark has a lame commenting scheme...
-"   hi Comment guifg=#282c34 ctermfg=236
-"   hi Comment guibg=#5c6370 ctermbg=241
-"   hi Comment gui=italic    cterm=italic
-" endif
-
 " - Use :find <filename> to open some stuff
 
 " I have become a VIM super user, and I don't need it... right?
@@ -236,14 +227,6 @@ command! MakeTagsAll ! ctags --langmap=Verilog:+.sv -R --Verilog-kinds=-prn
 " map <leader>sp [s
 " map <leader>sa zg
 " map <leader>s? z=
-
-" set cursorline
-" set pastetoggle=<F3>
-" set autochdir   " this is such trash.... WHY
-" set noesckeys  " AGAIN, WHY
-
-" nnoremap n nzz
-" nnoremap N Nzz
 
 """"""""""""""""""""""""""""""""
 "" GVIM
