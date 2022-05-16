@@ -4,13 +4,13 @@
 [core]
 	editor = vim
 [diff]
-	tool = diff -w
+	tool = vimdiff
 	context = 1
 [credential]
 	helper = cache --timeout=610000
 [push]
 	default = simple
 [merge]
-	tool = diff -w
+	tool = colordiff -w
 [difftool]
 	prompt = false
