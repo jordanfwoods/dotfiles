@@ -70,7 +70,7 @@ set wildmenu       " Enables menu to pop up to help with finishing wordsearch
 set autoindent     " Turn on Auto Indent
 set splitbelow     " New Split Windows open below
 set splitright     " New Vertical Splits open to the right
-set noesckeys      " Make <Esc> Immediate in Insert Mode
+" set noesckeys      " Make <Esc> Immediate in Insert Mode
 
 " VIMDIFF
 set diffopt+=iwhite " Tell Vim to ignore whitespace

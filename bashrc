@@ -99,6 +99,8 @@ export vivado_path_20182=$vpath/SDK/2018.2/gnu/aarch32/lin/gcc-arm-linux-gnueabi
 export vivado_path_20182=$vivado_path_20182:$vpath/SDK/2018.2/gnu/arm/lin/bin
 export vivado_path_20182=$vivado_path_20182:$vpath/SDK/2018.2/bin
 export vivado_path_20182=$vivado_path_20182:$vpath/Vivado/2018.2/bin
+export PATH=/opt/Xilinx/SDK/2018.2/gnu/aarch32/lin/gcc-arm-none-eabi/bin/:$PATH
+export PATH=/opt/Xilinx/SDK/2018.2/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/bin/:$PATH
 export PATH=$vivado_path_20182:$PATH
 
 # Vivado License
