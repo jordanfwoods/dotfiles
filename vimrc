@@ -131,6 +131,11 @@ nnoremap <leader>ver     :-1read ~/.vim/templates/header.sv<CR>
 nnoremap <leader>nn      :NERDTreeToggle<CR>
 " Find location of current file.
 nnoremap <leader>nf      :NERDTreeFind<CR>
+" Make chrome more usable....
+nnoremap <leader>w       <C-w>
+nnoremap <leader>W       <C-w><C-w>
+nnoremap <leader>t       <C-t>
+
 
 " F-Keys - Don't use <F11>, or <F12>. <S-F11>, etc. is fine.
 " Toggle paste mode for easy copy/pasting from system clipboard with the mouse
