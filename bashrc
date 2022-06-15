@@ -63,6 +63,10 @@ export HISTTIMEFORMAT="%Y/%m/%d %H:%M:%S:   "
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
+# Allow for scrolling up to reverse search history.
+bind '"\e[A": history-search-backward'
+bind '"\e[B": history-search-forward'
+
 ##############################
 ## MAN CONFIGURATION
 
@@ -143,6 +147,7 @@ alias ......='cd ../../../../..'
 alias      l='/bin/ls -hNv   --color=auto --group-directories-first'
 alias     ll='/bin/ls -lhNv  --color=auto --group-directories-first'
 alias     la='/bin/ls -lahNv --color=auto --group-directories-first'
+unset LS_COLORS
 
 # SVN Commands to make it more like git
 # svn add - begins tracking file. svn_add makes changelist act like staging area
@@ -166,6 +171,7 @@ fi
 
 alias octave='/usr/bin/flatpak run --branch=stable --arch=x86_64 \
 --command=/app/bin/octave --file-forwarding org.octave.Octave --gui &'
+
 ##############################
 ## SOURCE BASH ALIASES
 
