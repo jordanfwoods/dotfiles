@@ -150,13 +150,13 @@ nnoremap <F9>          :set ts+=1<CR>:set ts?<CR>
 nnoremap <S-F9>        :set ts-=1<CR>:set ts?<CR>
 
 " Output Basic syntax Name, i.e. Comment, and the colors associated.
-nnoremap <C-F8>  :verbose highlight
+nnoremap <Leader><Leader><F8> :verbose highlight
 \ <C-r>=synIDattr(synIDtrans(synID(line("."), col("."), 1)), "name")<CR><CR>
 " Output Specific syntax name, i.e. vimLineComment, and the associated linking.
-nnoremap <S-F8>  :verbose highlight
+nnoremap <Leader><F8>         :verbose highlight
 \ <C-r>=synIDattr(synstack(line("."), col("."))[-1], "name")<CR><CR>
 " Display list of color groups that character under cursor belongs to.
-nnoremap <F8>    :echo
+nnoremap <F8>                 :echo
 \ map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')<CR>
 " Toggle Tab/Endline Viewer
 nnoremap <F7>    <Esc>:set list!<CR>
