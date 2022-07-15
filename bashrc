@@ -111,6 +111,11 @@ export PATH=$vivado_path_20182:$PATH
 export LM_LICENSE_FILE=2100@hyperlynxlsvm.spacemicro.com 
 
 ##############################
+## ImageJ
+
+export PATH=/home/jwoods/ImageJ:$PATH
+
+##############################
 ## ALIASES
 
 # quit should equal exit ...
