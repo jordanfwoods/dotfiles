@@ -1,32 +1,44 @@
 #!/bin/bash
 dot_list=$(ls /home/jwoods/junk/dotfiles/)
-tabs 10
+tabs 10 > /dev/null
+
+verbose=false
+while getopts ":vh" option; do
+  case $option in
+  h) echo "display this help message:   $0 -h";
+     echo "display all update commands: $0 -v"; exit;;
+  v) verbose=true;;
+  ?) echo "error: option -$OPTARG is not implemented";
+     echo "available options are: -h -v"; exit;;
+  esac
+done
+
 
 for dot_file in $dot_list
 do
   # Only copy subversion config file, not entire directory
   if   [ $dot_file == "subversion" ]
   then
-    printf "cp -rf ~/.subversion/config\t./subversion/config\r\n"
-            cp -rf ~/.subversion/config  ./subversion/config
+    if $verbose ; then printf "cp -rf ~/.subversion/config\t./subversion/config\r\n" ; fi
+                               cp -rf ~/.subversion/config  ./subversion/config
 
   # Only copy autostart out of config directory, not entire directory
   elif [ $dot_file == "config" ]
   then
-    printf "cp -rf ~/.config/autostart/*\t./config/autostart/\r\n"
-            cp -rf ~/.config/autostart/* ./config/autostart/
+    if  $verbose ; then printf "cp -rf ~/.config/autostart/*\t./config/autostart/\r\n" ; fi
+                                cp -rf ~/.config/autostart/*  ./config/autostart/
 
   # Only copy contents out of fonts directory, not directory again
   elif [ $dot_file == "fonts" ]
   then
-    printf "cp -rf ~/.fonts/*\t\t./fonts/\r\n"
-            cp -rf ~/.fonts/*    ./fonts/
+    if  $verbose ; then printf "cp -rf ~/.fonts/*\t\t./fonts/\r\n" ; fi
+                                cp -rf ~/.fonts/*    ./fonts/
 
   # Only copy contents out of tmux directory, not directory again
   elif [ $dot_file == "tmux" ]
   then
-    printf "cp -rf ~/.tmux/*\t\t./tmux/\r\n"
-            cp -rf ~/.tmux/*    ./tmux/
+    if  $verbose ; then printf "cp -rf ~/.tmux/*\t\t./tmux/\r\n" ; fi
+                                cp -rf ~/.tmux/*    ./tmux/
 
   elif [ $dot_file == "vim" ]
   then
@@ -34,8 +46,8 @@ do
     do
       if   [ $vim_dir != "plugged" ]
       then
-        printf "cp -rf ~/.vim/$vim_dir/*\t./vim/$vim_dir/\r\n"
-                cp -rf ~/.vim/$vim_dir/*  ./vim/$vim_dir/
+        if $verbose ; then printf "cp -rf ~/.vim/$vim_dir/*\t./vim/$vim_dir/\r\n" ; fi
+                                   cp -rf ~/.vim/$vim_dir/*  ./vim/$vim_dir/
       fi
     done
 
@@ -48,9 +60,13 @@ do
        [ $dot_file != "svnprompt.pl" ]       &&
        [ $dot_file != "svnvimdiffwrap.sh" ]
   then
-    printf "cp -rf ~/.%-18s\t./%0s\r\n" "$dot_file" "$dot_file"
-            cp -rf ~/.$dot_file ./$dot_file
+    if $verbose ; then printf "cp -rf ~/.%-18s\t./%0s\r\n" "$dot_file" "$dot_file" ; fi
+                               cp -rf ~/.$dot_file ./$dot_file
   fi
 done
 
-tabs 8
+tabs 8 > /dev/null
+
+if $verbose ; then printf "\r\n" ; fi
+git status
+
