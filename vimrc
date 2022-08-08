@@ -162,10 +162,10 @@ nnoremap <F8>                 :echo
 nnoremap <F7>    <Esc>:set list!<CR>
 
 " resize current buffer by +/- 5
-nnoremap <leader>H :vertical resize +5<cr>
-nnoremap <leader>J :resize -5<cr>
-nnoremap <leader>K :resize +5<cr>
-nnoremap <leader>L :vertical resize -5<cr>
+nnoremap <leader>h :vertical resize +5<cr>
+nnoremap <leader>j :resize -5<cr>
+nnoremap <leader>k :resize +5<cr>
+nnoremap <leader>l :vertical resize -5<cr>
 
 " " resize current buffer by +/- 5
 " nnoremap <expr> <leader>h v:count1 . '<C-w><'
