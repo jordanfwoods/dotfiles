@@ -111,6 +111,11 @@ export PATH=$vivado_path_20182:$PATH
 export LM_LICENSE_FILE=2100@hyperlynxlsvm.spacemicro.com 
 
 ##############################
+## Janky Firefox
+
+export PATH=/home/jwoods/firefox:$PATH
+
+##############################
 ## ImageJ
 
 export PATH=/home/jwoods/ImageJ:$PATH
