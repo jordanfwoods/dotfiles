@@ -113,6 +113,8 @@ nnoremap <Leader><S-Tab> 3hdwi<Tab><Right><ESC>
 " Update the Date in MM/DD/YY format (MM/DD/YYYY for <leader>D)
 nnoremap <leader>d       R<C-R>=strftime("%m/%d/%y")<CR><Esc>
 nnoremap <leader>D       R<C-R>=strftime("%m/%d/%Y")<CR><Esc>
+" Update the Name of the last modified.
+nnoremap <leader>J       RJordan Woods<Esc>l
 " Insert filename (no path or suffix)
 nnoremap <leader>>       "=expand("%:t")<CR>pdF.x
 " Remove <> and paste in filename (without path)
