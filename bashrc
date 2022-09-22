@@ -118,7 +118,7 @@ export PATH=$PATH:/opt/Xilinx/SDK/2019.1/gnu/aarch32/lin/gcc-arm-none-eabi/arm-n
 export PATH=$vivado_path_20191:$PATH
 
 # Vivado License
-export LM_LICENSE_FILE=2100@hyperlynxlsvm.spacemicro.com 
+export LM_LICENSE_FILE=2100@hyperlynxlsvm.spacemicro.com
 export XILINXD_LICENSE_FILE=2100@hyperlynxlsvm.spacemicro.com
 
 ##############################
@@ -141,7 +141,7 @@ alias reload='source ~/.bashrc'
 
 # Toggle between full path length, and current directory only in bash prompt
 alias     pp='if [ -z ${PATH_PROMPT+x} ]; then PATH_PROMPT="SET"; else unset PATH_PROMPT; fi; reload'
-# Toggle on/off seeing the branch name / changes in bash prompt 
+# Toggle on/off seeing the branch name / changes in bash prompt
 alias     bp='if [ -z ${BRANCH_PROMPT+x} ]; then BRANCH_PROMPT="SET"; else unset BRANCH_PROMPT; fi; reload'
 # Toggle on/off the bash prompt spanning 2 lines
 alias     1p='if [ -z ${PROMPT1+x} ]; then PROMPT1="SET"; else unset PROMPT1; fi; reload'
