@@ -70,7 +70,7 @@ set wildmenu       " Enables menu to pop up to help with finishing wordsearch
 set autoindent     " Turn on Auto Indent
 set splitbelow     " New Split Windows open below
 set splitright     " New Vertical Splits open to the right
-" set noesckeys      " Make <Esc> Immediate in Insert Mode
+" set noesckeys    " Make <Esc> Immediate in Insert Mode
 
 " VIMDIFF
 set diffopt+=iwhite " Tell Vim to ignore whitespace
@@ -97,7 +97,14 @@ com! DiffSaved call s:DiffWithSaved()
 " Change the <leader> to be ",", not "\"
 let mapleader = ","
 
-" Random Remaps
+" " Random Remaps
+" " Remap <C-A> to increment systemverilog correctly...
+" nnoremap <expr> <silent> <c-a> expand('<cWORD>') =~# '\v\c\d+''h[0-9a-f]+' ?
+"       \ ":<c-u>norm! \"_yiWf'ls0x<c-v><esc>" . v:count1 . "<c-v><c-a>F'lvlpE<cr>" : '<c-a>'
+" " Remap <C-A> to decrement systemverilog correctly...
+" nnoremap <expr> <silent> <c-x> expand('<cWORD>') =~# '\v\c\d+''h[0-9a-f]+' ?
+"       \ ":<c-u>norm! \"_yiWf'ls0x<c-v><esc>" . v:count1 . "<c-v><c-x>F'lvlpE<cr>" : '<c-x>'
+
 " Add single spaces in normal mode
 nnoremap <Space>         i<Space><Right><ESC>
 " Make 'Y' operate like 'D', 'C', etc instead of 'yy'
@@ -276,6 +283,7 @@ command! MakeTagsAll ! ctags --langmap=Verilog:+.sv -R --Verilog-kinds=-prn
 " Plug 'junegunn/vim-easy-align'       " Align using ga...
 " Plug 'dhruvasagar/vim-table-mode'    " create ascii tables <leader>tm.
 " Plug 'tpope/vim-fugitive'            " Adds :Git command.
+" Plug 'tpope/vim-speeddating'          " Allows for incrementing dates...
 " VIM  Colorschemes
 " Plug 'flazz/vim-colorschemes'        " All in one place...
 " Plug 'sonph/onehalf', { 'rtp': 'vim' } " Other Interesting colorscheme.

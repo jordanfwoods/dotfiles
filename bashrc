@@ -194,6 +194,40 @@ alias octave='/usr/bin/flatpak run --branch=stable --arch=x86_64 \
 --command=/app/bin/octave --file-forwarding org.octave.Octave --gui &'
 
 ##############################
+## FUNCTIONS
+
+# procedure to save hdf/ltx/bit files for 5mp camera from CameraFirmware dir. 
+# 1st arg: must be either 'spw' or 'cl'.
+# 2nd arg: must be either blank or 'fm'.
+save5mp() {
+  # Check that we are using correct options
+  if [ -z $1 ] || ([ $1 != "spw" ] && [ $1 != "cl" ]); then
+    echo "Usage: 'save5mp spw [fm]' or 'save5mp cl [fm]'"
+    return
+  fi
+
+  # Create location of hdf/ltx/bit files...
+  local path="./build"
+  [ "$1" = "spw" ] && local path="$path/spacewire/temp"
+  [ "$1" = "cl"  ] && local path="$path/camera_link/temp"
+  if   [ -z "$2" ];     then path="${path}/vivado_proj/vivado_proj.sdk";
+  elif [ "$2" = "fm" ]; then path="${path}_fm/vivado_proj/vivado_proj.sdk"; fi
+
+  # switch into determined path
+  pushd $path > /dev/null
+
+  # find latest created files.
+  local filename=$(ls -t | head -n1 | sed 's/\..*//g')
+
+  # remote check-in to correct place in homeserver
+  echo "Uploading ${filename}.* to /home/jwoods/lab/5mp/fw/$1/ in homeserver"
+  scp ./$filename.* jwoods@homeserver:/home/jwoods/lab/5mp/fw/$1/
+
+  # pop back to directory we started in
+  popd > /dev/null
+}
+
+##############################
 ## SOURCE BASH ALIASES
 
 [ -f ~/.bash_aliases ] && source ~/.bash_aliases
