@@ -99,23 +99,23 @@ export EDITOR='vim'
 # assuming Vivado/SDK tools installed to /opt/Xilinx
 export vpath=/opt/Xilinx
 
-# # 2018.2
-# export vivado_path_20182=$vpath/SDK/2018.2/gnu/aarch32/lin/gcc-arm-linux-gnueabi/bin
-# export vivado_path_20182=$vivado_path_20182:$vpath/SDK/2018.2/gnu/arm/lin/bin
-# export vivado_path_20182=$vivado_path_20182:$vpath/SDK/2018.2/bin
-# export vivado_path_20182=$vivado_path_20182:$vpath/Vivado/2018.2/bin
-# export PATH=$PATH:/opt/Xilinx/SDK/2018.2/gnu/aarch32/lin/gcc-arm-none-eabi/bin/
-# export PATH=$PATH:/opt/Xilinx/SDK/2018.2/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/bin/
-# export PATH=$vivado_path_20182:$PATH
+# 2018.2
+export vivado_path_20182=$vpath/SDK/2018.2/gnu/aarch32/lin/gcc-arm-linux-gnueabi/bin
+export vivado_path_20182=$vivado_path_20182:$vpath/SDK/2018.2/gnu/arm/lin/bin
+export vivado_path_20182=$vivado_path_20182:$vpath/SDK/2018.2/bin
+export vivado_path_20182=$vivado_path_20182:$vpath/Vivado/2018.2/bin
+export PATH=$PATH:/opt/Xilinx/SDK/2018.2/gnu/aarch32/lin/gcc-arm-none-eabi/bin/
+export PATH=$PATH:/opt/Xilinx/SDK/2018.2/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/bin/
+export PATH=$vivado_path_20182:$PATH
 
-# 2019.1
-export vivado_path_20191=$vpath/SDK/2019.1/gnu/aarch32/lin/gcc-arm-linux-gnueabi/bin
-export vivado_path_20191=$vivado_path_20191:$vpath/SDK/2019.1/gnu/arm/lin/bin
-export vivado_path_20191=$vivado_path_20191:$vpath/SDK/2019.1/bin
-export vivado_path_20191=$vivado_path_20191:$vpath/Vivado/2019.1/bin
-export PATH=$PATH:/opt/Xilinx/SDK/2019.1/gnu/aarch32/lin/gcc-arm-none-eabi/bin/
-export PATH=$PATH:/opt/Xilinx/SDK/2019.1/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/bin/
-export PATH=$vivado_path_20191:$PATH
+# # 2019.1
+# export vivado_path_20191=$vpath/SDK/2019.1/gnu/aarch32/lin/gcc-arm-linux-gnueabi/bin
+# export vivado_path_20191=$vivado_path_20191:$vpath/SDK/2019.1/gnu/arm/lin/bin
+# export vivado_path_20191=$vivado_path_20191:$vpath/SDK/2019.1/bin
+# export vivado_path_20191=$vivado_path_20191:$vpath/Vivado/2019.1/bin
+# export PATH=$PATH:/opt/Xilinx/SDK/2019.1/gnu/aarch32/lin/gcc-arm-none-eabi/bin/
+# export PATH=$PATH:/opt/Xilinx/SDK/2019.1/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/bin/
+# export PATH=$vivado_path_20191:$PATH
 
 # Vivado License
 export LM_LICENSE_FILE=2100@hyperlynxlsvm.spacemicro.com
@@ -196,7 +196,7 @@ alias octave='/usr/bin/flatpak run --branch=stable --arch=x86_64 \
 ##############################
 ## FUNCTIONS
 
-# procedure to save hdf/ltx/bit files for 5mp camera from CameraFirmware dir. 
+# procedure to save hdf/ltx/bit files for 5mp camera from CameraFirmware dir.
 # 1st arg: must be either 'spw' or 'cl'.
 # 2nd arg: must be either blank or 'fm'.
 save5mp() {
