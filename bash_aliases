@@ -27,6 +27,7 @@ alias  viv6="$xilinx/Vivado/2016.2/bin/vivado"
 alias  viv8="$xilinx/Vivado/2018.1/bin/vivado"
 alias  viv2="$xilinx/Vivado/2018.2/bin/vivado"
 alias  viv9="$xilinx/Vivado/2019.1/bin/vivado"
+alias  viv1="$xilinx/Vivado/2021.2/bin/vivado"
 # created vivado.sh automatically opens correct version of vivado
 alias   viv="$dot/vivado.sh"
 
