@@ -18,6 +18,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'morhetz/gruvbox'                " gruvbox is the goat of colorschemes.
   " Updated file system...
   Plug 'preservim/nerdtree'             " Use a capable file manager.
+  Plug 'vimwiki/vimwiki'                " todo list manager?
 call plug#end()
 
 set background=dark " gruvbox requires external background to be set.
@@ -36,6 +37,7 @@ map <Right> <nop>
 " What VIM saves
 set nobackup       " do not keep a backup file, use versions instead
 set history=250    " Number of lines of command line history to keep
+scriptencoding utf-8 " Save vimrc to allow for special characters.
 
 " How VIM Looks
 set number         " show line numbers.
