@@ -29,7 +29,8 @@ PS1=""                                   # Currently no Newline in default color
 if [ "`id -u`" -eq 0 ]; then
    PS1="$PS1\[\e[1;31m\]\u\[\e[0m\] "    # display username in bold red
 else
-   PS1="$PS1\[\e[1;34m\]\u\[\e[0m\] "    # display username in bold blue
+   # PS1="$PS1\[\e[1;34m\]\u\[\e[0m\] "  # display username in bold blue
+   PS1="$PS1\[\e[0;36m\]\u\[\e[0m\] "    # display username in regular cyan
 fi
 PS1="$PS1\[\e[38;5;231m\]:\[\e[0m\] "    # colon separator in bold white
 PS1="$PS1\[\e[1;35m\]\h\[\e[0m\] "       # Display hostname in bold purple
@@ -108,14 +109,8 @@ export PATH=$PATH:/opt/Xilinx/SDK/2018.2/gnu/aarch32/lin/gcc-arm-none-eabi/bin/
 export PATH=$PATH:/opt/Xilinx/SDK/2018.2/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/bin/
 export PATH=$vivado_path_20182:$PATH
 
-# # 2019.1
-# export vivado_path_20191=$vpath/SDK/2019.1/gnu/aarch32/lin/gcc-arm-linux-gnueabi/bin
-# export vivado_path_20191=$vivado_path_20191:$vpath/SDK/2019.1/gnu/arm/lin/bin
-# export vivado_path_20191=$vivado_path_20191:$vpath/SDK/2019.1/bin
-# export vivado_path_20191=$vivado_path_20191:$vpath/Vivado/2019.1/bin
-# export PATH=$PATH:/opt/Xilinx/SDK/2019.1/gnu/aarch32/lin/gcc-arm-none-eabi/bin/
-# export PATH=$PATH:/opt/Xilinx/SDK/2019.1/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/bin/
-# export PATH=$vivado_path_20191:$PATH
+# 2021.1
+export PATH=$PATH:/opt/Xilinx/Vitis/2021.2/bin/
 
 # Vivado License
 export LM_LICENSE_FILE=2100@hyperlynxlsvm.spacemicro.com
