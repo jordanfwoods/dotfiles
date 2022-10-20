@@ -5,6 +5,7 @@
 xpr="temp"
 dir="/home/jwoods/temp/vivado_logs"
 src="-source ~/.tcl -log $dir/vivado.log -jou $dir/vivado.jou"
+echo "Setting log / jou files to save in $dir"
 
 ###############################
 ## Try to Find the .xpr File ##
@@ -54,6 +55,7 @@ then
     echo "No XPR found in ${1} directory, opening Vivado 2018.1"
   fi
   viv_cmd="/opt/Xilinx/Vivado/2018.1/bin/vivado $src"
+  echo    "/opt/Xilinx/Vivado/2018.1/bin/vivado"
 
 # If there is a valid XPR file, then parse the file to find the correct Vivado
 # version
@@ -79,8 +81,8 @@ else
 
   # Open correct xpr in discovered version and display the command
   viv_cmd="/opt/Xilinx/Vivado/2${viv_ver:0:5}/bin/vivado $xpr $src"
+  echo    "/opt/Xilinx/Vivado/2${viv_ver:0:5}/bin/vivado $xpr"
 fi
 
-echo $viv_cmd
 eval $viv_cmd
 
