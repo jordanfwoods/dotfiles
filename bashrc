@@ -220,6 +220,7 @@ save5mp() {
 
   # remote check-in to correct place in homeserver
   echo "Uploading ${filename}.* to /home/jwoods/lab/5mp/fw/$1/ in homeserver"
+  md5sum $filename.*
   scp ./$filename.* jwoods@homeserver:/home/jwoods/lab/5mp/fw/$1/
 
   # pop back to directory we started in

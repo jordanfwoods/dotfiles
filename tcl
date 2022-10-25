@@ -12,9 +12,12 @@ proc cr {} {relaunch_sim; run all}
 proc r  {} {restart; run all}
 proc rr {} {restart}
 proc reload {}       { source -notrace ~/.tcl }
-proc build  {{f -1}} { if {$f > -1} {set argv $f; set argc 1;}
-                       source -notrace ../../../build_bitstream.tcl
-                       set argc 0; set argv ""; }
+proc build  {{f -1}} { if {[string equal $f "-h"]} {
+                                puts "Usage Example:"
+                                puts "   build \[spw|cl\]\[fm\]00020200\[dbg|D#\]"
+                       } else { if {$f > -1} {set argv $f; set argc 1;}
+                                source -notrace ../../../build_bitstream.tcl
+                                set argc 0; set argv ""; } }
 
 set_property -name {xsim.simulate.log_all_signals} -value {true} \
   -objects [get_filesets sim_1]
