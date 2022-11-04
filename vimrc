@@ -18,7 +18,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'morhetz/gruvbox'                " gruvbox is the goat of colorschemes.
   " Updated file system...
   Plug 'preservim/nerdtree'             " Use a capable file manager.
-  Plug 'vimwiki/vimwiki'                " todo list manager?
+  " Plug 'codegram/vim-todo'              " todo list manager?
 call plug#end()
 
 set background=dark " gruvbox requires external background to be set.
@@ -108,44 +108,47 @@ let mapleader = ","
 "       \ ":<c-u>norm! \"_yiWf'ls0x<c-v><esc>" . v:count1 . "<c-v><c-x>F'lvlpE<cr>" : '<c-x>'
 
 " Add single spaces in normal mode
-nnoremap <Space>         i<Space><Right><ESC>
+nnoremap <Space>               i<Space><Right><ESC>
 " Make 'Y' operate like 'D', 'C', etc instead of 'yy'
-nnoremap Y               y$
+nnoremap Y                     y$
 " Clear Search coloring
 nnoremap <silent> <Leader><CR> :noh<CR>:echo "Clearing Search"<CR>
 
 " <leader> Remaps
 " Add a Tab while in Normal Mode
-nnoremap <Leader><Tab>   i<Tab><Right><ESC>
+nnoremap <Leader><Tab>         i<Tab><Right><ESC>
 " Remove a Tab while in Normal Mode
-nnoremap <Leader><S-Tab> 3hdwi<Tab><Right><ESC>
+nnoremap <Leader><S-Tab>       3hdwi<Tab><Right><ESC>
 " Update the Date in MM/DD/YY format (MM/DD/YYYY for <leader>D)
-nnoremap <leader>d       R<C-R>=strftime("%m/%d/%y")<CR><Esc>
-nnoremap <leader>D       R<C-R>=strftime("%m/%d/%Y")<CR><Esc>
+nnoremap <leader>d             R<C-R>=strftime("%m/%d/%y")<CR><Esc>
+nnoremap <leader>D             R<C-R>=strftime("%m/%d/%Y")<CR><Esc>
+nnoremap <leader><leader>d     R<C-R>=strftime("%d %b %Y")<CR><Esc>
+" Update the Time in H?H:MM [a|p]m format
+nnoremap <leader>T             R<C-R>=strftime("%-I:%M %P")<CR><Esc>
 " Update the Name of the last modified.
-nnoremap <leader>J       RJordan Woods<Esc>l
+nnoremap <leader>J             RJordan Woods<Esc>l
 " Insert filename (no path or suffix)
-nnoremap <leader>>       "=expand("%:t")<CR>pdF.x
+nnoremap <leader>>             "=expand("%:t")<CR>pdF.x
 " Remove <> and paste in filename (without path)
-nnoremap <leader><       da<"=expand("%:t")<CR>P
+nnoremap <leader><             da<"=expand("%:t")<CR>P
 " Count the number of occurences of the current word
-nnoremap <leader>?       :%s/\<<C-R><C-W>\>//gni<CR><C-O>
+nnoremap <leader>?             :%s/\<<C-R><C-W>\>//gni<CR><C-O>
 " Count the number of occurences of the last search
-nnoremap <leader>/       :%s///gni<CR><C-O>
+nnoremap <leader>/             :%s///gni<CR><C-O>
 " Remove trailing whitespace on entire file (with confirms).
-nnoremap <leader><Space> :%s/\s\+$//gc<CR>
+nnoremap <leader><Space>       :%s/\s\+$//gc<CR>
 " Dump a VHDL Header template to the file
-nnoremap <leader>vhd     :-1read ~/.vim/templates/header.vhd<CR>
+nnoremap <leader>vhd           :-1read ~/.vim/templates/header.vhd<CR>
 " Dump a procedure template to the file
-nnoremap <leader>ver     :-1read ~/.vim/templates/header.sv<CR>
+nnoremap <leader>ver           :-1read ~/.vim/templates/header.sv<CR>
 " Open/Close Nerdtree.
-nnoremap <leader>nn      :NERDTreeToggle<CR>
+nnoremap <leader>nn            :NERDTreeToggle<CR>
 " Find location of current file.
-nnoremap <leader>nf      :NERDTreeFind<CR>
+nnoremap <leader>nf            :NERDTreeFind<CR>
 " Make chrome more usable....
-nnoremap <leader>w       <C-w>
-nnoremap <leader>W       <C-w><C-w>
-nnoremap <leader>t       <C-t>
+nnoremap <leader>w             <C-w>
+nnoremap <leader>W             <C-w><C-w>
+nnoremap <leader>t             <C-t>
 
 
 " F-Keys - Don't use <F11>, or <F12>. <S-F11>, etc. is fine.
@@ -187,16 +190,24 @@ nnoremap <leader>l :vertical resize -5<cr>
 " nnoremap <expr> <leader>l v:count1 . '<C-w>>'
 
 """"""""""""""""""""""""""""""""
+"" Make My Own To-Do List...
+""""""""""""""""""""""""""""""""
+" Auto setfiletype... syntax is in ~/.vim/synatx/todo.vim
+au BufRead,BufNewFile *.todo,TODO setfiletype todo
+" manage check boxes ,2 only doesn't work on line 1, if the first character is the [
+nnoremap <leader>1 ^i[ ] <Esc>
+nnoremap <leader>2 0k$/[<CR>lrX:noh<CR>
+nnoremap <leader>3 0k$/[<CR>lr :noh<CR>
+
+""""""""""""""""""""""""""""""""
 "" AUTO COMMANDS
 """"""""""""""""""""""""""""""""
-" Prefer // style to /* stuff */
+" VIM Commentary doesn't have my filetype defaults the way I like.
 autocmd FileType verilog_systemverilog setlocal commentstring=//\ %s
-" VHDL doesn't work for some reason
 autocmd FileType vhdl                  setlocal commentstring=--\ %s
-" XDC also doesn't work.
 autocmd FileType xdc                   setlocal commentstring=#\ %s
-" matlab also doesn't work.
 autocmd FileType matlab                setlocal commentstring=%\ %s
+autocmd FileType todo                  setlocal commentstring=\"\ %s
 
 " Reliably prompt for file changes upon changing buffers.
 au FocusGained,BufEnter     * :silent! checktime
@@ -294,3 +305,4 @@ command! MakeTagsAll ! ctags --langmap=Verilog:+.sv -R --Verilog-kinds=-prn
 " Plug 'junegunn/fzf'                  " Fuzzy Finder for VIM fork from matze/vim-tex-fold add chapter, sub&subsub section support
 " Plug 'gutelfuldead/vim-tex-fold'     " requires Okular and/or pdflatex, <leader>llp to open pdf preview
 " Plug 'xuhdev/vim-latex-live-preview'
+" Plug 'vimwiki/vimwiki'               " todo list manager?
