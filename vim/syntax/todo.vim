@@ -20,7 +20,7 @@ syn match   todoTime12      "\<\(0\?[0-9]\|1[0-2]\)\s*\([ap]m\)"
 syn keyword todoKeyWord     contained TODO FIXME
 syn region  todoComment     start="\"\*" end="\*\"" contains=todoImportant,todoDate,todoTime12,todoTime24,todoKeyword,@Spell
 syn match   todoComment           "\".*"            contains=todoImportant,todoDate,todoTime12,todoTime24,todoKeyword,@Spell
-syn match   todoDone       /.\+/ contained          contains=todoImportant,todoDate,todoTime12,todoTime24,todoKeyword,@Spell
+syn match   todoDone       /.\+/ contained          contains=todoImportant,todoDate,todoTime12,todoTime24,todoKeyword,@Spell,todoParens
 
 syn match   todoProjectTag /===/ nextgroup=todoProject skipwhite
 syn match   todoProject    /.\+/ contained
