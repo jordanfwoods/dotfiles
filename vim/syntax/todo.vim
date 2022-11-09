@@ -9,6 +9,7 @@ if exists("b:current_syntax")
 endif
 
 syntax case ignore
+set foldmethod=marker
 syn match   todoDate        "\(1[0-9]\|2[0-9]\|3[0-1]\|0\?[1-9]\)\s\w*\s\(\d\d\d\d\|\d\d\)"
 syn match   todoDate        "\(0\?[1-9]\|1[0-2]\)[- /.]\(1[0-9]\|2[0-9]\|3[0-1]\|0\?[1-9]\)[- /.]\?\(\d\d\d\d\|\d\d\)\?"
 syn match   todoImportant   "important"
@@ -22,14 +23,14 @@ syn region  todoComment     start="\"\*" end="\*\"" contains=todoImportant,todoD
 syn match   todoComment           "\".*"            contains=todoImportant,todoDate,todoTime12,todoTime24,todoKeyword,@Spell
 syn match   todoDone       /.\+/ contained          contains=todoImportant,todoDate,todoTime12,todoTime24,todoKeyword,@Spell,todoParens
 
-syn match   todoProjectTag /===/ nextgroup=todoProject skipwhite
-syn match   todoProject    /.\+/ contained
+syn match   todoProjectTag /=\+\s/ nextgroup=todoProject skipwhite
+syn match   todoProject    /.\+/ contained contains=todoComment
 
 syn match   todoOkValue    /√/ contained
 
 syn region  todoOk         start=/\[/ end=/\]/ contains=todoOkValue nextgroup=todoDone
 syn match   todoEmpty      /\[\s\]/
-syn match   todoTitle      /TODO/
+syn match   todoTitle      /^\s*TODO.\+/ contains=todoDate,todoTime12,todoTime24
 syn match   todoParens     /(.\+)/
 
 hi link     todoOk         Type

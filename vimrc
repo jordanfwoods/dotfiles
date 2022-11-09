@@ -119,10 +119,10 @@ nnoremap <silent> <Leader><CR> :noh<CR>:echo "Clearing Search"<CR>
 nnoremap <Leader><Tab>         i<Tab><Right><ESC>
 " Remove a Tab while in Normal Mode
 nnoremap <Leader><S-Tab>       3hdwi<Tab><Right><ESC>
-" Update the Date in MM/DD/YY format (MM/DD/YYYY for <leader>D)
+" Update the Date in MM/DD/YY format (DD Mon YYYY for <leader>D)
 nnoremap <leader>d             R<C-R>=strftime("%m/%d/%y")<CR><Esc>
-nnoremap <leader>D             R<C-R>=strftime("%m/%d/%Y")<CR><Esc>
-nnoremap <leader><leader>d     R<C-R>=strftime("%d %b %Y")<CR><Esc>
+nnoremap <leader>D             R<C-R>=strftime("%d %b %Y")<CR><Esc>
+nnoremap <leader><leader>d     R<C-R>=strftime("%m/%d/%Y")<CR><Esc>
 " Update the Time in H?H:MM [a|p]m format
 nnoremap <leader>T             R<C-R>=strftime("%-I:%M %P")<CR><Esc>
 " Update the Name of the last modified.
