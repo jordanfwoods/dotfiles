@@ -95,7 +95,8 @@ diff-cmd = colordiff
 ### while importing or adding files and directories.
 ### '*' matches leading dots, e.g. '*.rej' matches '.foo.rej'.
 # global-ignores = *.pyc *.pyo *.o *.elf
-global-ignores = *.pyc *.pyo *.o *.elf .*.swp tags .ctagsignore temp*
+global-ignores = *.pyc *.pyo *.o *.elf .*.swp tags .ctagsignore
+# global-ignores = *.pyc *.pyo *.o *.elf .*.swp tags .ctagsignore temp*
 # svn.diff
 # global-ignores = *.o *.lo *.la *.al .libs *.so *.so.[0-9]* *.a *.pyc *.pyo
 #   *.rej *~ #*# .#* .*.swp .DS_Store
