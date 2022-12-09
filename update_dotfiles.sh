@@ -53,12 +53,14 @@ do
 
   # ignore a few files, but otherwise copy all files in.
   elif [ $dot_file != "update_dotfiles.sh" ] &&
-       [ $dot_file != "README.md" ]          &&
-       [ $dot_file != "vivado.sh" ]          &&
-       [ $dot_file != "svn-color.py" ]       &&
-       [ $dot_file != "gitprompt.pl" ]       &&
-       [ $dot_file != "svnprompt.pl" ]       &&
-       [ $dot_file != "svnvimdiffwrap.sh" ]
+       [ $dot_file != "README.md"          ] &&
+       [ $dot_file != "dotfiles.tar.gz"    ] &&
+       [ $dot_file != "dotfiles.tar.z"     ] &&
+       [ $dot_file != "vivado.sh"          ] &&
+       [ $dot_file != "svn-color.py"       ] &&
+       [ $dot_file != "gitprompt.pl"       ] &&
+       [ $dot_file != "svnprompt.pl"       ] &&
+       [ $dot_file != "svnvimdiffwrap.sh"  ]
   then
     if $verbose ; then printf "cp -rf ~/.%-18s\t./%0s\r\n" "$dot_file" "$dot_file" ; fi
                                cp -rf ~/.$dot_file ./$dot_file

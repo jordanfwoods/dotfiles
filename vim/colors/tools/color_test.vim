@@ -17,7 +17,7 @@ function! VimColorTest(outfile, fgend, bgend)
   source %
 endfunction
 " Increase numbers in next line to see more colors.
-command! VimColorTest call VimColorTest('vim-color-test.tmp', 12, 16)
+command! VimColorTest call VimColorTest('vim-color-test.tmp', 256, 1)
 
 function! GvimColorTest(outfile)
   let result = []

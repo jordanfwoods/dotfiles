@@ -18,12 +18,11 @@ call plug#begin('~/.vim/plugged')
   Plug 'morhetz/gruvbox'                " gruvbox is the goat of colorschemes.
   " Updated file system...
   Plug 'preservim/nerdtree'             " Use a capable file manager.
-  " Plug 'codegram/vim-todo'              " todo list manager?
 call plug#end()
 
-set background=dark " gruvbox requires external background to be set.
-colo gruvbox        " scheme from Plugin
-hi Normal ctermbg=NONE
+set  background=dark " gruvbox requires external background to be set.
+colo gruvbox         " scheme from Plugin
+hi   Normal ctermbg=NONE
 
 " Disable the Arrow keys in Normal Mode
 map <Up>    <nop>
@@ -35,9 +34,11 @@ map <Right> <nop>
 "" Basic Settings
 """"""""""""""""""""""""""""""""
 " What VIM saves
-set nobackup       " do not keep a backup file, use versions instead
-set history=250    " Number of lines of command line history to keep
-scriptencoding utf-8 " Save vimrc to allow for special characters.
+set nobackup           " do not keep a backup file, use versions instead
+set history=250        " Number of lines of command line history to keep
+scriptencoding utf-8   " Save vimrc to allow for special characters like √.
+set encoding=utf-8     " Save vimrc to allow for special characters like √.
+set fileencoding=utf-8 " Save vimrc to allow for special characters like √.
 
 " How VIM Looks
 set number         " show line numbers.
@@ -46,7 +47,7 @@ set ruler          " show the cursor position all the time in bottom right
 set showcmd        " display incomplete commands in bottom right
 set nowrap         " Don't wrap text to the next line.
 set laststatus=2   " Display StatusLine always
-set textwidth=84   " Set max width of inserted code to 80 lines before splitting
+set textwidth=84   " Set max width of inserted code to 84 lines before splitting
 set colorcolumn=+1 " Set Color Column just after columnn of textwidth
 
 " Never use tabs and backspace more efficiently
@@ -55,8 +56,8 @@ set shiftwidth=2   " on indenting with '>', use 2 spaces.
 set expandtab      " inserts spaces for tabs.
 set backspace=indent,eol,start " allow backspacing over anything in insert mode
 
- " Allow 'list' option to see EOL($), Tab(>-), Space(�), etc. Used with <F7>
-set listchars=eol:$,tab:>-,trail:�,extends:>,precedes:<,conceal:&,nbsp:�
+ " Allow 'list' option to see EOL($), Tab(>-), Space(·), etc. Used with <F7>
+set listchars=eol:$,tab:>-,trail:·,extends:>,precedes:<,conceal:&,nbsp:·
 
 " Update the way searching occurs
 set hlsearch       " Highlight all items that match search
@@ -121,7 +122,7 @@ nnoremap <Leader><Tab>         i<Tab><Right><ESC>
 nnoremap <Leader><S-Tab>       3hdwi<Tab><Right><ESC>
 " Update the Date in MM/DD/YY format (DD Mon YYYY for <leader>D)
 nnoremap <leader>d             R<C-R>=strftime("%m/%d/%y")<CR><Esc>
-nnoremap <leader>D             R<C-R>=strftime("%d %b %Y")<CR><Esc>
+nnoremap <leader>D             R<C-R>=strftime("%a, %d %b %Y")<CR><Esc>
 nnoremap <leader><leader>d     R<C-R>=strftime("%m/%d/%Y")<CR><Esc>
 " Update the Time in H?H:MM [a|p]m format
 nnoremap <leader>T             R<C-R>=strftime("%-I:%M %P")<CR><Esc>
@@ -195,9 +196,10 @@ nnoremap <leader>l :vertical resize -5<cr>
 " Auto setfiletype... syntax is in ~/.vim/synatx/todo.vim
 au BufRead,BufNewFile *.todo,TODO setfiletype todo
 " manage check boxes ,2 only doesn't work on line 1, if the first character is the [
-nnoremap <leader>1 ^i[ ] <Esc>
-nnoremap <leader>2 0k$/[<CR>lrX:noh<CR>
+nnoremap <leader>1 0k$/[<CR>lr√:noh<CR>
+nnoremap <leader>2 0k$/[<CR>lrI:noh<CR>
 nnoremap <leader>3 0k$/[<CR>lr :noh<CR>
+nnoremap <leader>4 ^i[ ] <Esc>
 
 """"""""""""""""""""""""""""""""
 "" AUTO COMMANDS

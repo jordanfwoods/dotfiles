@@ -3,6 +3,13 @@
 # Uncomment the following line if you don't like systemctl's auto-paging feature
 # export SYSTEMD_PAGER=
 
+#### FALCON1 Changes...
+# If not running interactively, don't do anything
+[ -z "$PS1" ] && return
+
+# source global definitions
+[ -f /etc/bashrc ] && source /etc/bashrc
+
 ##############################
 ## PROMPT COMMAND
 
@@ -16,7 +23,7 @@ else
   export PROMPT_COMMAND="$PROMPT_COMMAND"
 fi
 
-# export PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
+export PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
 
 # PROMPT_COMMAND='~/junk/personal/NG/git/gitprompt.pl'
 
@@ -182,6 +189,13 @@ alias   diff='colordiff'
 # common shortcut for screenshotting.
 alias scnsht='gnome-screenshot --clipboard --area'
 
+# handy kill command
+alias kviv='kill $(pidof vivado)'
+# Display USB devices available.
+alias llusb='ls /dev/ttyUSB*'
+# sort files by size in local dir
+alias files='find -type f -exec du -Sh {} + | sort -rh | head -n 10'
+
 # remote logout command is pkill if using cinnamon...
 if [ -z ${XRDP_SESSION+x} ] || [ $(head -n 1 ~/.Xclients) == "gnome-session" ]; then
   alias logoff='gnome-session-quit --logout'
@@ -195,6 +209,52 @@ alias octave='/usr/bin/flatpak run --branch=stable --arch=x86_64 \
 ##############################
 ## FUNCTIONS
 
+# smart extract
+extract () {
+  if [ -f $1 ] ; then
+    case $1 in
+      *.tar.bz2) tar xjf    $1;;
+      *.tar.gz)  tar xzf    $1;;
+      *.bz2)     bunzip2    $1;;
+      *.rar)     rar x      $1;;
+      *.gz)      gunzip     $1;;
+      *.tar)     tar xf     $1;;
+      *.tbz2)    tar xjf    $1;;
+      *.tgz)     tar xzf    $1;;
+      *.zip)     unzip      $1;;
+      *.Z)       uncompress $1;;
+      *.7z)      7z x       $1;;
+      *)         echo "'$1' cannot be extracted via extract()";;
+    esac
+  else
+    echo "'$1' is not a valid file"
+  fi
+}
+
+# # publicip - shows public IP address
+# publicip ()
+# {
+#   echo "--------------- Public IP ---------------"
+#   myip=`lynx -dump -hiddenlinks=ignore -nolist http://checkip.dyndns.org:8245/ | sed '/^$/d; s/^[ ]*//g; s/[ ]*$//g' `
+#   echo "${myip}"
+#   echo "-----------------------------------------"
+# }
+
+# dirsize - finds directory sizes and lists them for the current directory
+dirsize ()
+{
+  # ls-list all directories, du-get depth of dirs
+  ls -d */ | du -hx --max-depth=1 2> /dev/null | \
+  # sed-remove './', sort-sort in numberical order
+  sed 's_\./__gi' | sort -rn > /tmp/list
+  # Display in size order.
+  egrep '^ *[0-9.]*G' /tmp/list
+  egrep '^ *[0-9.]*M' /tmp/list
+  egrep '^ *[0-9.]*K' /tmp/list
+  # don't keep list
+  rm -rf /tmp/list
+}
+
 # procedure to save hdf/ltx/bit files for 5mp camera from CameraFirmware dir.
 # 1st arg: must be either 'spw' or 'cl'.
 # 2nd arg: must be either blank or 'fm'.
@@ -207,8 +267,8 @@ save5mp() {
 
   # Create location of hdf/ltx/bit files...
   local path="./build"
-  [ "$1" = "spw" ] && local path="$path/spacewire/temp"
-  [ "$1" = "cl"  ] && local path="$path/camera_link/temp"
+  [ "$1" = "spw" ]  && local path="$path/spacewire/temp"
+  [ "$1" = "cl"  ]  && local path="$path/camera_link/temp"
   if   [ -z "$2" ];     then path="${path}/vivado_proj/vivado_proj.sdk";
   elif [ "$2" = "fm" ]; then path="${path}_fm/vivado_proj/vivado_proj.sdk"; fi
 
@@ -231,3 +291,6 @@ save5mp() {
 ## SOURCE BASH ALIASES
 
 [ -f ~/.bash_aliases ] && source ~/.bash_aliases
+# Scripts to review from falcon1
+# [[ -r /etc/profile.d/bash_completion.sh ]] && . /etc/profile.d/bash_completion.sh
+# [ -f ~/.fzf.bash ] && source ~/.fzf.bash
