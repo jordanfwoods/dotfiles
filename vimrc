@@ -179,16 +179,10 @@ nnoremap <F8>                 :echo
 nnoremap <F7>    <Esc>:set list!<CR>
 
 " resize current buffer by +/- 5
-" nnoremap <expr> <leader>h v:count1 . '<C-w><'
-" nnoremap <expr> <leader>j v:count1 . '<C-w>-'
-" nnoremap <expr> <leader>k v:count1 . '<C-w>+'
-" nnoremap <expr> <leader>l v:count1 . '<C-w>>'
-
-" resize current buffer by +/- 5
-nnoremap <leader>h :'<C-U>execute "vertical resize -" . v:count1<CR>
-nnoremap <leader>j :'<C-U>execute          "resize +" . v:count1<CR>
-nnoremap <leader>k :'<C-U>execute          "resize -" . v:count1<CR>
-nnoremap <leader>l :'<C-U>execute "vertical resize +" . v:count1<CR>
+nnoremap <leader>h :<C-U>execute "vertical resize -" . v:count1<CR>
+nnoremap <leader>j :<C-U>execute          "resize +" . v:count1<CR>
+nnoremap <leader>k :<C-U>execute          "resize -" . v:count1<CR>
+nnoremap <leader>l :<C-U>execute "vertical resize +" . v:count1<CR>
 
 """"""""""""""""""""""""""""""""
 "" Make My Own To-Do List...
@@ -234,7 +228,7 @@ command! MakeTagsAll ! ctags --langmap=Verilog:+.sv -R --Verilog-kinds=-prn
 """"""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""
-"" LEGACY / UNUSED
+"" VIMRC Graveyard....
 """"""""""""""""""""""""""""""""
 " - Use :find <filename> to open some stuff
 
@@ -258,6 +252,12 @@ command! MakeTagsAll ! ctags --langmap=Verilog:+.sv -R --Verilog-kinds=-prn
 " map <leader>sp [s
 " map <leader>sa zg
 " map <leader>s? z=
+
+" resize current buffer by +/- 5
+" nnoremap <expr> <leader>h v:count1 . '<C-w><'
+" nnoremap <expr> <leader>j v:count1 . '<C-w>-'
+" nnoremap <expr> <leader>k v:count1 . '<C-w>+'
+" nnoremap <expr> <leader>l v:count1 . '<C-w>>'
 
 """"""""""""""""""""""""""""""""
 "" GVIM

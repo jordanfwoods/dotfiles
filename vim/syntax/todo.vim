@@ -5,7 +5,7 @@
 " Last Change: 11/03/2022
 
 if exists("b:current_syntax")
-  finish " this is a comment "
+  finish
 endif
 
 syntax case ignore
