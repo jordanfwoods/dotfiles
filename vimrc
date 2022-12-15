@@ -179,16 +179,16 @@ nnoremap <F8>                 :echo
 nnoremap <F7>    <Esc>:set list!<CR>
 
 " resize current buffer by +/- 5
-nnoremap <leader>h :vertical resize +5<cr>
-nnoremap <leader>j :resize -5<cr>
-nnoremap <leader>k :resize +5<cr>
-nnoremap <leader>l :vertical resize -5<cr>
-
-" " resize current buffer by +/- 5
 " nnoremap <expr> <leader>h v:count1 . '<C-w><'
 " nnoremap <expr> <leader>j v:count1 . '<C-w>-'
 " nnoremap <expr> <leader>k v:count1 . '<C-w>+'
 " nnoremap <expr> <leader>l v:count1 . '<C-w>>'
+
+" resize current buffer by +/- 5
+nnoremap <leader>h :'<C-U>execute "vertical resize -" . v:count1<CR>
+nnoremap <leader>j :'<C-U>execute          "resize +" . v:count1<CR>
+nnoremap <leader>k :'<C-U>execute          "resize -" . v:count1<CR>
+nnoremap <leader>l :'<C-U>execute "vertical resize +" . v:count1<CR>
 
 """"""""""""""""""""""""""""""""
 "" Make My Own To-Do List...
@@ -199,7 +199,7 @@ au BufRead,BufNewFile *.todo,TODO setfiletype todo
 nnoremap <leader>1 0k$/[<CR>lr√:noh<CR>
 nnoremap <leader>2 0k$/[<CR>lrI:noh<CR>
 nnoremap <leader>3 0k$/[<CR>lr :noh<CR>
-nnoremap <leader>4 ^i[ ] <Esc>
+nnoremap <leader>4 ^i[ ] <Esc>j
 
 """"""""""""""""""""""""""""""""
 "" AUTO COMMANDS
