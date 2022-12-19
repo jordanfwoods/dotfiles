@@ -1,5 +1,5 @@
 " Vim syntax file
-" Language:    .todo files
+" Language:    .todo and .done files
 " Maintainer:  Jordan Woods
 " Originator:  Josep M. Bach <josep.m.bachNOSPAN@gmail.com>
 " Last Change: 11/03/2022
@@ -34,7 +34,7 @@ syn match   todoComment "\".*"                contains=@todoContain
 syn region  todoQuote   oneline keepend start=/"/ end=/"/
 
 " Effectively these are Title Groupings...
-syn match   todoProjTag /=\+\s/ nextgroup=todoProj skipwhite
+syn match   todoProjTag /^\s*=\+\s/ nextgroup=todoProj skipwhite
 syn match   todoProj    /.\+/ contained contains=@todoContain,todoComment
 
 " Other Highlights to hide when commented out...
@@ -78,5 +78,5 @@ hi link     todoIgnore  Comment
 hi link     todoParens  String
 
 " name the syntax
-let b:current_syntax = "todo"
+let b:current_syntax = "todo_done"
 "_black vim: ts=8 sw=2

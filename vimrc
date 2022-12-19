@@ -188,7 +188,7 @@ nnoremap <leader>l :<C-U>execute "vertical resize +" . v:count1<CR>
 "" Make My Own To-Do List...
 """"""""""""""""""""""""""""""""
 " Auto setfiletype... syntax is in ~/.vim/synatx/todo.vim
-au BufRead,BufNewFile *.todo,TODO setfiletype todo
+au BufRead,BufNewFile *.todo,*.done,TODO setfiletype todo_done
 " manage check boxes ,2 only doesn't work on line 1, if the first character is the [
 nnoremap <leader>1 0k$/[<CR>lr√:noh<CR>
 nnoremap <leader>2 0k$/[<CR>lrI:noh<CR>

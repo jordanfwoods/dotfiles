@@ -155,7 +155,7 @@ alias  vimb='vim ~/.bashrc'
 alias  vimv='vim ~/.vimrc'
 alias  vimt='vim ~/.tmux.conf'
 alias vimtt='vim ~/.tmux/tmux-theme.conf'
-alias vimto='vim ~/junk/personal/doc/main.todo'
+alias vimto='vim -p ~/junk/personal/doc/main.todo ~/junk/personal/doc/daily.done ~/junk/personal/doc/weekly.done'
 
 # abbreviate common directory commands
 alias  mkdir='mkdir -pv'
