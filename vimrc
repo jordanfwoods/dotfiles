@@ -203,7 +203,7 @@ autocmd FileType verilog_systemverilog setlocal commentstring=//\ %s
 autocmd FileType vhdl                  setlocal commentstring=--\ %s
 autocmd FileType xdc                   setlocal commentstring=#\ %s
 autocmd FileType matlab                setlocal commentstring=%\ %s
-autocmd FileType todo                  setlocal commentstring=\"\ %s
+autocmd FileType todo_done             setlocal commentstring=\"\ %s
 
 " Reliably prompt for file changes upon changing buffers.
 au FocusGained,BufEnter     * :silent! checktime

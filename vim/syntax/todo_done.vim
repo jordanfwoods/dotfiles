@@ -36,6 +36,7 @@ syn region  todoQuote   oneline keepend start=/"/ end=/"/
 " Effectively these are Title Groupings...
 syn match   todoProjTag /^\s*=\+\s/ nextgroup=todoProj skipwhite
 syn match   todoProj    /.\+/ contained contains=@todoContain,todoComment
+syn match   todoProj    /^WEEK\s\+.*/ contains=@todoContain,todoComment
 
 " Other Highlights to hide when commented out...
 
