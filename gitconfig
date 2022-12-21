@@ -1,16 +1,16 @@
 [user]
-	name = jordanfwoods
-	email = jordan.f.woods@gmail.com
+	name    = jordanfwoods
+	email   = jordan.f.woods@gmail.com
 [core]
-	editor = vim
+	editor  = vim
 [diff]
-	tool = colordiff
+	tool    = colordiff
 	context = 1
 [credential]
-	helper = cache --timeout=610000
+	helper  = cache --timeout=610000
 [push]
 	default = simple
 [merge]
-	tool = colordiff -w
+	tool    = colordiff -w
 [difftool]
-	prompt = false
+	prompt  = false

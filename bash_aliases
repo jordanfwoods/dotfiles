@@ -32,7 +32,7 @@ alias  viv1="$xilinx/Vivado/2021.2/bin/vivado"
 alias   viv="$dot/vivado.sh"
 
 #####
-# SVN 
+# SVN
 # Alternate Diff using vimdiff
 alias svnvimdiff="svn diff --diff-cmd $dot/svnvimdiffwrap.sh"
 # Alternate svn st to colorize svn status
