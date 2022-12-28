@@ -73,6 +73,7 @@ set wildmenu       " Enables menu to pop up to help with finishing wordsearch
 set autoindent     " Turn on Auto Indent
 set splitbelow     " New Split Windows open below
 set splitright     " New Vertical Splits open to the right
+set nrformats=hex  " Get octal / alpha out of here.
 " set noesckeys    " Make <Esc> Immediate in Insert Mode
 
 " VIMDIFF
