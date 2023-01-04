@@ -11,11 +11,11 @@ endif
 syntax case ignore
 set foldmethod=marker
 " Date And TimeStamps
-syn match   toDate    "\<\(sun\|mon\|tue\|wed\|thu\|fri\|sat\), \(1[0-9]\|2[0-9]\|3[0-1]\|0\?[1-9]\)\s\w*\s\(\d\d\d\d\|\d\d\)"
-syn match   toDate    "\<\(1[0-9]\|2[0-9]\|3[0-1]\|0\?[1-9]\)\s\w*\s\(\d\d\d\d\|\d\d\)"
-syn match   toDate    "\<\(0\?[1-9]\|1[0-2]\)[/]\(1[0-9]\|2[0-9]\|3[0-1]\|0\?[1-9]\)\(/\d\d\d\d\|/\d\d\)\?"
-syn match   toTime24  "\<\(0\?[0-9]\|1[0-9]\|2[0-3]\):\([0-5][0-9]\)"
-syn match   toTime12  "\<\(0\?[0-9]\|1[0-2]\):\([0-5][0-9]\)\s*\([ap]m\)*"
+syn match   toDate    "\<\(sun\|mon\|tue\|wed\|thu\|fri\|sat\), \(1[0-9]\|2[0-9]\|3[0-1]\|0\?[1-9]\)\s\w*\s\(\d\d\d\d\|\d\d\)\>"
+syn match   toDate    "\<\(1[0-9]\|2[0-9]\|3[0-1]\|0\?[1-9]\)\s\w*\s\(\d\d\d\d\|\d\d\)\>"
+syn match   toDate    "\<\(0\?[1-9]\|1[0-2]\)[/]\(1[0-9]\|2[0-9]\|3[0-1]\|0\?[1-9]\)\(/\d\d\d\d\>\|/\d\d\>\)\?"
+syn match   toTime24  "\<\(0\?[0-9]\|1[0-9]\|2[0-3]\):\([0-5][0-9]\)\>"
+syn match   toTime12  "\<\(0\?[0-9]\|1[0-2]\):\([0-5][0-9]\)\s*\([ap]m\>\)*"
 syn match   toTime12  "\<\(0\?[0-9]\|1[0-2]\)\s*\([ap]m\)"
 syn match   toTCard   "([0-9]\?[0-9]\(:[0-5]\|\.[0-9]\)[0-9])" contains=toTCFrame
 syn match   toTCard   "(XX[:\.]XX)" contains=toTCFrame
@@ -70,8 +70,6 @@ hi link     toOk      Special
 hi link     toTime12  Special
 hi link     toTime24  Special
 hi link     toTCard   Special
-hi link     toInProg  Type
-hi link     toCurrent Type
 hi link     toDate    Number
 hi link     toEmpty   Statement
 hi link     toVital   Statement
@@ -81,7 +79,9 @@ hi link     toProj    Identifier
 hi link     toComment Comment
 hi link     toDone    Comment
 hi link     toIgnore  Comment
-hi link     toParens  String
+hi link     toParens  Type
+hi link     toInProg  String
+hi link     toCurrent String
 
 " name the syntax
 let b:current_syntax = "todo_done"
