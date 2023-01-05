@@ -39,7 +39,8 @@ syn region  toQuote   oneline keepend start=/"/ end=/"/
 
 " Effectively these are Title Groupings...
 syn match   toProjTag /^\s*=\+\s/ nextgroup=toProj skipwhite
-syn match   toProj    /.\+/ contained contains=@toContain,toComment,toTCard
+syn match   toProjEnd /\s\+=\+/
+syn match   toProj    /.\+/ contained contains=@toContain,toComment,toTCard,toProjEnd
 syn match   toProj    /^WEEK\s\+.*/ contains=@toContain,toComment,toTCard
 
 " Other Highlights to hide when commented out...
