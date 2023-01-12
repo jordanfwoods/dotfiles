@@ -47,8 +47,8 @@ set ruler          " show the cursor position all the time in bottom right
 set showcmd        " display incomplete commands in bottom right
 set nowrap         " Don't wrap text to the next line.
 set laststatus=2   " Display StatusLine always
-set textwidth=84   " Set max width of inserted code to 84 lines before splitting
-set colorcolumn=+1 " Set Color Column just after columnn of textwidth
+set textwidth=0    " Set to not split text into multiple lines. (Used to be 84)
+set colorcolumn=85 " Set Color Column just after columnn of textwidth
 
 " Never use tabs and backspace more efficiently
 set tabstop=2      " set the tabs to display as 2 whitespaces.
@@ -110,7 +110,7 @@ let mapleader = ","
 "       \ ":<c-u>norm! \"_yiWf'ls0x<c-v><esc>" . v:count1 . "<c-v><c-x>F'lvlpE<cr>" : '<c-x>'
 
 " Add single spaces in normal mode
-nnoremap <Space>               i<Space><Right><ESC>
+nnoremap <Space>               i <Esc>l
 " Make 'Y' operate like 'D', 'C', etc instead of 'yy'
 nnoremap Y                     y$
 " Clear Search coloring
