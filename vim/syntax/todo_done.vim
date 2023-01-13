@@ -61,7 +61,7 @@ syn match   toCurrent /^\s*#.*/           contains=@toContain
 syn region  toCurrent start="{#" end="#}" contains=@toContain
 
 " Make a Main To-Do List Title
-syn match   toTitle   /^\s*to.\+/ contains=toContain
+syn match   toTitle   /^\s*to\s\?do.\+/ contains=toContain
 " Use < > to highlight an important note, i.e. customer, etc.
 syn match   toParens  /<.\+>/
 

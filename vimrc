@@ -118,9 +118,9 @@ nnoremap <silent> <Leader><CR> :noh<CR>:echo "Clearing Search"<CR>
 
 " <leader> Remaps
 " Add a Tab while in Normal Mode
-nnoremap <Leader><Tab>         i<Tab><Right><ESC>
+nnoremap <Leader><Tab>         i<Tab><ESC>l
 " Remove a Tab while in Normal Mode
-nnoremap <Leader><S-Tab>       3hdwi<Tab><Right><ESC>
+nnoremap <Leader><S-Tab>       3hdwi<Tab><ESC>l
 " Update the Date in MM/DD/YY format (DD Mon YYYY for <leader>D)
 nnoremap <leader>d             R<C-R>=strftime("%m/%d/%y")<CR><Esc>
 nnoremap <leader>D             R<C-R>=strftime("%a, %d %b %Y")<CR><Esc>
@@ -162,7 +162,7 @@ inoremap <F10>         <Esc>:w<CR>
 " Because I am incapable of hitting escape sometimes, and ':w' is uncommon...
 inoremap :w            <Esc>:w<CR>
 " Auto save and reload vimrc (good for editing vimrc / colorscheme)
-nnoremap <Leader><F10> :w<CR>:source ~/.vimrc<CR>
+nnoremap <Leader><F10> :w<CR>:source ~/.vimrc<CR>:noh<CR>
 " Increase / Decrease Tabstop for looking at foreign files.
 nnoremap <F9>          :set ts+=1<CR>:set ts?<CR>
 nnoremap <S-F9>        :set ts-=1<CR>:set ts?<CR>
