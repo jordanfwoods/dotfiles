@@ -10,6 +10,13 @@ endif
 
 syntax case ignore
 set foldmethod=marker
+
+" Allow for good looking timekeeping in to-done lists.
+syn match   toTCard   "([0-9]\?[0-9]\(:[0-5]\|\.[0-9]\)[0-9])" contains=toTCFrame
+syn match   toTCard   "(XX[:\.]XX)" contains=toTCFrame
+syn match   toTCFrame "("
+syn match   toTCFrame ")"
+
 " Date And TimeStamps
 syn match   toDate    "\<\(sun\|mon\|tue\|wed\|thu\|fri\|sat\), \(1[0-9]\|2[0-9]\|3[0-1]\|0\?[1-9]\)\s\w*\s\(\d\d\d\d\|\d\d\)\>"
 syn match   toDate    "\<\(1[0-9]\|2[0-9]\|3[0-1]\|0\?[1-9]\)\s\w*\s\(\d\d\d\d\|\d\d\)\>"
@@ -17,10 +24,7 @@ syn match   toDate    "\<\(0\?[1-9]\|1[0-2]\)[/]\(1[0-9]\|2[0-9]\|3[0-1]\|0\?[1-
 syn match   toTime24  "\<\(0\?[0-9]\|1[0-9]\|2[0-3]\):\([0-5][0-9]\)\>"
 syn match   toTime12  "\<\(0\?[0-9]\|1[0-2]\):\([0-5][0-9]\)\s*\([ap]m\>\)*"
 syn match   toTime12  "\<\(0\?[0-9]\|1[0-2]\)\s*\([ap]m\)"
-syn match   toTCard   "([0-9]\?[0-9]\(:[0-5]\|\.[0-9]\)[0-9])" contains=toTCFrame
-syn match   toTCard   "(XX[:\.]XX)" contains=toTCFrame
-syn match   toTCFrame "("
-syn match   toTCFrame ")"
+syn match   toTime12  "\<XX[:\.]XX\>"
 
 " Vital Keywords...
 syn keyword toVital   vital important today tomorrow urgent nextgroup=toImp
@@ -28,7 +32,7 @@ syn match   toImp     /:\s\+/ contained
 syn keyword toKeyWord contained TODO FIXME
 
 " Cluster the things to display within comments
-syn cluster toContain contains=toDate,toTime12,toTime24,toVital,toKeyword,@Spell
+syn cluster toContain contains=toTCard,toDate,toTime12,toTime24,toVital,toKeyword,@Spell
 
 " Block Comment with {"..."}. Regular comment with " ...
 syn region  toComment start="{\"" end="\"}" contains=@toContain
@@ -40,8 +44,8 @@ syn region  toQuote   oneline keepend start=/"/ end=/"/
 " Effectively these are Title Groupings...
 syn match   toProjTag /^\s*=\+\s/ nextgroup=toProj skipwhite
 syn match   toProjEnd /\s\+=\+/
-syn match   toProj    /.\+/ contained contains=@toContain,toComment,toTCard,toProjEnd
-syn match   toProj    /^WEEK\s\+.*/ contains=@toContain,toComment,toTCard
+syn match   toProj    /.\+/ contained contains=@toContain,toComment,toProjEnd
+syn match   toProj    /^WEEK\s\+.*/ contains=@toContain,toComment
 
 " Other Highlights to hide when commented out...
 
