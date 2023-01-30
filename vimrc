@@ -74,7 +74,10 @@ set autoindent     " Turn on Auto Indent
 set splitbelow     " New Split Windows open below
 set splitright     " New Vertical Splits open to the right
 set nrformats=hex  " Get octal / alpha out of here.
-" set noesckeys    " Make <Esc> Immediate in Insert Mode
+set timeout        " timeout on partial command like: <leader>, g, etc.
+set tm=1000        " timeoutlen is 1 second
+set ttimeout       " Have separate value for timeout re: leaving insert mode
+set ttimeoutlen=0  " insert / visual timeout immediately
 
 " VIMDIFF
 set diffopt+=iwhite " Tell Vim to ignore whitespace
@@ -120,7 +123,7 @@ nnoremap <silent> <Leader><CR> :noh<CR>:echo "Clearing Search"<CR>
 " Add a Tab while in Normal Mode
 nnoremap <Leader><Tab>         i<Tab><ESC>l
 " Remove a Tab while in Normal Mode
-nnoremap <Leader><S-Tab>       3hdwi<Tab><ESC>l
+nnoremap <Leader><S-Tab>       hhhdwi<Tab><ESC>l
 " Update the Date in MM/DD/YY format (DD Mon YYYY for <leader>D)
 nnoremap <leader>d             R<C-R>=strftime("%m/%d/%y")<CR><Esc>
 nnoremap <leader>D             R<C-R>=strftime("%a, %d %b %Y")<CR><Esc>
@@ -162,7 +165,7 @@ inoremap <F10>         <Esc>:w<CR>
 " Because I am incapable of hitting escape sometimes, and ':w' is uncommon...
 inoremap :w            <Esc>:w<CR>
 " Auto save and reload vimrc (good for editing vimrc / colorscheme)
-nnoremap <Leader><F10> :w<CR>:source ~/.vimrc<CR>:noh<CR>
+nnoremap <Leader><F10> :w<CR>:source ~/.vimrc<CR>:noh<CR>:echo<CR>
 " Increase / Decrease Tabstop for looking at foreign files.
 nnoremap <F9>          :set ts+=1<CR>:set ts?<CR>
 nnoremap <S-F9>        :set ts-=1<CR>:set ts?<CR>
@@ -201,6 +204,8 @@ nnoremap <leader>4 ^i[ ] <Esc>j
 """"""""""""""""""""""""""""""""
 " VIM Commentary doesn't have my filetype defaults the way I like.
 autocmd FileType verilog_systemverilog setlocal commentstring=//\ %s
+autocmd FileType c                     setlocal commentstring=//\ %s
+autocmd FileType cpp                   setlocal commentstring=//\ %s
 autocmd FileType vhdl                  setlocal commentstring=--\ %s
 autocmd FileType xdc                   setlocal commentstring=#\ %s
 autocmd FileType matlab                setlocal commentstring=%\ %s
