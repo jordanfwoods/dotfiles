@@ -9,7 +9,7 @@ junk="/home/jwoods/junk"
 per="$junk/personal/doc"
 
 bfm="$svn/fpga_common_lib/trunk/common/sim/models"
-cam="$svn/Camera/CameraFirmware/"
+cam="$svn/5MP/Camera/CameraFirmware/"
 cen="$svn/Firmware/trunk/core/08_misc/Centroiding"
 gse="$svn/csp-em-05/fw/branch/csp-gse"
 hei="$svn/heimdall-development/FW/Trunk"
