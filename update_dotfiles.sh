@@ -72,3 +72,7 @@ tabs 8 > /dev/null
 if $verbose ; then printf "\r\n" ; fi
 git status
 
+tarball="dotfiles.tar.z"
+if [ -z "$tarball" ] ; then rm $tarball ; fi
+tar -zcf $tarball *
+scp $tarball jwoods@homeserver:/home/jwoods/
