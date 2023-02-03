@@ -24,7 +24,9 @@ syn match   toTimeCard     "(\(XX\|[0-9]\?[0-9]\)\(:[0-5][0-9]\|\.[0-9][0-9]\|:X
 syn match   toTimeCFrame   "\(XX\|[0-9]\?[0-9]\)\(:[0-5][0-9]\|\.[0-9][0-9]\|:XX\|.XX\)" contained
 
 " Vital Keywords...
-syn keyword toVital        vital important today tomorrow urgent nextgroup=toImp
+syn keyword toVital        vital important today tomorrow urgent wait nextgroup=toImp
+syn keyword toVital        hold nextgroup=toOn,toImp
+syn match   toOn           /\s\+on/ contained  nextgroup=toImp
 syn match   toImp          /:\s\+/ contained
 syn keyword toKeyWord      contained TODO FIXME
 
@@ -74,6 +76,7 @@ hi link     toTimeCFrame   toTime12
 hi link     toDate         Number
 hi link     toEmpty        Statement
 hi link     toVital        Statement
+hi link     toOn           toVital
 hi link     toImp          toVital
 hi link     toProj         Identifier
 hi link     toComment      Comment
