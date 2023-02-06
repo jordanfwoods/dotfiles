@@ -27,7 +27,7 @@ syn match   toTimeCFrame   "\(XX\|[0-9]\?[0-9]\)\(:[0-5][0-9]\|\.[0-9][0-9]\|:XX
 syn keyword toVital        vital important today tomorrow urgent wait nextgroup=toImp
 syn keyword toVital        hold nextgroup=toOn,toImp
 syn match   toOn           /\s\+on/ contained  nextgroup=toImp
-syn match   toImp          /:\s\+/ contained
+syn match   toImp          /:/ contained
 syn keyword toKeyWord      contained TODO FIXME
 
 " Cluster the things to still display within comments, etc.
