@@ -191,13 +191,26 @@ nnoremap <leader>l :<C-U>execute "vertical resize +" . v:count1<CR>
 """"""""""""""""""""""""""""""""
 "" Make My Own To-Do List...
 """"""""""""""""""""""""""""""""
-" Auto setfiletype... syntax is in ~/.vim/synatx/todo.vim
-au BufRead,BufNewFile *.todo,*.done,TODO setfiletype todo_done
+" Auto setfiletype... syntax is in ~/.vim/synatx/todo_done.vim
+autocmd BufRead,BufNewFile *.done,TODO,todo,*.todo setlocal filetype=todo_done
 " manage check boxes ,2 only doesn't work on line 1, if the first character is the [
-nnoremap <leader>1 0k$/[<CR>lr√:noh<CR>
-nnoremap <leader>2 0k$/[<CR>lrI:noh<CR>
-nnoremap <leader>3 0k$/[<CR>lr :noh<CR>
-nnoremap <leader>4 ^i[ ] <Esc>j
+function! TodoFunc(...)
+  execute "normal! ^"
+  if getline(".")[col(".")-1] != "[" | execute "normal! f[" | endif
+  if getline(".")[col(".")-1] == "["
+    if     a:1 == "1" | execute "normal! lr√:noh<CR>f]j"
+    elseif a:1 == "2" | execute "normal! lrI:noh<CR>f]j"
+    elseif a:1 == "3" | execute "normal! lrX:noh<CR>f]j"
+    elseif a:1 == "4" | execute "normal! lr :noh<CR>f]j"
+    endif
+  endif
+  +1
+endfunction
+nnoremap <leader>1 :call TodoFunc('1')<CR>
+nnoremap <leader>2 :call TodoFunc('2')<CR>
+nnoremap <leader>3 :call TodoFunc('3')<CR>
+nnoremap <leader>4 :call TodoFunc('4')<CR>
+nnoremap <leader>5 ^i[ ] <Esc>j
 
 """"""""""""""""""""""""""""""""
 "" AUTO COMMANDS
@@ -209,7 +222,7 @@ autocmd FileType cpp                   setlocal commentstring=//\ %s
 autocmd FileType vhdl                  setlocal commentstring=--\ %s
 autocmd FileType xdc                   setlocal commentstring=#\ %s
 autocmd FileType matlab                setlocal commentstring=%\ %s
-autocmd FileType todo_done             setlocal commentstring=\"\ %s
+autocmd FileType todo_done             setlocal commentstring=#\ %s
 
 " Reliably prompt for file changes upon changing buffers.
 au FocusGained,BufEnter     * :silent! checktime
