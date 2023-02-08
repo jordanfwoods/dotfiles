@@ -13,10 +13,9 @@ call plug#begin('~/.vim/plugged')
   " VIM Appearance
   Plug 'vim-airline/vim-airline'        " Creates a fancy status line.
   " Syntax Highlighting / Color Schemes
-  Plug 'amal-khailtash/vim-xdc-syntax'  " XDC Syntax.
   Plug 'vhda/verilog_systemverilog.vim' " SystemVerilog syntax file.
   Plug 'morhetz/gruvbox'                " gruvbox is the goat of colorschemes.
-  " Updated file system...
+  " Updated file manager...
   Plug 'preservim/nerdtree'             " Use a capable file manager.
 call plug#end()
 
@@ -327,3 +326,4 @@ command! MakeTagsAll ! ctags --langmap=Verilog:+.sv -R --Verilog-kinds=-prn
 " Plug 'gutelfuldead/vim-tex-fold'     " requires Okular and/or pdflatex, <leader>llp to open pdf preview
 " Plug 'xuhdev/vim-latex-live-preview'
 " Plug 'vimwiki/vimwiki'               " todo list manager?
+" Plug 'amal-khailtash/vim-xdc-syntax'  " XDC Syntax.
