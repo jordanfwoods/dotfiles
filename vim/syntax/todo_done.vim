@@ -55,7 +55,8 @@ syn match   toInProg       /\[I\]/ nextgroup=toCurrent
 syn match   toIgnore       /\[X\]/ nextgroup=toDone
 
 " Comment out entry that is completed.
-syn match   toDone         /.\+/ contained contains=toComBlck,@toContain
+syn match   toDone         /.\+/ contained contains=toComBlck,toResponse,@toContain
+syn region  toResponse     start="(" end=")" oneline contained
 " Re-highlight entry that is in progress.
 syn match   toCurrent      /.\+/ contained contains=toCurBlck,@toContain
 " Use similar highlighting on other lines when using: {"..."} or lines that start with: " ...
@@ -70,6 +71,7 @@ hi link     toTimeCard     Normal
 hi link     toKeyword      Normal
 hi link     toOkValue      Special
 hi link     toOk           Special
+hi link     toResponse     toOk
 hi link     toTime12       Special
 hi link     toTime24       toTime12
 hi link     toTimeCFrame   toTime12
