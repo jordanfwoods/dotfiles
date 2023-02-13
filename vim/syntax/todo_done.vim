@@ -9,7 +9,7 @@ if exists("b:current_syntax")
 endif
 
 syn case ignore " I am fine with everything being case insensitive
-set foldmethod=marker " fold with {{{1
+set foldmethod=marker " fold with { { { #
 syn sync fromstart
 
 " Date And TimeStamps
@@ -45,6 +45,7 @@ syn match   toProjEnd      /\s\+=\+$/
 syn match   toProj         /.\+/ contained contains=@toContain,toComment,toProjEnd
 syn match   toProj         /^WEEK\s\+.*/ contains=@toContain,toComment
 syn match   toProj         /^\s*to\s\?do.\+/ contains=toContain
+syn match   toProj         /^\d\d\d\d\s\+.*/ contains=@toContain,toComment
 
 " Uncompleted = [ ], Completed = [√], In Progress = [I], Ignore = [X]
 " Colorize the checkbox: [√]...
