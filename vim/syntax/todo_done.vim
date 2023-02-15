@@ -57,7 +57,7 @@ syn match   toIgnore       /\[X\]/ nextgroup=toDone
 
 " Comment out entry that is completed.
 syn match   toDone         /.\+/ contained contains=toComBlck,toResponse,@toContain
-syn region  toResponse     start="(" end=")" oneline contained
+syn region  toResponse     start="{" end="}" oneline contained
 " Re-highlight entry that is in progress.
 syn match   toCurrent      /.\+/ contained contains=toCurBlck,@toContain
 " Use similar highlighting on other lines when using: {"..."} or lines that start with: " ...
