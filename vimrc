@@ -234,12 +234,14 @@ let v:fcs_choice="ask"
 """"""""""""""""""""""""""""""""
 " Edit the vimrc in new window
 command! EditVimrc   sp ~/.vimrc
-" Make Tags for interfile autofill (from branch/csp-gse)
-command! MakeTags ! ctags --langmap=Verilog:+.sv --languages=vhdl,Verilog
-         \ -R --Verilog-kinds=-prn --exclude=@.ctagsignore ./
+" Make Tags for interfile jumping.
+" (Note that you can add more directories after the call)
+" HDL Specific
+command! MakeFWTags ! ctags --langmap=Verilog:+.sv --languages=vhdl,Verilog
+         \ -R --Verilog-kinds=-prn --exclude=@.ctagsignore .
 " Generic ctags call
-command! MakeTagsAll ! ctags --langmap=Verilog:+.sv -R --Verilog-kinds=-prn
-         \ --exclude=@.ctagsignore ./
+command! MakeTags ! ctags --langmap=Verilog:+.sv -R --Verilog-kinds=-prn
+         \ --exclude=@.ctagsignore .
 
 """"""""""""""""""""""""""""""""
 "" FUNCTIONS
