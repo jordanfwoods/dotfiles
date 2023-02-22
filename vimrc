@@ -166,8 +166,8 @@ inoremap :w            <Esc>:w<CR>
 " Auto save and reload vimrc (good for editing vimrc / colorscheme)
 nnoremap <Leader><F10> :w<CR>:source ~/.vimrc<CR>:noh<CR>:echo<CR>
 " Increase / Decrease Tabstop for looking at foreign files.
-nnoremap <F9>          :set ts+=1<CR>:set ts?<CR>
-nnoremap <S-F9>        :set ts-=1<CR>:set ts?<CR>
+nnoremap <F9>          :set ts+=1<CR>:set sw+=1<CR>:set ts?<CR>
+nnoremap <S-F9>        :set ts-=1<CR>:set sw-=1<CR>:set ts?<CR>
 
 " Output Basic syntax Name, i.e. Comment, and the colors associated.
 nnoremap <Leader><Leader><F8> :verbose highlight
@@ -234,8 +234,6 @@ let v:fcs_choice="ask"
 """"""""""""""""""""""""""""""""
 " Edit the vimrc in new window
 command! EditVimrc   sp ~/.vimrc
-" Make Tags for interfile jumping.
-" (Note that you can add more directories after the call)
 " HDL Specific
 command! MakeFWTags ! ctags --langmap=Verilog:+.sv --languages=vhdl,Verilog
          \ -R --Verilog-kinds=-prn --exclude=@.ctagsignore .

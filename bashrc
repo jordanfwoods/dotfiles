@@ -286,6 +286,58 @@ save5mp() {
   popd > /dev/null
 }
 
+svnstash() {
+  # Help screen
+  if [ -z $1 ] || [[ $1 =~ ^(-?-?[Hh](elp)?(ELP)?)$ ]]; then
+    echo "svnstash replicates 'git stash' for a svn repo."
+    echo " usage: 'svnstash         <stash_name>' stashes changes and reverts the directory."
+    echo "    or: 'svnstash keep    <stash_name>' creates stash, but does not revert the directory"
+    echo "    or: 'svnstash list'                 lists names of stashed changes."
+    echo "    or: 'svnstash pop     <stash_name>' applies changes and removes stash"
+    echo "    or: 'svnstash apply   <stash_name>' applies changes and keeps stash"
+    echo "    or: 'svnstash discard <stash_name>' throws away stash without applying changes"
+    return
+  fi
+
+  # Create file path for new stash file
+  local dir='/home/jwoods/temp/stash'
+  if [ -z $2 ] && ([ $1 == "apply" ] || [ $1 == "pop" ] ||
+                   [ $1 == "keep" ]  || [ $1 == "discard" ]); then
+    echo "$1 expects a <stash_name>"; return
+  elif [ -z $2 ]; then local file="${dir}/${1}.stash";
+  else                 local file="${dir}/${2}.stash"; fi
+
+  # Double check if it exists / doesn't exist.
+  if ([ $1 == "keep" ] || [ -z $2 ]) && [ -f $file ]; then
+    echo "stash with name '$(basename -s.stash $file)' exists already!"; return
+  elif [ ! -f $file ] && ([ $1 == "apply" ] || [ $1 == "pop" ]); then
+    echo "stash with name '$(basename -s.stash $file)' doesn't exist!"; return; fi
+
+  # Apply desired changes.
+  case $1 in
+    "discard") rm $file;;
+    "apply")   patch -p0 < $file;;
+    "pop")     patch -p0 < $file; rm $file;;
+    "list")    ls -1t $dir | sed 's_\.\w*__g';;
+    "keep")    svn diff > $file;;
+    *)         svn diff > $file; svn revert -R .;;
+  esac
+}
+
+MAKETAGS() {
+  local cmd='ctags --langmap=Verilog:+.sv -R --Verilog-kinds=-prn'
+  if [ -f .ctagsignore ]; then
+    cmd="$cmd --exclude=@.ctagsignore"
+  fi
+  if [ -z $FWTAGS ]; then
+    cmd="$cmd --languages=vhdl,Verilog"
+  fi
+  cmd="$cmd $@"
+  eval $cmd
+}
+# HDL Specific
+alias MakeTags='FWTAGS="SET"; MAKETAGS'
+alias MakeFWTags='unset FWTAGS; MAKETAGS'
 ##############################
 ## SOURCE BASH ALIASES
 

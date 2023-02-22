@@ -38,7 +38,7 @@ alias   viv="$dot/vivado.sh"
 alias svnvimdiff="svn diff --diff-cmd $dot/svnvimdiffwrap.sh"
 # Alternate svn st to colorize svn status
 # alias svns="/usr/local/bin/svn-color.py"
-alias svns="$dot/svn-color.py status ."
+alias svns="$dot/svn-color.py status"
 
 ##########################
 # Change Directory Aliases
