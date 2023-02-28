@@ -41,7 +41,7 @@ syn match   toFold         "\d\+}}}"           nextgroup=toDone
 
 " Colorize the title / section titles...
 syn match   toProjTag      /^\s*=\+\s/ nextgroup=toProj skipwhite
-syn match   toProjEnd      /\s\+=\+$/
+syn match   toProjEnd      /\s\+=\+\(\s*{{{\d\+\)\?\s*$/ contains=toFold
 syn match   toProj         /.\+/ contained contains=@toContain,toComment,toProjEnd
 syn match   toProj         /^WEEK\s\+.*/ contains=@toContain,toComment
 syn match   toProj         /^\s*to\s\?do.\+/ contains=toContain
