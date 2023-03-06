@@ -41,9 +41,9 @@ fi
 PS1="$PS1\[\e[38;5;231m\]:\[\e[0m\] "    # colon separator in bold white
 PS1="$PS1\[\e[1;35m\]\h\[\e[0m\] "       # Display hostname in bold purple
 if [ -z ${PATH_PROMPT+x} ]; then
-  PS1="$PS1\[\e[1;33m\]\$PWD\[\e[0m\]"   # display full pathname in gold
-else
   PS1="$PS1\[\e[1;33m\]\W\[\e[0m\]"      # display current directory in gold
+else
+  PS1="$PS1\[\e[1;33m\]\$PWD\[\e[0m\]"   # display full pathname in gold
 fi
 if [ -z ${PROMPT1+x} ]; then
   PS1="$PS1 $ "                          # no newline, but '$ ' in defaut color
