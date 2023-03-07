@@ -2,7 +2,7 @@
 dot_list=$(ls /home/jwoods/junk/dotfiles/)
 tabs 10 > /dev/null
 
-verbose=false
+verbose=true
 while getopts ":vh" option; do
   case $option in
   h) echo "display this help message:   $0 -h";
@@ -17,37 +17,33 @@ done
 for dot_file in $dot_list
 do
   # Only copy subversion config file, not entire directory
-  if   [ $dot_file == "subversion" ]
-  then
+  if   [ $dot_file == "subversion" ] ; then
     if $verbose ; then printf "cp -rf ~/.subversion/config\t./subversion/config\r\n" ; fi
                                cp -rf ~/.subversion/config  ./subversion/config
 
   # Only copy autostart out of config directory, not entire directory
-  elif [ $dot_file == "config" ]
-  then
+  elif [ $dot_file == "config" ] ; then
     if  $verbose ; then printf "cp -rf ~/.config/autostart/*\t./config/autostart/\r\n" ; fi
                                 cp -rf ~/.config/autostart/*  ./config/autostart/
 
   # Only copy contents out of fonts directory, not directory again
-  elif [ $dot_file == "fonts" ]
-  then
+  elif [ $dot_file == "fonts" ] ; then
     if  $verbose ; then printf "cp -rf ~/.fonts/*\t\t./fonts/\r\n" ; fi
                                 cp -rf ~/.fonts/*    ./fonts/
 
   # Only copy contents out of tmux directory, not directory again
-  elif [ $dot_file == "tmux" ]
-  then
+  elif [ $dot_file == "tmux" ] ; then
     if  $verbose ; then printf "cp -rf ~/.tmux/*\t\t./tmux/\r\n" ; fi
                                 cp -rf ~/.tmux/*    ./tmux/
 
-  elif [ $dot_file == "vim" ]
-  then
+  elif [ $dot_file == "vim" ] ; then
     for vim_dir in $(ls /home/jwoods/.vim/)
     do
-      if   [ $vim_dir != "plugged" ]
-      then
+      if [[ ! -z $1 ]] || [ $vim_dir != "plugged" ] ; then
+        if [[ ! -d "vim/plugged" ]] ; then mkdir "vim/plugged" ; fi
         if $verbose ; then printf "cp -rf ~/.vim/$vim_dir/*\t./vim/$vim_dir/\r\n" ; fi
                                    cp -rf ~/.vim/$vim_dir/*  ./vim/$vim_dir/
+        if [ $vim_dir == "plugged" ]; then rm -rf ./vim/plugged/*/{.git*,README*,*.md,LICENSE} ; fi
       fi
     done
 
@@ -70,7 +66,6 @@ done
 tabs 8 > /dev/null
 
 if $verbose ; then printf "\r\n" ; fi
-git status
 
 if [[ ! -z $1 ]]
 then
@@ -78,6 +73,10 @@ then
   if [ -z "$tarball" ] ; then rm $tarball ; fi
   rsync -rt * dotfiles/
   tar -zcf $tarball dotfiles
-  scp $tarball jwoods@homeserver:/home/jwoods/
   rm -rf dotfiles
+  rm -rf vim/plugged
+  git status
+  scp $tarball jwoods@homeserver:/home/jwoods/
+else
+  git status
 fi
