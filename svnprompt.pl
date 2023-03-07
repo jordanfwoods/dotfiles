@@ -20,7 +20,7 @@ while(<IF>) { $info++; }
 close IF;
 
 # check to see if there are any local changes to repo
-open IF, "/usr/bin/svn status . 2>/dev/null|" or exit;
+open IF, "/usr/bin/svn status -q . 2>/dev/null|" or exit;
 while(<IF>) { 
   # Ignore External definitioned directories.
   if    (/^X (.*)/)          { }
