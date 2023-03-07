@@ -76,6 +76,8 @@ if [[ ! -z $1 ]]
 then
   tarball="dotfiles.tar.z"
   if [ -z "$tarball" ] ; then rm $tarball ; fi
-  tar -zcf $tarball *
+  rsync -rt * dotfiles/
+  tar -zcf $tarball dotfiles
   scp $tarball jwoods@homeserver:/home/jwoods/
+  rm -rf dotfiles
 fi
