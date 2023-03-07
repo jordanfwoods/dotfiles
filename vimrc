@@ -77,14 +77,13 @@ set timeout        " timeout on partial command like: <leader>, g, etc.
 set tm=1000        " timeoutlen is 1 second
 set ttimeout       " Have separate value for timeout re: leaving insert mode
 set ttimeoutlen=0  " insert / visual timeout immediately
+set foldmethod=marker " allow for '{ { { 1' stuff
+set wildmode=longest,list,full " Make autocomplete in command mode better
 
-" VIMDIFF
+""""""""""""""""""""""""""""""""
+"" Vim Diff Stuff
+""""""""""""""""""""""""""""""""
 set diffopt+=iwhite " Tell Vim to ignore whitespace
-
-"""""""""""""""""""""""""""""""""
-""" Gutel Additions
-"""""""""""""""""""""""""""""""""
-set wildmode=longest,list,full
 
 " Allows to see diff in current file before saving with :diffSaved
 function! s:DiffWithSaved()
@@ -94,7 +93,26 @@ function! s:DiffWithSaved()
   diffthis
   exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
 endfunction
-com! DiffSaved call s:DiffWithSaved()
+com! Diff call s:DiffWithSaved()
+
+" Allows to see diff between current file and svn
+function! s:DiffWithSVNCheckedOut()
+  let filetype=&ft
+  diffthis
+  vnew | exe "%!svn cat " . fnameescape( expand("#:p") )
+  diffthis
+  exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
+endfunction
+com! SvnDiff call s:DiffWithSVNCheckedOut()
+
+function! s:DiffWithGITCheckedOut()
+  let filetype=&ft
+  diffthis
+  vnew | exe "%!git diff " . fnameescape( expand("#:p") ) . " | patch -p 1 -Rs -o -"
+  exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
+  diffthis
+endfunction
+com! GitDiff call s:DiffWithGITCheckedOut()
 
 """"""""""""""""""""""""""""""""
 "" REMAPS
@@ -246,7 +264,7 @@ command! MakeTags ! ctags --langmap=Verilog:+.sv -R --Verilog-kinds=-prn
 """"""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""
-"" VIMRC Graveyard....
+"" VIMRC Graveyard.... {{{1
 """"""""""""""""""""""""""""""""
 " - Use :find <filename> to open some stuff
 
@@ -327,3 +345,5 @@ command! MakeTags ! ctags --langmap=Verilog:+.sv -R --Verilog-kinds=-prn
 " Plug 'xuhdev/vim-latex-live-preview'
 " Plug 'vimwiki/vimwiki'               " todo list manager?
 " Plug 'amal-khailtash/vim-xdc-syntax'  " XDC Syntax.
+" 1}}}
+""""""""""""""""""""""""""""""""
