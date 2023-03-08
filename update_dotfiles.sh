@@ -2,12 +2,15 @@
 dot_list=$(ls /home/jwoods/junk/dotfiles/)
 tabs 10 > /dev/null
 
-verbose=true
-while getopts ":vh" option; do
+verbose=false
+tarball=false
+while getopts ":vht" option; do
   case $option in
-  h) echo "display this help message:   $0 -h";
-     echo "display all update commands: $0 -v"; exit;;
+  h) echo "display this help message:         $0 -h";
+     echo "display all update commands:       $0 -v";
+     echo "save to tarball (with vim plugins) $0 -t"; exit;;
   v) verbose=true;;
+  t) tarball=true;;
   ?) echo "error: option -$OPTARG is not implemented";
      echo "available options are: -h -v"; exit;;
   esac
@@ -39,7 +42,7 @@ do
   elif [ $dot_file == "vim" ] ; then
     for vim_dir in $(ls /home/jwoods/.vim/)
     do
-      if [[ ! -z $1 ]] || [ $vim_dir != "plugged" ] ; then
+      if $tarball || [ $vim_dir != "plugged" ] ; then
         if [[ ! -d "vim/plugged" ]] ; then mkdir "vim/plugged" ; fi
         if $verbose ; then printf "cp -rf ~/.vim/$vim_dir/*\t./vim/$vim_dir/\r\n" ; fi
                                    cp -rf ~/.vim/$vim_dir/*  ./vim/$vim_dir/
@@ -67,16 +70,15 @@ tabs 8 > /dev/null
 
 if $verbose ; then printf "\r\n" ; fi
 
-if [[ ! -z $1 ]]
-then
-  tarball="dotfiles.tar.z"
-  if [ -z "$tarball" ] ; then rm $tarball ; fi
+if $tarball ; then
+  tar="dotfiles.tar.z"
+  if [ -z "$tar" ] ; then rm $tar ; fi
   rsync -rt * dotfiles/
-  tar -zcf $tarball dotfiles
+  tar -zcf $tar dotfiles
   rm -rf dotfiles
   rm -rf vim/plugged
   git status
-  scp $tarball jwoods@homeserver:/home/jwoods/
+  scp $tar jwoods@homeserver:/home/jwoods/
 else
   git status
 fi
