@@ -133,10 +133,11 @@ export PATH=/opt/firefox:$PATH
 export PATH=/opt/ImageJ:$PATH
 
 ##############################
-## command line completions
+## Command Line Completions
 
-source /etc/bash_completion.d/git
-source /usr/share/bash-completion/completions/svn
+# autocomplete git / svn / make commands
+[ -f /etc/bash_completion.d/git ] && source /etc/bash_completion.d/git
+[ -f /usr/share/bash-completion/completions/svn ] && source /usr/share/bash-completion/completions/svn
 complete -W "\`grep -oE '^[a-zA-Z0-9_.-]+:([^=]|$)' ?akefile | sed 's/[^a-zA-Z0-9_.-]*$//'\`" make
 
 ##############################
