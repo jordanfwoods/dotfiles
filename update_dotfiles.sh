@@ -73,8 +73,11 @@ if $verbose ; then printf "\r\n" ; fi
 if $tarball ; then
   tar="dotfiles.tar.z"
   if [ -z "$tar" ] ; then rm $tar ; fi
+  if $verbose ; then printf "copying dotfiles to temporary directory\r\n" ; fi
   rsync -rt * dotfiles/
+  if $verbose ; then printf "Archiving temporary directory\r\n" ; fi
   tar -zcf $tar dotfiles
+  if $verbose ; then printf "Removing temporary directory\r\n" ; fi
   rm -rf dotfiles
   rm -rf vim/plugged
   git status
