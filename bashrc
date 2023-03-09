@@ -133,14 +133,6 @@ export PATH=/opt/firefox:$PATH
 export PATH=/opt/ImageJ:$PATH
 
 ##############################
-## Command Line Completions
-
-# autocomplete git / svn / make commands
-[ -f /etc/bash_completion.d/git ] && source /etc/bash_completion.d/git
-[ -f /usr/share/bash-completion/completions/svn ] && source /usr/share/bash-completion/completions/svn
-complete -W "\`grep -oE '^[a-zA-Z0-9_.-]+:([^=]|$)' ?akefile | sed 's/[^a-zA-Z0-9_.-]*$//'\`" make
-
-##############################
 ## ALIASES
 
 # quit should equal exit ...
@@ -294,22 +286,26 @@ save5mp() {
   popd > /dev/null
 }
 
+export STASHDIR=~/.svnstash
 svnstash() {
   # Help screen
   if [ -z $1 ] || [[ $1 =~ ^(-?-?[Hh](elp)?(ELP)?)$ ]]; then
     echo "svnstash replicates 'git stash' for a svn repo."
-    echo " usage: 'svnstash         <stash_name>' stashes changes and reverts the directory."
-    echo "    or: 'svnstash keep    <stash_name>' creates stash, but does not revert the directory"
-    echo "    or: 'svnstash list'                 lists names of stashed changes."
-    echo "    or: 'svnstash pop     <stash_name>' applies changes and removes stash"
-    echo "    or: 'svnstash apply   <stash_name>' applies changes and keeps stash"
-    echo "    or: 'svnstash discard <stash_name>' throws away stash without applying changes"
+    echo " usage: 'svnstash [-f]      <stash_name>' stashes changes [overwriting old stash if same name] and reverts the directory."
+    echo "    or: 'svnstash [-f] keep <stash_name>' creates stash, but does not revert the directory"
+    echo "    or: 'svnstash list'                   lists names of stashed changes."
+    echo "    or: 'svnstash pop       <stash_name>' applies changes and removes stash"
+    echo "    or: 'svnstash apply     <stash_name>' applies changes and keeps stash"
+    echo "    or: 'svnstash peek      <stash_name>' displays the stashed changes"
+    echo "    or: 'svnstash discard   <stash_name>' throws away stash without applying changes"
     return
   fi
 
+export STASHDIR=~/.svnstash
   # Create file path for new stash file
-  local dir='/home/jwoods/temp/stash'
-  if [ -z $2 ] && ([ $1 == "apply" ] || [ $1 == "pop" ] ||
+  local dir=$STASHDIR
+  [[ ! -d $STASHDIR ]] && mkdir $STASHDIR
+  if [ -z $2 ] && ([ $1 == "apply" ] || [ $1 == "pop" ] || [ $1 == "peek" ] ||
                    [ $1 == "keep" ]  || [ $1 == "discard" ]); then
     echo "$1 expects a <stash_name>"; return
   elif [ -z $2 ]; then local file="${dir}/${1}.stash";
@@ -326,7 +322,8 @@ svnstash() {
     "discard") rm $file;;
     "apply")   patch -p0 < $file;;
     "pop")     patch -p0 < $file; rm $file;;
-    "list")    ls -1t $dir | sed 's_\.\w*__g';;
+    "list")    ls -1t $dir/* | sed 's_\.\w*__g';;
+    "peek")    colordiff < $file | less -r;;
     "keep")    svn diff > $file;;
     *)         svn diff > $file; svn revert -R .;;
   esac
@@ -346,6 +343,16 @@ MAKETAGS() {
 # HDL Specific
 alias MakeTags='FWTAGS="SET"; MAKETAGS'
 alias MakeFWTags='unset FWTAGS; MAKETAGS'
+
+##############################
+## Command Line Completions
+
+# autocomplete git / svn / make commands
+[ -f /etc/bash_completion.d/git ] && source /etc/bash_completion.d/git
+[ -f /usr/share/bash-completion/completions/svn ] && source /usr/share/bash-completion/completions/svn
+complete -W "\`grep -oE '^[a-zA-Z0-9_.-]+:([^=]|$)' ?akefile | sed 's/[^a-zA-Z0-9_.-]*$//'\`" make
+complete -W "-f help keep list pop apply peek discard \`[ -d $STASHDIR ] && ls $STASHDIR/* | sed 's/.stash$//'\`" svnstash
+
 ##############################
 ## SOURCE BASH ALIASES
 
