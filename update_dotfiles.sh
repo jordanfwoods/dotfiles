@@ -1,6 +1,5 @@
 #!/bin/bash
 dot_list=$(ls /home/jwoods/junk/dotfiles/)
-tabs 10 > /dev/null
 
 verbose=false
 tarball=false
@@ -44,8 +43,9 @@ do
     do
       if $tarball || [ $vim_dir != "plugged" ] ; then
         if [[ ! -d "vim/plugged" ]] ; then mkdir "vim/plugged" ; fi
-        if $verbose ; then printf "cp -rf ~/.vim/$vim_dir/*\t./vim/$vim_dir/\r\n" ; fi
-                                   cp -rf ~/.vim/$vim_dir/*  ./vim/$vim_dir/
+        if $verbose && [ ${#vim_dir} -le 7 ] ; then printf "cp -rf ~/.vim/$vim_dir/*\t\t./vim/$vim_dir/\r\n" ;
+        elif $verbose ; then printf "cp -rf ~/.vim/$vim_dir/*\t./vim/$vim_dir/\r\n" ; fi
+                                     cp -rf ~/.vim/$vim_dir/*  ./vim/$vim_dir/
         if [ $vim_dir == "plugged" ]; then rm -rf ./vim/plugged/*/{.git*,README*,*.md,LICENSE} ; fi
       fi
     done
@@ -66,8 +66,6 @@ do
   fi
 done
 
-tabs 8 > /dev/null
-
 if $verbose ; then printf "\r\n" ; fi
 
 if $tarball ; then
@@ -77,7 +75,7 @@ if $tarball ; then
   rsync -rt * dotfiles/
   if $verbose ; then printf "Archiving temporary directory\r\n" ; fi
   tar -zcf $tar dotfiles
-  if $verbose ; then printf "Removing temporary directory\r\n" ; fi
+  if $verbose ; then printf "Removing temporary directory\r\n\n" ; fi
   rm -rf dotfiles
   rm -rf vim/plugged
   git status
@@ -85,3 +83,5 @@ if $tarball ; then
 else
   git status
 fi
+
+if $verbose ; then printf "\r\n" ; fi
