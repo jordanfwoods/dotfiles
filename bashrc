@@ -350,7 +350,7 @@ alias MakeFWTags='unset FWTAGS; MAKETAGS'
 # autocomplete git / svn / make commands
 [ -f /etc/bash_completion.d/git ] && source /etc/bash_completion.d/git
 [ -f /usr/share/bash-completion/completions/svn ] && source /usr/share/bash-completion/completions/svn
-complete -W "\`grep -oE '^[a-zA-Z0-9_.-]+:([^=]|$)' ?akefile | sed 's/[^a-zA-Z0-9_.-]*$//'\`" make
+complete -W "\`grep -oE '^[a-zA-Z0-9_.-]+\s*:([^=]|$)' ?akefile | sed 's/[^a-zA-Z0-9_.-]*$//'\`" make
 complete -W "-f help keep list pop apply peek discard \`[ -d $STASHDIR ] && ls $STASHDIR/* | sed 's/.stash$//'\`" svnstash
 
 ##############################
