@@ -166,9 +166,10 @@ alias  .....='cd ../../../..'
 alias ......='cd ../../../../..'
 
 # Adding color and auto sorting common 'ls' commands
-alias      l='/bin/ls -hNv   --color=auto --group-directories-first'
-alias     ll='/bin/ls -lhNv  --color=auto --group-directories-first'
-alias     la='/bin/ls -lahNv --color=auto --group-directories-first'
+alias      l='/bin/ls -hN   --color=auto --group-directories-first'
+alias     ll='/bin/ls -ohN  --color=auto --group-directories-first'
+alias     l1='/bin/ls -1h   --color=auto --group-directories-first'
+alias     la='/bin/ls -oahN --color=auto --group-directories-first'
 unset  LS_COLORS
 export LS_COLORS='rs=0:ln=38;5;51:mh=44;38;5;15:pi=40;38;5;11:so=38;5;13:do=38;5;5:'
 export LS_COLORS=$LS_COLORS:'bd=48;5;232;38;5;11:cd=48;5;232;38;5;3:or=48;5;232;38;5;9:'
@@ -348,8 +349,8 @@ alias MakeFWTags='unset FWTAGS; MAKETAGS'
 ## Command Line Completions
 
 # autocomplete git / svn / make commands
-[ -f /etc/bash_completion.d/git ] && source /etc/bash_completion.d/git
-[ -f /usr/share/bash-completion/completions/svn ] && source /usr/share/bash-completion/completions/svn
+# [ -f /etc/bash_completion.d/git ] && source /etc/bash_completion.d/git
+# [ -f /usr/share/bash-completion/completions/svn ] && source /usr/share/bash-completion/completions/svn
 complete -W "\`grep -oE '^[a-zA-Z0-9_.-]+\s*:([^=]|$)' ?akefile | sed 's/[^a-zA-Z0-9_.-]*$//'\`" make
 complete -W "-f help keep list pop apply peek discard \`[ -d $STASHDIR ] && ls $STASHDIR/* | sed 's/.stash$//'\`" svnstash
 
@@ -358,5 +359,5 @@ complete -W "-f help keep list pop apply peek discard \`[ -d $STASHDIR ] && ls $
 
 [ -f ~/.bash_aliases ] && source ~/.bash_aliases
 # Scripts to review from falcon1
-# [[ -r /etc/profile.d/bash_completion.sh ]] && . /etc/profile.d/bash_completion.sh
-# [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[[ -r /etc/profile.d/bash_completion.sh ]] && . /etc/profile.d/bash_completion.sh
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
