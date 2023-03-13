@@ -10,6 +10,11 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-commentary'           " Make Block comments easier (gcc)
   Plug 'tpope/vim-surround'             " Surrounds text in quotes, {}, etc.
   Plug 'tpope/vim-repeat'               " Allows better . repeating for plugins
+  " Make new text objects
+  Plug 'kana/vim-textobj-user'          " base text object creator
+  Plug 'kana/vim-textobj-diff'          " allows adh, idh for diff files.
+  Plug 'Julian/vim-textobj-brace'       " allows aj, ij for closest [], {}, or ()
+  Plug 'lucapette/vim-textobj-underscore' " allows for a_, i_
   " VIM Appearance
   Plug 'vim-airline/vim-airline'        " Creates a fancy status line.
   " Syntax Highlighting / Color Schemes
@@ -128,6 +133,14 @@ let mapleader = ","
 " " Remap <C-A> to decrement systemverilog correctly...
 " nnoremap <expr> <silent> <c-x> expand('<cWORD>') =~# '\v\c\d+''h[0-9a-f]+' ?
 "       \ ":<c-u>norm! \"_yiWf'ls0x<c-v><esc>" . v:count1 . "<c-v><c-x>F'lvlpE<cr>" : '<c-x>'
+" vnoremap a- :<C-U>silent! normal! F-vf-<CR>
+" vnoremap i- :<C-U>silent! normal! F-vf-<CR>
+" vnoremap a_ :<C-U>silent! normal! F_vf_<CR>
+" vnoremap i_ :<C-U>silent! normal! F_vf_<CR>
+" omap a-     :normal va-<CR>
+" omap i-     :normal vi-<CR>
+" omap a_     :normal va_<CR>
+" omap i_     :normal vi_<CR>
 
 " Add single spaces in normal mode
 nnoremap <Space>               i <Esc>l
@@ -260,7 +273,7 @@ command! MakeTags ! ctags --langmap=Verilog:+.sv -R --Verilog-kinds=-prn
          \ --exclude=@.ctagsignore .
 
 """"""""""""""""""""""""""""""""
-"" FUNCTIONS
+"" OTHER FUNCTIONS
 """"""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""
