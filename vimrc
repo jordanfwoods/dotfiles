@@ -82,42 +82,9 @@ set timeout        " timeout on partial command like: <leader>, g, etc.
 set tm=1000        " timeoutlen is 1 second
 set ttimeout       " Have separate value for timeout re: leaving insert mode
 set ttimeoutlen=0  " insert / visual timeout immediately
-set foldmethod=marker " allow for '{ { { 1' stuff
+set fdm=marker     " foldmethod: allows for '{ { { 1' stuff
 set wildmode=longest,list,full " Make autocomplete in command mode better
-
-""""""""""""""""""""""""""""""""
-"" Vim Diff Stuff
-""""""""""""""""""""""""""""""""
 set diffopt+=iwhite " Tell Vim to ignore whitespace
-
-" Allows to see diff in current file before saving with :diffSaved
-function! s:DiffWithSaved()
-  let filetype=&ft
-  diffthis
-  vnew | r # | normal! 1Gdd
-  diffthis
-  exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
-endfunction
-com! Diff call s:DiffWithSaved()
-
-" Allows to see diff between current file and svn
-function! s:DiffWithSVNCheckedOut()
-  let filetype=&ft
-  diffthis
-  vnew | exe "%!svn cat " . fnameescape( expand("#:p") )
-  diffthis
-  exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
-endfunction
-com! SvnDiff call s:DiffWithSVNCheckedOut()
-
-function! s:DiffWithGITCheckedOut()
-  let filetype=&ft
-  diffthis
-  vnew | exe "%!git diff " . fnameescape( expand("#:p") ) . " | patch -p 1 -Rs -o -"
-  exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
-  diffthis
-endfunction
-com! GitDiff call s:DiffWithGITCheckedOut()
 
 """"""""""""""""""""""""""""""""
 "" REMAPS
@@ -133,14 +100,6 @@ let mapleader = ","
 " " Remap <C-A> to decrement systemverilog correctly...
 " nnoremap <expr> <silent> <c-x> expand('<cWORD>') =~# '\v\c\d+''h[0-9a-f]+' ?
 "       \ ":<c-u>norm! \"_yiWf'ls0x<c-v><esc>" . v:count1 . "<c-v><c-x>F'lvlpE<cr>" : '<c-x>'
-" vnoremap a- :<C-U>silent! normal! F-vf-<CR>
-" vnoremap i- :<C-U>silent! normal! F-vf-<CR>
-" vnoremap a_ :<C-U>silent! normal! F_vf_<CR>
-" vnoremap i_ :<C-U>silent! normal! F_vf_<CR>
-" omap a-     :normal va-<CR>
-" omap i-     :normal vi-<CR>
-" omap a_     :normal va_<CR>
-" omap i_     :normal vi_<CR>
 
 " Add single spaces in normal mode
 nnoremap <Space>               i <Esc>l
@@ -185,7 +144,6 @@ nnoremap <leader>w             <C-w>
 nnoremap <leader>W             <C-w><C-w>
 nnoremap <leader>t             <C-t>
 
-
 " F-Keys - Don't use <F11>, or <F12>. <S-F11>, etc. is fine.
 " Toggle paste mode for easy copy/pasting from system clipboard with the mouse
 nnoremap <Leader><F12> :set invnumber<CR>:set invrelativenumber<CR>:set invpaste<CR>
@@ -223,19 +181,6 @@ nnoremap <leader>l :<C-U>execute "vertical resize +" . v:count1<CR>
 """"""""""""""""""""""""""""""""
 " Auto setfiletype... syntax is in ~/.vim/synatx/todo_done.vim
 autocmd BufRead,BufNewFile *.done,TODO,todo,*.todo setlocal filetype=todo_done
-" manage check boxes ,2 only doesn't work on line 1, if the first character is the [
-function! TodoFunc(...)
-  execute "normal! ^"
-  if getline(".")[col(".")-1] != "[" | execute "normal! f[" | endif
-  if getline(".")[col(".")-1] == "["
-    if     a:1 == "1" | execute "normal! lr√:noh<CR>f]j"
-    elseif a:1 == "2" | execute "normal! lrI:noh<CR>f]j"
-    elseif a:1 == "3" | execute "normal! lrX:noh<CR>f]j"
-    elseif a:1 == "4" | execute "normal! lr :noh<CR>f]j"
-    endif
-  endif
-  +1
-endfunction
 nnoremap <leader>1 :call TodoFunc('1')<CR>
 nnoremap <leader>2 :call TodoFunc('2')<CR>
 nnoremap <leader>3 :call TodoFunc('3')<CR>
@@ -275,6 +220,51 @@ command! MakeTags ! ctags --langmap=Verilog:+.sv -R --Verilog-kinds=-prn
 """"""""""""""""""""""""""""""""
 "" OTHER FUNCTIONS
 """"""""""""""""""""""""""""""""
+
+"" To-do Function
+" manage check boxes ,2 only doesn't work on line 1, if the first character is the [
+function! TodoFunc(...)
+  execute "normal! ^"
+  if getline(".")[col(".")-1] != "[" | execute "normal! f[" | endif
+  if getline(".")[col(".")-1] == "["
+    if     a:1 == "1" | execute "normal! lr√:noh<CR>f]j"
+    elseif a:1 == "2" | execute "normal! lrI:noh<CR>f]j"
+    elseif a:1 == "3" | execute "normal! lrX:noh<CR>f]j"
+    elseif a:1 == "4" | execute "normal! lr :noh<CR>f]j"
+    endif
+  endif
+  +1
+endfunction
+
+"" Vim Diff Stuff
+" Allows to see diff in current file before saving with :diffSaved
+function! s:DiffWithSaved()
+  let filetype=&ft
+  diffthis
+  vnew | r # | normal! 1Gdd
+  diffthis
+  exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
+endfunction
+com! Diff call s:DiffWithSaved()
+
+" Allows to see diff between current file and svn
+function! s:DiffWithSVNCheckedOut()
+  let filetype=&ft
+  diffthis
+  vnew | exe "%!svn cat " . fnameescape( expand("#:p") )
+  diffthis
+  exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
+endfunction
+com! SvnDiff call s:DiffWithSVNCheckedOut()
+
+function! s:DiffWithGITCheckedOut()
+  let filetype=&ft
+  diffthis
+  vnew | exe "%!git diff " . fnameescape( expand("#:p") ) . " | patch -p 1 -Rs -o -"
+  exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
+  diffthis
+endfunction
+com! GitDiff call s:DiffWithGITCheckedOut()
 
 """"""""""""""""""""""""""""""""
 "" VIMRC Graveyard.... {{{1
