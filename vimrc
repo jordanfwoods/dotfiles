@@ -267,6 +267,26 @@ endfunction
 com! GitDiff call s:DiffWithGITCheckedOut()
 
 """"""""""""""""""""""""""""""""
+"" GVIM
+""""""""""""""""""""""""""""""""
+if has('gui_running')
+  set guifont=Consolas:h10:cANSI:qDRAFT " Preferred Font for gvim
+  set guioptions=i " by default, hide gui menus
+
+  " Only for GVIM
+  " Toggle gvim Menu / Scrollbars See <F12> above for shortcut
+  function! ToggleGUICruft()
+    if &guioptions=='i'
+      exec('set guioptions=imTrL')
+    else
+      exec('set guioptions=i')
+    endif
+  endfunction
+  " Toggle gvim Menu / Scrollbars See Function below
+  nnoremap <F12>     <Esc>:call ToggleGUICruft()<cr>
+endif
+
+""""""""""""""""""""""""""""""""
 "" VIMRC Graveyard.... {{{1
 """"""""""""""""""""""""""""""""
 " - Use :find <filename> to open some stuff
@@ -274,7 +294,7 @@ com! GitDiff call s:DiffWithGITCheckedOut()
 " I have become a VIM super user, and I don't need it... right?
 " if has('mouse') | set mouse=a | endif
 
-" SMI version of vim can't use [] ... " Wipe all registers
+" " SMI version of vim can't use [] ... Wipe all registers
 " command! WipeReg for i in range(34,122) |
 "                \    silent! call setreg(nr2char(i),[]) |
 "                \ endfor
@@ -291,30 +311,6 @@ com! GitDiff call s:DiffWithGITCheckedOut()
 " map <leader>sp [s
 " map <leader>sa zg
 " map <leader>s? z=
-
-" resize current buffer by +/- 5
-" nnoremap <expr> <leader>h v:count1 . '<C-w><'
-" nnoremap <expr> <leader>j v:count1 . '<C-w>-'
-" nnoremap <expr> <leader>k v:count1 . '<C-w>+'
-" nnoremap <expr> <leader>l v:count1 . '<C-w>>'
-
-""""""""""""""""""""""""""""""""
-"" GVIM
-""""""""""""""""""""""""""""""""
-" set guifont=Consolas:h10:cANSI:qDRAFT " Preferred Font for gvim
-" set guioptions=i " by default, hide gui menus
-
-" " Only for GVIM
-" " Toggle gvim Menu / Scrollbars See <F11> above for shortcut
-" function! ToggleGUICruft()
-"   if &guioptions=='i'
-"     exec('set guioptions=imTrL')
-"   else
-"     exec('set guioptions=i')
-"   endif
-" endfunction
-" Toggle gvim Menu / Scrollbars See Function below
-" nnoremap <F12>     <Esc>:call ToggleGUICruft()<cr>
 
 " LEGACY - NETRW
 " Don't use NETRW, use NERDTree
