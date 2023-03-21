@@ -17,6 +17,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'lucapette/vim-textobj-underscore' " allows for a_, i_
   " VIM Appearance
   Plug 'vim-airline/vim-airline'        " Creates a fancy status line.
+  Plug 'vim-airline/vim-airline-themes' " Themes for said fancy status line.
   " Syntax Highlighting / Color Schemes
   Plug 'vhda/verilog_systemverilog.vim' " SystemVerilog syntax file.
   Plug 'morhetz/gruvbox'                " gruvbox is the goat of colorschemes.
@@ -40,9 +41,9 @@ map <Right> <nop>
 " What VIM saves
 set nobackup           " do not keep a backup file, use versions instead
 set history=250        " Number of lines of command line history to keep
-scriptencoding utf-8   " Save vimrc to allow for special characters like √.
-set encoding=utf-8     " Save vimrc to allow for special characters like √.
-set fileencoding=utf-8 " Save vimrc to allow for special characters like √.
+" scriptencoding utf-8   " Save vimrc to allow for special characters like √.
+" set encoding=utf-8     " Save vimrc to allow for special characters like √.
+" set fileencoding=utf-8 " Save vimrc to allow for special characters like √.
 
 " How VIM Looks
 set number         " show line numbers.
@@ -202,8 +203,24 @@ autocmd FileType todo_done             setlocal commentstring=#\ %s
 " Reliably prompt for file changes upon changing buffers.
 au FocusGained,BufEnter     * :silent! checktime
 au CursorHold,CursorHoldI   * :silent! checktime
-" au CursorMoved,CursorMovedI * :silent! checktime
 let v:fcs_choice="ask"
+
+""""""""""""""""""""""""""""""""
+"" AIR-LINE (STATUS LINE)
+""""""""""""""""""""""""""""""""
+let g:airline_theme='bubblegum'
+let g:airline_powerline_fonts = 1
+let g:airline_detect_modified=1
+if !exists('g:airline_symbols') | let g:airline_symbols = {} | endif
+let g:airline_left_sep = '▶ '
+let g:airline_right_sep = ' ◀'
+let g:airline_skip_empty_sections = 1
+let g:airline_symbols.maxlinenr = '☰ '
+let g:airline_symbols.linenr = ' ㏑'
+let g:airline_symbols.colnr = ' ℅:'
+let g:airline_symbols.space = "\ua0"
+" au FocusGained,BufEnter     * :let g:airline_section_x = &filetype
+" au CursorHold,CursorHoldI   * :let g:airline_section_x = &filetype
 
 """"""""""""""""""""""""""""""""
 "" COMMANDS
