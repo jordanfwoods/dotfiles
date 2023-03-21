@@ -186,7 +186,7 @@ nnoremap <leader>1 :call TodoFunc('1')<CR>
 nnoremap <leader>2 :call TodoFunc('2')<CR>
 nnoremap <leader>3 :call TodoFunc('3')<CR>
 nnoremap <leader>4 :call TodoFunc('4')<CR>
-nnoremap <leader>5 ^i[ ] <Esc>j
+nnoremap <leader>5 :call TodoFunc('5')<CR>
 
 """"""""""""""""""""""""""""""""
 "" AUTO COMMANDS
@@ -238,8 +238,7 @@ command! MakeTags ! ctags --langmap=Verilog:+.sv -R --Verilog-kinds=-prn
 "" OTHER FUNCTIONS
 """"""""""""""""""""""""""""""""
 
-"" To-do Function
-" manage check boxes ,2 only doesn't work on line 1, if the first character is the [
+"" To-do Function " manage check boxes
 function! TodoFunc(...)
   execute "normal! ^"
   if getline(".")[col(".")-1] != "[" | execute "normal! f[" | endif
@@ -250,6 +249,7 @@ function! TodoFunc(...)
     elseif a:1 == "4" | execute "normal! lr :noh<CR>f]j"
     endif
   endif
+  if a:1 == "5" | execute "normal! ^i[ ] " | endif
   +1
 endfunction
 
