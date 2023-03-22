@@ -208,7 +208,7 @@ let v:fcs_choice="ask"
 """"""""""""""""""""""""""""""""
 "" AIR-LINE (STATUS LINE)
 """"""""""""""""""""""""""""""""
-let g:airline_theme='bubblegum'
+let g:airline_theme='gruvbox'
 let g:airline_powerline_fonts = 1
 let g:airline_detect_modified=1
 if !exists('g:airline_symbols') | let g:airline_symbols = {} | endif
@@ -252,6 +252,21 @@ function! TodoFunc(...)
   if a:1 == "5" | execute "normal! ^i[ ] " | endif
   +1
 endfunction
+
+nnoremap <leader><c-a> :call FancyInc()<CR>
+function! FancyInc()
+  " 8'h03 03_0f,03 32'h0_effacexdx
+  if (expand('<cWORD>') =~# '\<\d\+''[hbdo][0-9a-f_]\+\>' || expand('<cword>') =~# '\<[0-9a-f_]\+\>')
+    echo expand('<cWORD>')
+  endif
+endfunction
+
+" " Make a fancy counter for verilog / vhdl
+" nnoremap <expr> <silent> <c-a> expand('<cWORD>') =~# '\v\c\d+''h[0-9a-f]+' ?
+"       \ ":<c-u>norm! \"_yiWf'ls0x<c-v><esc>" . v:count1 . "<c-v><c-a>F'lvlpE<cr>" : '<c-a>'
+" " Remap <C-A> to decrement systemverilog correctly...
+" nnoremap <expr> <silent> <c-x> expand('<cWORD>') =~# '\v\c\d+''h[0-9a-f]+' ?
+"       \ ":<c-u>norm! \"_yiWf'ls0x<c-v><esc>" . v:count1 . "<c-v><c-x>F'lvlpE<cr>" : '<c-x>'
 
 "" Vim Diff Stuff
 " Allows to see diff in current file before saving with :diffSaved
