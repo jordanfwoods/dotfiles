@@ -29,6 +29,7 @@ set  background=dark " gruvbox requires external background to be set.
 colo gruvbox         " scheme from Plugin
 hi   Normal ctermbg=NONE
 
+source ~/.vim/autoload/verilogInc.vim
 " Disable the Arrow keys in Normal Mode
 map <Up>    <nop>
 map <Down>  <nop>
@@ -94,6 +95,7 @@ set diffopt+=iwhite " Tell Vim to ignore whitespace
 " Change the <leader> to be ",", not "\"
 let mapleader = ","
 
+nnoremap <leader><c-a> :call FancyInc()<CR>
 " " Random Remaps
 " " Remap <C-A> to increment systemverilog correctly...
 " nnoremap <expr> <silent> <c-a> expand('<cWORD>') =~# '\v\c\d+''h[0-9a-f]+' ?
@@ -212,15 +214,12 @@ let g:airline_theme='gruvbox'
 let g:airline_powerline_fonts = 1
 let g:airline_detect_modified=1
 if !exists('g:airline_symbols') | let g:airline_symbols = {} | endif
-let g:airline_left_sep = '▶ '
-let g:airline_right_sep = ' ◀'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '◀'
 let g:airline_skip_empty_sections = 1
-let g:airline_symbols.maxlinenr = '☰ '
-let g:airline_symbols.linenr = ' ㏑'
-let g:airline_symbols.colnr = ' ℅:'
-let g:airline_symbols.space = "\ua0"
-" au FocusGained,BufEnter     * :let g:airline_section_x = &filetype
-" au CursorHold,CursorHoldI   * :let g:airline_section_x = &filetype
+let g:airline_symbols.maxlinenr = '≡ '
+let g:airline_symbols.linenr = ' № '
+let g:airline_symbols.colnr = '℅:'
 
 """"""""""""""""""""""""""""""""
 "" COMMANDS
@@ -252,21 +251,6 @@ function! TodoFunc(...)
   if a:1 == "5" | execute "normal! ^i[ ] " | endif
   +1
 endfunction
-
-nnoremap <leader><c-a> :call FancyInc()<CR>
-function! FancyInc()
-  " 8'h03 03_0f,03 32'h0_effacexdx
-  if (expand('<cWORD>') =~# '\<\d\+''[hbdo][0-9a-f_]\+\>' || expand('<cword>') =~# '\<[0-9a-f_]\+\>')
-    echo expand('<cWORD>')
-  endif
-endfunction
-
-" " Make a fancy counter for verilog / vhdl
-" nnoremap <expr> <silent> <c-a> expand('<cWORD>') =~# '\v\c\d+''h[0-9a-f]+' ?
-"       \ ":<c-u>norm! \"_yiWf'ls0x<c-v><esc>" . v:count1 . "<c-v><c-a>F'lvlpE<cr>" : '<c-a>'
-" " Remap <C-A> to decrement systemverilog correctly...
-" nnoremap <expr> <silent> <c-x> expand('<cWORD>') =~# '\v\c\d+''h[0-9a-f]+' ?
-"       \ ":<c-u>norm! \"_yiWf'ls0x<c-v><esc>" . v:count1 . "<c-v><c-x>F'lvlpE<cr>" : '<c-x>'
 
 "" Vim Diff Stuff
 " Allows to see diff in current file before saving with :diffSaved

@@ -50,7 +50,7 @@ syn match   toProj         /^\d\d\d\d\s\+.*/ contains=@toContain,toComment
 " Uncompleted = [ ], Completed = [√], In Progress = [I], Ignore = [X]
 " Colorize the checkbox: [√]...
 syn match   toOkValue      /√/ contained
-syn region  toOk           start=/\[/ end=/\]/ oneline contains=toOkValue nextgroup=toDone
+syn match   toOk           /\[√\]/ contains=toOkValue nextgroup=toDone
 syn match   toEmpty        /\[\s\]/
 syn match   toInProg       /\[I\]/ nextgroup=toCurrent
 syn match   toIgnore       /\[X\]/ nextgroup=toDone
