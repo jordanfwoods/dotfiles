@@ -302,7 +302,6 @@ svnstash() {
     return
   fi
 
-export STASHDIR=~/.svnstash
   # Create file path for new stash file
   local dir=$STASHDIR
   [[ ! -d $STASHDIR ]] && mkdir $STASHDIR
@@ -352,7 +351,7 @@ alias MakeFWTags='unset FWTAGS; MAKETAGS'
 # [ -f /etc/bash_completion.d/git ] && source /etc/bash_completion.d/git
 # [ -f /usr/share/bash-completion/completions/svn ] && source /usr/share/bash-completion/completions/svn
 complete -W "\`grep -oE '^[a-zA-Z0-9_.-]+\s*:([^=]|$)' ?akefile | sed 's/[^a-zA-Z0-9_.-]*$//'\`" make
-complete -W "-f help keep list pop apply peek discard \`[ -d $STASHDIR ] && ls $STASHDIR/* | sed 's/.stash$//'\`" svnstash
+complete -W "-f help keep list pop apply peek discard \`[ -d $STASHDIR ] && ls $STASHDIR | sed 's/.stash$//'\`" svnstash
 
 ##############################
 ## SOURCE BASH ALIASES
