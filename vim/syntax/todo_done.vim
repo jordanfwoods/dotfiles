@@ -32,10 +32,11 @@ syn keyword toKeyWord      contained TODO FIXME
 
 " Cluster the things to still display within comments, etc.
 syn cluster toContain      contains=toFold,toTimeCard,toDate,toTime12,toTime24,toVital,toKeyword,@Spell
+syn cluster toBlocks       contains=toCommentBlock,toCurrentBlock,toComment
 
 " Block Comment with {#...#}. Regular comment with # ...
 syn region  toCommentBlock start="{#" end="#}" contains=@toContain
-syn match   toComment      "#.*"               contains=@toContain
+syn match   toComment      "#.*"               contains=@toContain,@toBlocks
 syn match   toFold         "{{{\d\+"           nextgroup=toDone
 syn match   toFold         "\d\+}}}"           nextgroup=toDone
 
@@ -56,13 +57,13 @@ syn match   toInProg       /\[I\]/ nextgroup=toCurrent
 syn match   toIgnore       /\[X\]/ nextgroup=toDone
 
 " Comment out entry that is completed.
-syn match   toDone         /.\+/ contained contains=toComBlck,toResponse,@toContain
+syn match   toDone         /.\+/ contained contains=@toBlocks,toResponse,@toContain
 syn region  toResponse     start="{" end="}" oneline contained
 " Re-highlight entry that is in progress.
-syn match   toCurrent      /.\+/ contained contains=toCurBlck,@toContain
+syn match   toCurrent      /.\+/ contained contains=@toBlocks,@toContain
 " Use similar highlighting on other lines when using: {"..."} or lines that start with: " ...
 syn region  toCurrentBlock start="{\"" end="\"}" contains=@toContain
-syn match   toCurrent      /^\s*\".*/            contains=@toContain
+syn match   toCurrent      /^\s*\".*/            contains=@toContain,@toBlocks
 
 " Use < > to highlight an important note, i.e. customer, etc. (Gets greyed out with comment)
 syn match   toParens       /<.\+>/
