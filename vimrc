@@ -189,6 +189,7 @@ nnoremap <leader>2 :call TodoFunc('2')<CR>
 nnoremap <leader>3 :call TodoFunc('3')<CR>
 nnoremap <leader>4 :call TodoFunc('4')<CR>
 nnoremap <leader>5 :call TodoFunc('5')<CR>
+nnoremap <leader>6 :call TodoFunc('6')<CR>
 
 """"""""""""""""""""""""""""""""
 "" AUTO COMMANDS
@@ -239,17 +240,42 @@ command! MakeTags ! ctags --langmap=Verilog:+.sv -R --Verilog-kinds=-prn
 
 "" To-do Function " manage check boxes
 function! TodoFunc(...)
+  let pos = col(".")
   execute "normal! ^"
   if getline(".")[col(".")-1] != "[" | execute "normal! f[" | endif
   if getline(".")[col(".")-1] == "["
-    if     a:1 == "1" | execute "normal! lr√:noh<CR>f]j"
-    elseif a:1 == "2" | execute "normal! lrI:noh<CR>f]j"
-    elseif a:1 == "3" | execute "normal! lrX:noh<CR>f]j"
-    elseif a:1 == "4" | execute "normal! lr :noh<CR>f]j"
+    if     a:1 == "1" | execute "normal! lr√f]"
+    elseif a:1 == "2" | execute "normal! lrIf]"
+    elseif a:1 == "3" | execute "normal! lrXf]"
+    elseif a:1 == "4" | execute "normal! lr f]"
+    elseif a:1 == "6" | execute "normal! da]x" | let pos = pos-4
     endif
   endif
-  if a:1 == "5" | execute "normal! ^i[ ] " | endif
-  +1
+  if a:1 == "5" | execute "normal! ^i[ ] " | let pos = pos+4 | endif
+  if a:lastline == a:firstline | call cursor(line("."),pos) | endif
+  if a:lastline != a:firstline
+    +1
+  endif
+endfunction
+
+" Automate adding mark_debug attributes to vhdl / verilog
+nnoremap <leader>e :call MarkDebug()<CR>
+nnoremap <leader>E Oattribute mark_debug : string;<ESC>
+function! MarkDebug()
+  if &filetype =~ "verilog"
+    execute "normal! ^"
+    if     expand("<cWORD>") ==? "reg"    | exe "normal! i(* MARK_DEBUG = \"TRUE\" *) "
+    elseif expand("<cWORD>") ==? "wire"   | exe "normal! i(* MARK_DEBUG = \"TRUE\" *) "
+    elseif expand("<cWORD>") ==? "input"  | exe "normal! i(* MARK_DEBUG = \"TRUE\" *) "
+    elseif expand("<cWORD>") ==? "output" | exe "normal! i(* MARK_DEBUG = \"TRUE\" *) "
+    endif
+    +1
+  elseif &filetype =~ "vhdl"
+    execute "normal! ^"
+    if     expand("<cWORD>") ==? "signal" | exe "normal! yypciwattribute mark_debug off:lC signal is \"true\";"
+    endif
+    +1
+  endif
 endfunction
 
 "" Vim Diff Stuff
