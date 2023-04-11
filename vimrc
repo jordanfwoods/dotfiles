@@ -278,6 +278,17 @@ function! MarkDebug()
   endif
 endfunction
 
+nnoremap <leader>m :call UnmarkDebug()<CR>
+function! UnmarkDebug()
+  let l:pos = getcurpos()
+  if &filetype =~ "verilog"
+    silent g/(\* mark_debug = "true" \*)\s/normal! f(da)x<C-o>
+  elseif &filetype =~ "vhdl"
+    silent g/^\s*attribute\smark_debug\s.*$/normal! dd
+  endif
+  call cursor(l:pos[1:3])
+endfunction
+
 "" Vim Diff Stuff
 " Allows to see diff in current file before saving with :diffSaved
 function! s:DiffWithSaved()
