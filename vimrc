@@ -325,12 +325,14 @@ com! GitDiff call s:DiffWithGITCheckedOut()
 "" GVIM
 """"""""""""""""""""""""""""""""
 if has('gui_running')
-  set guifont=Consolas:h10:cANSI:qDRAFT " Preferred Font for gvim
+  if has('gui_win32')
+    set guifont=Consolas:h10:cANSI:qDRAFT " Preferred Font for gvim
+  endif
   set guioptions=i " by default, hide gui menus
 
   " Only for GVIM
   " Toggle gvim Menu / Scrollbars See <F12> above for shortcut
-  function! ToggleGUICruft()
+  function! ToggleGUIOpts()
     if &guioptions=='i'
       exec('set guioptions=imTrL')
     else
@@ -338,7 +340,7 @@ if has('gui_running')
     endif
   endfunction
   " Toggle gvim Menu / Scrollbars See Function below
-  nnoremap <F12>     <Esc>:call ToggleGUICruft()<cr>
+  nnoremap <F12>     <Esc>:call ToggleGUIOpts()<cr>
 endif
 
 """"""""""""""""""""""""""""""""
