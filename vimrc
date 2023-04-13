@@ -47,16 +47,16 @@ set encoding=utf-8     " Save vimrc to allow for special characters like √.
 set fileencoding=utf-8 " Save vimrc to allow for special characters like √.
 
 " How VIM Looks
-set number         " show line numbers.
-set relativenumber " change to show number of lines from current line.
-set ruler          " show the cursor position all the time in bottom right
-set showcmd        " display incomplete commands in bottom right
-set nowrap         " Don't wrap text to the next line.
-set laststatus=2   " Display StatusLine always
-set textwidth=0    " Set to not split text into multiple lines. (Used to be 84)
-set colorcolumn=85 " Set Color Column just after columnn of textwidth
-set splitbelow     " New Split Windows open below
-set splitright     " New Vertical Splits open to the right
+set number          " show line numbers.
+set relativenumber  " change to show number of lines from current line.
+set ruler           " show the cursor position all the time in bottom right
+set showcmd         " display incomplete commands in bottom right
+set nowrap          " Don't wrap text to the next line.
+set laststatus=2    " Display StatusLine always
+set textwidth=0     " Set to not split text into multiple lines. (Used to be 84)
+set colorcolumn=100 " Set Color Column just after columnn of textwidth
+set splitbelow      " New Split Windows open below
+set splitright      " New Vertical Splits open to the right
 
 " Never use tabs and backspace more efficiently
 set tabstop=2    " set the tabs to display as 2 whitespaces.

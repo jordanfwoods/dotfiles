@@ -322,7 +322,7 @@ svnstash() {
     "discard") rm $file;;
     "apply")   patch -p0 < $file;;
     "pop")     patch -p0 < $file; rm $file;;
-    "list")    ls -1t $dir/* | sed 's_\.\w*__g';;
+    "list")    ls -1t $dir | sed 's_\.\w*__g';;
     "peek")    colordiff < $file | less -r;;
     "keep")    svn diff > $file;;
     *)         svn diff > $file; svn revert -R .;;
