@@ -214,12 +214,12 @@ let v:fcs_choice="ask"
 "" AIR-LINE (STATUS LINE)
 """"""""""""""""""""""""""""""""
 let g:airline_theme='gruvbox'
-let g:airline_powerline_fonts = 1
-let g:airline_detect_modified=1
-if !exists('g:airline_symbols') | let g:airline_symbols = {} | endif
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '◀'
+" let g:airline_powerline_fonts = 1
+" let g:airline_detect_modified=1
 let g:airline_skip_empty_sections = 1
+" let g:airline_left_sep = '▶'
+" let g:airline_right_sep = '◀'
+if !exists('g:airline_symbols') | let g:airline_symbols = {} | endif
 let g:airline_symbols.maxlinenr = '≡ '
 let g:airline_symbols.linenr = ' № '
 let g:airline_symbols.colnr = '℅:'
