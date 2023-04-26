@@ -32,7 +32,7 @@ syn match   toImp          /:/ contained
 syn keyword toKeyWord      contained TODO FIXME
 
 " Cluster the things to still display within comments, etc.
-syn cluster toContain      contains=toFold,toTimeCard,toDate,toTime12,toTime24,toVital,toKeyword,@Spell
+syn cluster toContain      contains=toFold,toTimeCard,toDate,toTime12,toTime24,toVital,toKeyword,@Spell,toParens
 syn cluster toBlocks       contains=toCommentBlock,toCurrentBlock,toComment
 
 " Block Comment with {#...#}. Regular comment with # ...
