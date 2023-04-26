@@ -299,14 +299,15 @@ svnstash() {
     echo "    or: 'svnstash apply     <stash_name>' applies changes and keeps stash"
     echo "    or: 'svnstash peek      <stash_name>' displays the stashed changes"
     echo "    or: 'svnstash discard   <stash_name>' throws away stash without applying changes"
+    echo "    or: 'svnstash drop      <stash_name>' same as 'discard'"
     return
   fi
 
   # Create file path for new stash file
   local dir=$STASHDIR
   [[ ! -d $STASHDIR ]] && mkdir $STASHDIR
-  if [ -z $2 ] && ([ $1 == "apply" ] || [ $1 == "pop" ] || [ $1 == "peek" ] ||
-                   [ $1 == "keep" ]  || [ $1 == "discard" ]); then
+  if [ -z $2 ] && ([ $1 == "apply" ] || [ $1 == "pop" ]  || [ $1 == "peek" ] ||
+                   [ $1 == "keep" ]  || [ $1 == "drop" ] || [ $1 == "discard" ]); then
     echo "$1 expects a <stash_name>"; return
   elif [ -z $2 ]; then local file="${dir}/${1}.stash";
   else                 local file="${dir}/${2}.stash"; fi
@@ -319,6 +320,7 @@ svnstash() {
 
   # Apply desired changes.
   case $1 in
+    "drop")    rm $file;;
     "discard") rm $file;;
     "apply")   patch -p0 < $file;;
     "pop")     patch -p0 < $file; rm $file;;
@@ -351,7 +353,7 @@ alias MakeFWTags='unset FWTAGS; MAKETAGS'
 # [ -f /etc/bash_completion.d/git ] && source /etc/bash_completion.d/git
 # [ -f /usr/share/bash-completion/completions/svn ] && source /usr/share/bash-completion/completions/svn
 complete -W "\`grep -oE '^[a-zA-Z0-9_.-]+\s*:([^=]|$)' ?akefile | sed 's/[^a-zA-Z0-9_.-]*$//'\`" make
-complete -W "-f help keep list pop apply peek discard \`[ -d $STASHDIR ] && ls $STASHDIR | sed 's/.stash$//'\`" svnstash
+complete -W "-f help keep list pop apply peek drop discard \`[ -d $STASHDIR ] && ls $STASHDIR | sed 's/.stash$//'\`" svnstash
 
 ##############################
 ## SOURCE BASH ALIASES

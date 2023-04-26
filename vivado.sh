@@ -4,7 +4,7 @@
 # If xpr variable is still set to temp, then no xpr was found.
 xpr="temp"
 dir="/home/jwoods/temp/vivado_logs"
-src="-source ~/.tcl -log $dir/vivado.log -jou $dir/vivado.jou"
+src="-notrace -source ~/.tcl -log $dir/vivado.log -jou $dir/vivado.jou"
 echo "Setting log / jou files to save in $dir"
 
 ###############################
