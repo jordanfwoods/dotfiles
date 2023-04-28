@@ -299,6 +299,7 @@ function! s:DiffWithSaved()
   vnew | r # | normal! 1Gdd
   diffthis
   exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
+  wincmd R
 endfunction
 com! Diff call s:DiffWithSaved()
 
@@ -309,6 +310,7 @@ function! s:DiffWithSVNCheckedOut()
   vnew | exe "%!svn cat " . fnameescape( expand("#:p") )
   diffthis
   exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
+  wincmd R
 endfunction
 com! SvnDiff call s:DiffWithSVNCheckedOut()
 
@@ -318,6 +320,7 @@ function! s:DiffWithGITCheckedOut()
   vnew | exe "%!git diff " . fnameescape( expand("#:p") ) . " | patch -p 1 -Rs -o -"
   exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
   diffthis
+  wincmd R
 endfunction
 com! GitDiff call s:DiffWithGITCheckedOut()
 
