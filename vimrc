@@ -97,7 +97,8 @@ set nrformats=hex     " Get octal / alpha out of here.
 " Change the <leader> to be ",", not "\"
 let mapleader = ","
 
-nnoremap <leader><c-a> :call FancyInc()<CR>
+nnoremap <leader><c-a> :call FancyIncDec(1)<CR>
+nnoremap <leader><c-x> :call FancyIncDec(0)<CR>
 " " Random Remaps
 " " Remap <C-A> to increment systemverilog correctly...
 " nnoremap <expr> <silent> <c-a> expand('<cWORD>') =~# '\v\c\d+''h[0-9a-f]+' ?
