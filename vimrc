@@ -29,7 +29,7 @@ set  background=dark " gruvbox requires external background to be set.
 colo gruvbox         " scheme from Plugin
 hi   Normal ctermbg=NONE
 
-source ~/.vim/autoload/verilogInc.vim
+source ~/.vim/autoload/FancyIncDec.vim
 " Disable the Arrow keys in Normal Mode
 map <Up>    <nop>
 map <Down>  <nop>
@@ -121,8 +121,8 @@ nnoremap <Leader><Tab>         i<Tab><ESC>l
 nnoremap <Leader><S-Tab>       hhhdwi<Tab><ESC>l
 " Update the Date in MM/DD/YY format (DD Mon YYYY for <leader>D)
 nnoremap <leader>d             R<C-R>=strftime("%m/%d/%y")<CR><Esc>
-nnoremap <leader>D             R<C-R>=strftime("%a, %d %b %Y")<CR><Esc>
 nnoremap <leader><leader>d     R<C-R>=strftime("%m/%d/%Y")<CR><Esc>
+nnoremap <leader>D             R<C-R>=strftime("%a, %d %b %Y")<CR><Esc>
 " Update the Time in H?H:MM [a|p]m format
 nnoremap <leader>T             R<C-R>=strftime("%-I:%M %P")<CR><Esc>
 " Update the Name of the last modified.

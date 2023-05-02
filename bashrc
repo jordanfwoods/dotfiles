@@ -292,28 +292,28 @@ svnstash() {
   # Help screen
   if [ -z $1 ] || [[ $1 =~ ^(-?-?[Hh](elp)?(ELP)?)$ ]]; then
     echo "svnstash replicates 'git stash' for a svn repo."
-    echo " usage: 'svnstash [-f]      <stash_name>' stashes changes [overwriting old stash if same name] and reverts the directory."
-    echo "    or: 'svnstash [-f] keep <stash_name>' creates stash, but does not revert the directory"
-    echo "    or: 'svnstash list'                   lists names of stashed changes."
-    echo "    or: 'svnstash pop       <stash_name>' applies changes and removes stash"
-    echo "    or: 'svnstash apply     <stash_name>' applies changes and keeps stash"
-    echo "    or: 'svnstash peek      <stash_name>' displays the stashed changes"
-    echo "    or: 'svnstash discard   <stash_name>' throws away stash without applying changes"
-    echo "    or: 'svnstash drop      <stash_name>' same as 'discard'"
+    echo " usage: 'svnstash [save]  <stash_name>' stashes changes [overwriting old stash if same name] and reverts the directory."
+    echo "    or: 'svnstash keep    <stash_name>' creates stash, but does not revert the directory"
+    echo "    or: 'svnstash list'                 lists names of stashed changes."
+    echo "    or: 'svnstash pop     <stash_name>' applies changes and removes stash"
+    echo "    or: 'svnstash apply   <stash_name>' applies changes and keeps stash"
+    echo "    or: 'svnstash peek    <stash_name>' displays the stashed changes"
+    echo "    or: 'svnstash discard <stash_name>' throws away stash without applying changes"
+    echo "    or: 'svnstash drop    <stash_name>' same as 'discard'"
     return
   fi
 
   # Create file path for new stash file
   local dir=$STASHDIR
   [[ ! -d $STASHDIR ]] && mkdir $STASHDIR
-  if [ -z $2 ] && ([ $1 == "apply" ] || [ $1 == "pop" ]  || [ $1 == "peek" ] ||
+  if [ -z $2 ] && ([ $1 == "apply" ] || [ $1 == "pop" ]  || [ $1 == "peek" ] || [ $1 == "save" ] ||
                    [ $1 == "keep" ]  || [ $1 == "drop" ] || [ $1 == "discard" ]); then
     echo "$1 expects a <stash_name>"; return
   elif [ -z $2 ]; then local file="${dir}/${1}.stash";
   else                 local file="${dir}/${2}.stash"; fi
 
   # Double check if it exists / doesn't exist.
-  if ([ $1 == "keep" ] || [ -z $2 ]) && [ -f $file ]; then
+  if ([ $1 == "keep" ] || [ $1 == "save" ] || [ -z $2 ]) && [ -f $file ]; then
     echo "stash with name '$(basename -s.stash $file)' exists already!"; return
   elif [ ! -f $file ] && ([ $1 == "apply" ] || [ $1 == "pop" ]); then
     echo "stash with name '$(basename -s.stash $file)' doesn't exist!"; return; fi
@@ -327,6 +327,7 @@ svnstash() {
     "list")    ls -1t $dir | sed 's_\.\w*__g';;
     "peek")    colordiff < $file | less -r;;
     "keep")    svn diff > $file;;
+    "save")    svn diff > $file; svn revert -R .;;
     *)         svn diff > $file; svn revert -R .;;
   esac
 }
@@ -353,7 +354,7 @@ alias MakeFWTags='unset FWTAGS; MAKETAGS'
 # [ -f /etc/bash_completion.d/git ] && source /etc/bash_completion.d/git
 # [ -f /usr/share/bash-completion/completions/svn ] && source /usr/share/bash-completion/completions/svn
 complete -W "\`grep -oE '^[a-zA-Z0-9_.-]+\s*:([^=]|$)' ?akefile | sed 's/[^a-zA-Z0-9_.-]*$//'\`" make
-complete -W "-f help keep list pop apply peek drop discard \`[ -d $STASHDIR ] && ls $STASHDIR | sed 's/.stash$//'\`" svnstash
+complete -W "-f help save keep list pop apply peek drop discard \`[ -d $STASHDIR ] && ls $STASHDIR | sed 's/.stash$//'\`" svnstash
 
 ##############################
 ## SOURCE BASH ALIASES
