@@ -26,13 +26,13 @@ function! FancyIncDec(...)
   let pos = col(".")
 " [10] <= 32'habd_12399 /* 0x"0000_0000" */;
 " [10] <= 32'h1234_abdf /* "0002_0000" */;
-  echo "current position: " . string(getpos('.')) . " search: " . expand('<cWORD>') . " loc: " . string(searchpos(expand('<cWORD>'),'c',line(".")))
+  " echo "current position: " . string(getpos('.')) . " search: " . expand('<cWORD>') . " loc: " . string(searchpos(expand('<cWORD>'),'c',line(".")))
   " call cursor(line("."),searchpos(expand('<cWORD>'),'cn',0)[1])
-  echo "current position: " . string(getpos('.'))
+  " echo "current position: " . string(getpos('.'))
   let Ver = s:checkHexVerilog()
   let Vhd = s:checkHexVHDL()
   let Nor = s:checkNormal()
-  echo "Ver: " . Ver . " VHDL: " . Vhd . " Nor: " . Nor
+  " echo "Ver: " . Ver . " VHDL: " . Vhd . " Nor: " . Nor
   if Ver <= Nor && Ver != 0
     " call cursor(line("."),Ver)
     let unders = s:RemoveUnderscores()
@@ -49,7 +49,7 @@ function! FancyIncDec(...)
     call s:IncDec(a:1)
     echo "Selected Normal Increment at " . Vhd
   else
-    " call cursor(line("."),pos)
+    call cursor(line("."),pos)
     echo "Nothing to increment"
   endif
   set nrformats-=octal

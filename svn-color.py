@@ -5,7 +5,7 @@
  Contact: phalkunz@gmail.com
  Date: May 23, 2009
  Modified: June 15, 2009
- 
+
  Additional modifications:
  Author: Phil Christensen (http://bubblehouse.org)
  Contact: phil@bubblehouse.org
@@ -17,15 +17,15 @@ import os, sys, re, subprocess
 tabsize = 3
 
 colorizedSubcommands = (
-   'status',
+   'status', 'st',
    'add',
    'remove',
    'diff',
 )
 
 statusColors = {
-    "\ M"   : "34;1", # blue 
-    "M"     : "34;1", # blue 
+    "\ M"   : "34;1", # blue
+    "M"     : "34;1", # blue
     "\?"    : "",     # default
     "A"     : "32;1", # green
     "X"     : "35;1", # purple
@@ -35,7 +35,7 @@ statusColors = {
     "\+"    : "32;1", # green
 }
 
-def colorize(line): 
+def colorize(line):
     for color in statusColors:
         if re.match(color, line):
             return ''.join(("\033[", statusColors[color], "m", line, "\033[m"))
@@ -62,4 +62,4 @@ if __name__ == "__main__":
         try:
             sys.stdout.write(line)
         except:
-            sys.exit(1) 
+            sys.exit(1)
