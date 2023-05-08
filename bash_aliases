@@ -39,6 +39,10 @@ alias svnvimdiff="svn diff --diff-cmd $dot/svnvimdiffwrap.sh"
 # Alternate svn st to colorize svn status
 # alias svns="/usr/local/bin/svn-color.py"
 alias svns="$dot/svn-color.py status"
+alias svncolor="$dot/svn-color.py"
+[ -f /usr/share/bash-completion/completions/svn ] && source /usr/share/bash-completion/completions/svn
+# Apply svn autocompletions to svncolor
+complete -F _svn -o default -X '@(*/.svn|*/.svn/|.svn|.svn/)' svncolor
 
 ##########################
 # Change Directory Aliases
