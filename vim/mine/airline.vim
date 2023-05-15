@@ -3,8 +3,8 @@
 """"""""""""""""""""""""""""""""
 " Make Airline do what I want
 function! MyRelativePath()
-  if (stridx(expand('%:p'),$PWD) > -1) | return substitute(expand('%:p'), $PWD,'.','')
-  else                                 | return substitute(expand('%:p'),$HOME,'~','') | endif
+  if (stridx(expand('%:p'),$PWD.'/') > -1) | return substitute(expand('%:p'), $PWD.'/','','')
+  else                                     | return substitute(expand('%:p'),$HOME,'~','') | endif
 endfunction
 
 let g:airline_theme='gruvbox'
