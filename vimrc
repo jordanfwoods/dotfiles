@@ -11,7 +11,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-repeat'                 " Allows better . repeating for plugins
   " Make new text objects
   Plug 'kana/vim-textobj-user'            " base text object creator
-  Plug 'lucapette/vim-textobj-underscore' " allows for a_, i_
   " VIM Appearance
   Plug 'vim-airline/vim-airline'          " Creates a fancy status line.
   " Syntax Highlighting / Color Schemes
@@ -22,9 +21,9 @@ call plug#begin('~/.vim/plugged')
 call plug#end()
 
 " Colorize the way I want
-set  background=dark " gruvbox requires external background to be set.
-if !empty(globpath(&rtp,'colors/gruvbox.vim')) | colo gruvbox | endif " scheme from Plugin
-hi   Normal ctermbg=NONE
+set background=dark " gruvbox requires external background to be set.
+if  !empty(globpath(&rtp,'colors/gruvbox.vim')) | colo gruvbox | endif " scheme from Plugin
+hi  Normal ctermbg=NONE
 
 " Grab these other vim files I wrote.
 if filereadable(expand("~/.vim/autoload/FancyIncDec.vim")) | source ~/.vim/autoload/FancyIncDec.vim | endif
