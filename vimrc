@@ -173,6 +173,7 @@ nnoremap <leader>6             :call TodoFunc('6')<CR>
 " Don't use <F11>, or <F12>. <S-F11>, etc. is fine.
 " Toggle paste mode for easy copy/pasting from system clipboard with the mouse
 nnoremap <Leader><F12>         :set invnumber<CR>:set invrelativenumber<CR>:set invpaste<CR>
+nnoremap <F4>                  :set invnumber<CR>
 
 " Auto save and don't reload vimrc (good for most files.)
 nnoremap <F10>                 :w<CR>
