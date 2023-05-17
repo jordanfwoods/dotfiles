@@ -3,8 +3,9 @@
 """"""""""""""""""""""""""""""""
 " Make Airline file path do what I want
 function! MyRelativePath()
-  if (stridx(expand('%:p'),$PWD.'/') > -1) | return substitute(expand('%:p'), $PWD.'/','','')
-  else                                     | return substitute(expand('%:p'),$HOME,'~','') | endif
+  if     (stridx(expand('%:p'),'/home/jwoods/[[SCRATCH]]') > -1) | return "[[SCRATCH]]"
+  elseif (stridx(expand('%:p'),$PWD.'/') > -1) | return substitute(expand('%:p'), $PWD.'/','','')
+  else                                         | return substitute(expand('%:p'),$HOME,'~','') | endif
 endfunction
 let g:airline_section_c =  '%<%{MyRelativePath()}%m %#__accent_red#'
 let g:airline_section_c .= '%{airline#util#wrap(airline#parts#readonly(),0)}'

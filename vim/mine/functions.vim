@@ -1,9 +1,3 @@
-" Make Airline do what I want
-function! MyRelativePath()
-  if (stridx(expand('%:p'),$PWD) > -1) | return substitute(expand('%:p'), $PWD,'.','')
-  else                                 | return substitute(expand('%:p'),$HOME,'~','') | endif
-endfunction
-
 "" To-do Function " manage check boxes
 function! TodoFunc(...)
   let pos = col(".")
@@ -92,5 +86,14 @@ function! ToggleGUIOpts()
   else
     exec('set guioptions=i')
   endif
+endfunction
+
+function! ReNumberList()
+  exe "normal k^\<C-A>\<C-X>yiwj\<C-A>ciw\<C-R>0\<ESC>\<C-A>j"
+endfunction
+
+function! ScratchBuffer()
+  vnew | exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=todo_done"
+  exe "file ~/[[SCRATCH]]"
 endfunction
 

@@ -5,7 +5,7 @@ set nocompatible " always use this feature to bring it to the 21st century...
 syntax on        " enable syntax highlighting
 
 call plug#begin('~/.vim/plugged')
-  " Added Features / commands
+  " Tim Pope is the Patron Saint of VIM
   Plug 'tpope/vim-commentary'             " Make Block comments easier (gcc)
   Plug 'tpope/vim-surround'               " Surrounds text in quotes, {}, etc.
   Plug 'tpope/vim-repeat'                 " Allows better . repeating for plugins
@@ -123,10 +123,14 @@ nnoremap <leader>D             R<C-R>=strftime("%a, %d %b %Y")<CR><Esc>
 nnoremap <leader>T             R<C-R>=strftime("%-I:%M %P")<CR><Esc>
 " Update the Name of the last modified.
 nnoremap <leader>J             RJordan Woods<Esc>l
+" Renumber a list starting at current line (looking at one line above)
+nnoremap <leader><leader>n     :call ReNumberList()<CR>
+" Make New Scratch Buffer
+nnoremap <leader>s             :call ScratchBuffer()<CR>
 
 " Searching
 " Clear Search coloring
-nnoremap <silent> <Leader><CR> :noh<CR>:echo "Clearing Search"<CR>
+nnoremap <silent> <leader><CR> :noh<CR>:echo "Clearing Search"<CR>
 " Count the number of occurences of the current word
 nnoremap <leader>?             :%s/\<<C-R><C-W>\>//gni<CR><C-O>
 " Count the number of occurences of the last search
@@ -172,7 +176,7 @@ nnoremap <leader>6             :call TodoFunc('6')<CR>
 """"""""""""""""""""""""""""""""
 " Don't use <F11>, or <F12>. <S-F11>, etc. is fine.
 " Toggle paste mode for easy copy/pasting from system clipboard with the mouse
-nnoremap <Leader><F12>         :set invnumber<CR>:set invrelativenumber<CR>:set invpaste<CR>
+nnoremap <leader><F12>         :set invnumber<CR>:set invrelativenumber<CR>:set invpaste<CR>
 nnoremap <F4>                  :set invnumber<CR>
 
 " Auto save and don't reload vimrc (good for most files.)
@@ -181,16 +185,16 @@ inoremap <F10>                 <Esc>:w<CR>
 " Because I am incapable of hitting escape sometimes, and ':w' is uncommon...
 inoremap :w                    <Esc>:w<CR>
 " Auto save and reload vimrc (good for editing vimrc / colorscheme)
-nnoremap <Leader><F10>         :w<CR>:source ~/.vimrc<CR>:noh<CR>:echo<CR>
+nnoremap <leader><F10>         :w<CR>:source ~/.vimrc<CR>:noh<CR>:echo<CR>
 
 " Increase / Decrease Tabstop for looking at foreign files.
 nnoremap <F9>                  :set ts+=1<CR>:set sw+=1<CR>:set ts?<CR>
 nnoremap <S-F9>                :set ts-=1<CR>:set sw-=1<CR>:set ts?<CR>
 
 " Output Basic syntax Name, i.e. Comment, and the colors associated.
-nnoremap <Leader><Leader><F8>  :verbose highlight <C-r>=synIDattr(synIDtrans(synID(line("."), col("."), 1)), "name")<CR><CR>
+nnoremap <leader><leader><F8>  :verbose highlight <C-r>=synIDattr(synIDtrans(synID(line("."), col("."), 1)), "name")<CR><CR>
 " Output Specific syntax name, i.e. vimLineComment, and the associated linking.
-nnoremap <Leader><F8>          :verbose highlight <C-r>=synIDattr(synstack(line("."), col("."))[-1], "name")<CR><CR>
+nnoremap <leader><F8>          :verbose highlight <C-r>=synIDattr(synstack(line("."), col("."))[-1], "name")<CR><CR>
 " Display list of color groups that character under cursor belongs to.
 nnoremap <F8>                  :echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')<CR>
 "
