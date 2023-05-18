@@ -70,7 +70,7 @@ if $verbose ; then printf "\r\n" ; fi
 
 if $tarball ; then
   tar="dotfiles.tar.z"
-  if [ -z "$tar" ] ; then rm $tar ; fi
+  if test -f "$tar"; then rm $tar ; fi
   if $verbose ; then printf "copying dotfiles to temporary directory\r\n" ; fi
   rsync -rt * dotfiles/
   if $verbose ; then printf "Archiving temporary directory\r\n" ; fi
