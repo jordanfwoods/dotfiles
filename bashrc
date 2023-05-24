@@ -179,7 +179,9 @@ export LS_COLORS=$LS_COLORS:'mi=05;48;5;232;38;5;15:su=48;5;196;38;5;15:sg=48;5;
 # SVN Commands to make it more like git
 # svn add - begins tracking file. svn_add makes changelist act like staging area
 alias svnadd='svn cl staging_area'
-alias  svnci='svn ci --cl staging_area -m'
+alias svnci='svn ci --cl staging_area -m'
+alias svnreset='svn cl --remove'
+alias svnresethead='svn cl --remove --recursive --cl staging_area .'
 
 # Misc commands that are helpful
 # Xilinx DocNav shortcut
