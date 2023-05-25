@@ -59,6 +59,7 @@ do
        [ $dot_file != "svn-color.py"       ] &&
        [ $dot_file != "gitprompt.pl"       ] &&
        [ $dot_file != "svnprompt.pl"       ] &&
+       [ $dot_file != "svn_patch.sh"       ] &&
        [ $dot_file != "svnvimdiffwrap.sh"  ]
   then
     if $verbose ; then printf "cp -rf ~/.%-18s\t./%0s\r\n" "$dot_file" "$dot_file" ; fi
