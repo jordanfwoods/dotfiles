@@ -17,6 +17,7 @@ tabsize = 3
 
 colorizedSubcommands = (
    'status', 'st',
+   'update', 'up',
    'add',
    'remove',
    'diff',
@@ -25,6 +26,8 @@ colorizedSubcommands = (
 statusColors = {
     "\ M"   : "34;1", # blue
     "M"     : "34;1", # blue
+    "U "    : "34;1", # blue
+    " U"    : "34;1", # blue
     "\?"    : "",     # default
     "A"     : "32;1", # green
     "X"     : "35;1", # purple
