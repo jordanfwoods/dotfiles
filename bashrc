@@ -176,13 +176,6 @@ export LS_COLORS=$LS_COLORS:'bd=48;5;232;38;5;11:cd=48;5;232;38;5;3:or=48;5;232;
 export LS_COLORS=$LS_COLORS:'mi=05;48;5;232;38;5;15:su=48;5;196;38;5;15:sg=48;5;11;38;5;16:'
 # export LS_COLORS='rs=0:di=38;5;27:ln=38;5;51:mh=44;38;5;15:pi=40;38;5;11:so=38;5;13:do=38;5;5:bd=48;5;232;38;5;11:cd=48;5;232;38;5;3:or=48;5;232;38;5;9:mi=05;48;5;232;38;5;15:su=48;5;196;38;5;15:sg=48;5;11;38;5;16:ca=48;5;196;38;5;226:tw=48;5;10;38;5;16:ow=48;5;10;38;5;21:st=48;5;21;38;5;15:ex=38;5;34:*.tar=38;5;9:*.tgz=38;5;9:*.arc=38;5;9:*.arj=38;5;9:*.taz=38;5;9:*.lha=38;5;9:*.lz4=38;5;9:*.lzh=38;5;9:*.lzma=38;5;9:*.tlz=38;5;9:*.txz=38;5;9:*.tzo=38;5;9:*.t7z=38;5;9:*.zip=38;5;9:*.z=38;5;9:*.Z=38;5;9:*.dz=38;5;9:*.gz=38;5;9:*.lrz=38;5;9:*.lz=38;5;9:*.lzo=38;5;9:*.xz=38;5;9:*.bz2=38;5;9:*.bz=38;5;9:*.tbz=38;5;9:*.tbz2=38;5;9:*.tz=38;5;9:*.deb=38;5;9:*.rpm=38;5;9:*.jar=38;5;9:*.war=38;5;9:*.ear=38;5;9:*.sar=38;5;9:*.rar=38;5;9:*.alz=38;5;9:*.ace=38;5;9:*.zoo=38;5;9:*.cpio=38;5;9:*.7z=38;5;9:*.rz=38;5;9:*.cab=38;5;9:*.jpg=38;5;13:*.jpeg=38;5;13:*.gif=38;5;13:*.bmp=38;5;13:*.pbm=38;5;13:*.pgm=38;5;13:*.ppm=38;5;13:*.tga=38;5;13:*.xbm=38;5;13:*.xpm=38;5;13:*.tif=38;5;13:*.tiff=38;5;13:*.png=38;5;13:*.svg=38;5;13:*.svgz=38;5;13:*.mng=38;5;13:*.pcx=38;5;13:*.mov=38;5;13:*.mpg=38;5;13:*.mpeg=38;5;13:*.m2v=38;5;13:*.mkv=38;5;13:*.webm=38;5;13:*.ogm=38;5;13:*.mp4=38;5;13:*.m4v=38;5;13:*.mp4v=38;5;13:*.vob=38;5;13:*.qt=38;5;13:*.nuv=38;5;13:*.wmv=38;5;13:*.asf=38;5;13:*.rm=38;5;13:*.rmvb=38;5;13:*.flc=38;5;13:*.avi=38;5;13:*.fli=38;5;13:*.flv=38;5;13:*.gl=38;5;13:*.dl=38;5;13:*.xcf=38;5;13:*.xwd=38;5;13:*.yuv=38;5;13:*.cgm=38;5;13:*.emf=38;5;13:*.axv=38;5;13:*.anx=38;5;13:*.ogv=38;5;13:*.ogx=38;5;13:*.aac=38;5;45:*.au=38;5;45:*.flac=38;5;45:*.mid=38;5;45:*.midi=38;5;45:*.mka=38;5;45:*.mp3=38;5;45:*.mpc=38;5;45:*.ogg=38;5;45:*.ra=38;5;45:*.wav=38;5;45:*.axa=38;5;45:*.oga=38;5;45:*.spx=38;5;45:*.xspf=38;5;45:'
 
-# SVN Commands to make it more like git
-# svn add - begins tracking file. svn_add makes changelist act like staging area
-alias svnadd='svn cl staging_area'
-alias svnci='svn ci --cl staging_area -m'
-alias svnreset='svn cl --remove'
-alias svnresethead='svn cl --remove --recursive --cl staging_area .'
-
 # Misc commands that are helpful
 # Xilinx DocNav shortcut
 alias docnav='/opt/Xilinx/DocNav/docnav'
@@ -289,51 +282,6 @@ save5mp() {
   popd > /dev/null
 }
 
-export STASHDIR=~/.svnstash
-svnstash() {
-  # Help screen
-  if [ -z $1 ] || [[ $1 =~ ^(-?-?[Hh](elp)?(ELP)?)$ ]]; then
-    echo "svnstash replicates 'git stash' for a svn repo."
-    echo " usage: 'svnstash [save]  <stash_name>' stashes changes [overwriting old stash if same name] and reverts the directory."
-    echo "    or: 'svnstash keep    <stash_name>' creates stash, but does not revert the directory"
-    echo "    or: 'svnstash list'                 lists names of stashed changes."
-    echo "    or: 'svnstash pop     <stash_name>' applies changes and removes stash"
-    echo "    or: 'svnstash apply   <stash_name>' applies changes and keeps stash"
-    echo "    or: 'svnstash peek    <stash_name>' displays the stashed changes"
-    echo "    or: 'svnstash discard <stash_name>' throws away stash without applying changes"
-    echo "    or: 'svnstash drop    <stash_name>' same as 'discard'"
-    return
-  fi
-
-  # Create file path for new stash file
-  local dir=$STASHDIR
-  [[ ! -d $STASHDIR ]] && mkdir $STASHDIR
-  if [ -z $2 ] && ([ $1 == "apply" ] || [ $1 == "pop" ]  || [ $1 == "peek" ] || [ $1 == "save" ] ||
-                   [ $1 == "keep" ]  || [ $1 == "drop" ] || [ $1 == "discard" ]); then
-    echo "$1 expects a <stash_name>"; return
-  elif [ -z $2 ]; then local file="${dir}/${1}.stash";
-  else                 local file="${dir}/${2}.stash"; fi
-
-  # Double check if it exists / doesn't exist.
-  if ([ $1 == "keep" ] || [ $1 == "save" ] || [ -z $2 ]) && [ -f $file ]; then
-    echo "stash with name '$(basename -s.stash $file)' exists already!"; return
-  elif [ ! -f $file ] && ([ $1 == "apply" ] || [ $1 == "pop" ]); then
-    echo "stash with name '$(basename -s.stash $file)' doesn't exist!"; return; fi
-
-  # Apply desired changes.
-  case $1 in
-    "drop")    rm $file;;
-    "discard") rm $file;;
-    "apply")   patch -p0 < $file;;
-    "pop")     patch -p0 < $file; rm $file;;
-    "list")    ls -1t $dir | sed 's_\.\w*__g';;
-    "peek")    colordiff < $file | less -r;;
-    "keep")    svn diff > $file;;
-    "save")    svn diff > $file; svn revert -R .;;
-    *)         svn diff > $file; svn revert -R .;;
-  esac
-}
-
 MAKETAGS() {
   local cmd='ctags --langmap=Verilog:+.sv -R --Verilog-kinds=-prn'
   if [ -f .ctagsignore ]; then
@@ -356,7 +304,6 @@ alias MakeFWTags='unset FWTAGS; MAKETAGS'
 # [ -f /etc/bash_completion.d/git ] && source /etc/bash_completion.d/git
 # [ -f /usr/share/bash-completion/completions/svn ] && source /usr/share/bash-completion/completions/svn
 complete -W "\`grep -oE '^[a-zA-Z0-9_.-]+\s*:([^=]|$)' ?akefile | sed 's/[^a-zA-Z0-9_.-]*$//'\`" make
-complete -W "-f help save keep list pop apply peek drop discard \`[ -d $STASHDIR ] && ls $STASHDIR | sed 's/.stash$//'\`" svnstash
 
 ##############################
 ## SOURCE BASH ALIASES

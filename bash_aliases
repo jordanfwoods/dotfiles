@@ -20,6 +20,9 @@ mis="$svn/mist-so13239/FW/TRUNK/Zynq_PL_Design"
 # Make scp a LOT shorter
 scp="jwoods@homeserver:/home/jwoods/lab"
 
+# bash file that makes svn more 'git-like'
+[ -f $dot/svn_patch.sh ] && source $dot/svn_patch.sh $dot
+
 ################
 # Vivado Aliases
 # Legacy - Uses "viv" in most applications.
@@ -31,18 +34,6 @@ alias  viv9="$xilinx/Vivado/2019.1/bin/vivado"
 alias  viv1="$xilinx/Vivado/2021.2/bin/vivado"
 # created vivado.sh automatically opens correct version of vivado
 alias   viv="$dot/vivado.sh"
-
-#####
-# SVN
-# Alternate Diff using vimdiff
-alias svnvimdiff="svn diff --diff-cmd $dot/svnvimdiffwrap.sh"
-# Alternate svn st to colorize svn status
-# alias svns="/usr/local/bin/svn-color.py"
-alias svns="$dot/svn-color.py status"
-alias svncolor="$dot/svn-color.py"
-[ -f /usr/share/bash-completion/completions/svn ] && source /usr/share/bash-completion/completions/svn
-# Apply svn autocompletions to svncolor
-complete -F _svn -o default -X '@(*/.svn|*/.svn/|.svn|.svn/)' svncolor
 
 ##########################
 # Change Directory Aliases

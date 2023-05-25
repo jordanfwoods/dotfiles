@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-
 """
  Author: Saophalkun Ponlu (http://phalkunz.com)
  Contact: phalkunz@gmail.com
