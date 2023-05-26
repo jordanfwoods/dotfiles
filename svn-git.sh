@@ -1,42 +1,74 @@
 #!/bin/bash
-# Sometimes SVN must be used. But in order to make it more 'git like', this script makes 'svng'
+# Sometimes SVN must be used. But in order to make it more 'git like', this script makes 'gits'
 
 # Location of svnvimdiffwrap.sh and svn-color.py
 [[ ! -z $1 ]] && dir="$1"
 [[   -z $1 ]] && dir="~/junk/dotfiles/"
 
+cl="staging_area"
 basedir="~/.svn-git/"
-[[ ! -f $basedir ]] && echo "mkdir $basedir"
+# [[ ! -f $basedir ]] && echo "mkdir $basedir"
+
+# Colorize svn (especially status)
+[    -f $dir/svn-color.py ]  && alias svncolor="$dir/svn-color.py"
+[[ ! -f $dir/svn-color.py ]] && alias svncolor="svn"
 
 ##########################
-# Git Commands
-# [ ] Undecided. [X] Will not add  [I] In progress, tbd. [√] Feature is added and tested.
-# [I]   add        Add file contents to the index
-# [ ]   branch     List, create, or delete branches
-# [I]   checkout   Checkout a branch or paths to the working tree
-# [I]   clone      Clone a repository into a new directory
-# [I]   commit     Record changes to the repository
-# [I]   diff       Show changes between commits, commit and working tree, etc
-# [I]   log        Show commit logs
-# [ ]   merge      Join two or more development histories together
-# [I]   mv         Move or rename a file, a directory, or a symlink
-# [I]   pull       Fetch from and merge with another repository or a local branch
-# [I]   push       Update remote refs along with associated objects
-# [I]   reset      Reset current HEAD to the specified state
-# [I]   rm         Remove files from the working tree and from the index
-# [I]   status     Show the working tree status
-# [ ]   tag        Create, list, delete or verify a tag object signed with GPG
+# Use gits! (abbreviation of git-for-svn)
+gits() {
+  # if just 'gits', then do git status
+  [ -z $1 ] && svncolor status ${@:2} && return 0
+
+  # Help screen
+  if [[ $1 =~ ^(-?-?[Hh](elp)?(ELP)?)$ ]]; then
+    echo "Gits Commands:"
+    echo "Key: [ ] Undecided. [X] Will not add  [I] In progress, tbd. [√] Feature is added and tested."
+    echo "[√]   add        Add file contents to the index"
+    echo "[ ]   branch     List, create, or delete branches"
+    echo "[ ]   commit     Record changes to the repository"
+    echo "[√]   diff       Show changes between commits, commit and working tree, etc"
+    echo "[ ]   init       Takes an existing svn repo and starts a gits repo from the cwd."
+    echo "[√]   log        Show commit logs"
+    echo "[ ]   merge      Join two or more development histories together"
+    echo "[√]   mv         Move or rename a file, a directory, or a symlink"
+    echo "[√]   pull       Fetch from and merge with another repository or a local branch"
+    echo "[√]   push       Update remote refs along with associated objects"
+    echo "[I]   reset      Reset current HEAD to the specified state"
+    echo "[I]   rm         Remove files from the working tree and from the index"
+    echo "[I]   status     Show the working tree status"
+    echo "[I]   stash      Stash the changes in a dirty working directory away"
+    echo "[ ]   tag        Create, list, delete or verify a tag object signed with GPG"
+    return
+  fi
+
+  # Apply desired changes.
+  case $1 in
+    "add")      gitsadd "${@:2}";;
+    "branch")   echo "Be Patient, 'gits $1' has not yet been implemented";;
+    "commit")   echo "At this moment, there are no local commits, only gits push to push staged changes to the remote repo";;
+    "diff")     [[   -f $dir/svnvimdiffwrap.sh ]] && svn diff --diff-cmd $dir/svnvimdiffwrap.sh ${@:2} && return
+                [ -x "$(command -v colordiff)" ]  && svn diff --diff-cmd colordiff ${@:2} && return 0
+                svncolor diff ${@:2};;
+    "init")     echo "Be Patient, 'gits $1' has not yet been implemented";;
+    "log")      svncolor log | less;;
+    "merge")    echo "Be Patient, 'gits $1' has not yet been implemented";;
+    "mv")       svncolor mv ${@:2} && gitsadd "${@:2}";;
+    "pull")     svncolor up ${@:2};;
+    "push")     gitspush ${@:2};;
+    "reset")    echo "Be Patient, 'gits $1' has not yet been implemented";;
+    "rm")       echo "Be Patient, 'gits $1' has not yet been implemented";;
+    "stash")    gitsstash "${@:2}";;
+    "status")   svncolor status ${@:2};;
+    "tag")      echo "Be Patient, 'gits $1' has not yet been implemented";;
+    *)          echo "Command $1 not recognized, please use 'gits help' for more details";;
+  esac
+}
+
+# autocomplete for gits
+complete -W "init stash add branch checkout clone commit diff log merge mv pull push reset rm status tag" gits
 
 ##########################
 # Basic Commands / aliases
-
-# added commands: svnadd, svnci, svnreset, svnresethead
-
-# svn add - begins tracking file. svnadd makes changelist act like a staging area.
-alias svnadd='svn cl staging_area'
-
-# svn ci - checks in all changes. svnci checks in changelist only.
-alias svnci='svn ci --cl staging_area'
 
 # svnreset acts like 'git reset HEAD <file>', i.e. removes item from staging area.
 # note that local changes are not modified
@@ -46,31 +78,52 @@ alias svnreset='svn cl --remove'
 # note that local changes are not modified
 alias svnresethead='svn cl --remove --recursive --cl staging_area .'
 
-# Force svn diff to use vimdiff
-[ -f $dir/svnvimdiffwrap.sh ] && alias svnvimdiff="svn diff --diff-cmd $dir/svnvimdiffwrap.sh"
-
-# Colorize svn (especially status)
-[ -f $dir/svn-color.py ] && alias svncolor="$dir/svn-color.py"
-
-# Colorize svn status
-[ -f $dir/svn-color.py ] && alias svns="$dir/svn-color.py status"
-
 ##########################
-# Create svnstash like git
+# gits function calls
 
-export STASHDIR=~/.svnstash
-svnstash() {
+gitsadd() {
   # Help screen
   if [ -z $1 ] || [[ $1 =~ ^(-?-?[Hh](elp)?(ELP)?)$ ]]; then
-    echo "svnstash replicates 'git stash' for a svn repo."
-    echo " usage: 'svnstash [save]  <stash_name>' stashes changes [overwriting old stash if same name] and reverts the directory."
-    echo "    or: 'svnstash keep    <stash_name>' creates stash, but does not revert the directory"
-    echo "    or: 'svnstash list'                 lists names of stashed changes."
-    echo "    or: 'svnstash pop     <stash_name>' applies changes and removes stash"
-    echo "    or: 'svnstash apply   <stash_name>' applies changes and keeps stash"
-    echo "    or: 'svnstash peek    <stash_name>' displays the stashed changes"
-    echo "    or: 'svnstash discard <stash_name>' throws away stash without applying changes"
-    echo "    or: 'svnstash drop    <stash_name>' same as 'discard'"
+    echo "gits add adds a file to a SVN repo (if not already added), and adds it to a SVN changelist (called '$cl')"
+    echo " usage: 'gitsadd <file1> [<file2> ...]'"
+    return
+  fi
+  # if something is wrong, then don't stage anything
+  for file in "$@"; do
+    [[ ! -f $file ]] && echo "$file doesn't exist!" && return 1
+  done
+  # for each file, add to svn repo if needed, and add to changelist
+  for file in "$@"; do
+    ! (svn info   $file 1>/dev/null 2>&1) && svncolor add $file
+    [[ ! -z $(svn status -q $file) ]] && svncolor cl $cl $file
+  done
+}
+
+gitspush() {
+  # Help screen
+  if [ ! -z $1 ] || [[ $1 =~ ^(-?-?[Hh](elp)?(ELP)?)$ ]]; then
+    echo "gits push commits the staged changes to the remote repository."
+    echo " usage: 'gitspush -m \"<Commit Message>\"'"
+    return
+  fi
+  # check for staged changes and commit
+  [ -z $(svn status --cl $cl -q) ] && echo "No changes are staged to $cl!" && return 1
+  svncolor ci --cl $cl
+}
+
+export STASHDIR=~/.gitsstash
+gitsstash() {
+  # Help screen
+  if [ -z $1 ] || [[ $1 =~ ^(-?-?[Hh](elp)?(ELP)?)$ ]]; then
+    echo "gitsstash replicates 'git stash' for a svn repo."
+    echo " usage: 'gitsstash [save]  <stash_name>' stashes changes [overwriting old stash if same name] and reverts the directory."
+    echo "    or: 'gitsstash keep    <stash_name>' creates stash, but does not revert the directory"
+    echo "    or: 'gitsstash list'                 lists names of stashed changes."
+    echo "    or: 'gitsstash pop     <stash_name>' applies changes and removes stash"
+    echo "    or: 'gitsstash apply   <stash_name>' applies changes and keeps stash"
+    echo "    or: 'gitsstash peek    <stash_name>' displays the stashed changes"
+    echo "    or: 'gitsstash discard <stash_name>' throws away stash without applying changes"
+    echo "    or: 'gitsstash drop    <stash_name>' same as 'discard'"
     return
   fi
 
@@ -103,7 +156,7 @@ svnstash() {
   esac
 }
 
-complete -W "-f help save keep list pop apply peek drop discard \`[ -d $STASHDIR ] && ls $STASHDIR | sed 's/.stash$//'\`" svnstash
+complete -W "-f help save keep list pop apply peek drop discard \`[ -d $STASHDIR ] && ls $STASHDIR | sed 's/.stash$//'\`" gitsstash
 
 ##########################
 # source completions for svn and also apply to svncolor
@@ -113,10 +166,3 @@ complete -W "-f help save keep list pop apply peek drop discard \`[ -d $STASHDIR
 
 # Apply svn autocompletions to svncolor
 complete -F _svn -o default -X '@(*/.svn|*/.svn/|.svn|.svn/)' svncolor
-
-# [X]   bisect     Find by binary search the change that introduced a bug
-# [X]   fetch      Download objects and refs from another repository
-# [X]   grep       Print lines matching a pattern
-# [X]   init       Create an empty Git repository or reinitialize an existing one
-# [X]   rebase     Forward-port local commits to the updated upstream head
-# [X]   show       Show various types of objects
