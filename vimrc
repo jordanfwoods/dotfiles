@@ -132,9 +132,9 @@ nnoremap <leader>s             :call ScratchBuffer()<CR>
 " Clear Search coloring
 nnoremap <silent> <leader><CR> :noh<CR>:echo "Clearing Search"<CR>
 " Count the number of occurences of the current word
-nnoremap <leader>?             :%s/\<<C-R><C-W>\>//gni<CR><C-O>
+nnoremap <leader>?             :%s/\<<C-R><C-W>\>//gn<CR><C-O>
 " Count the number of occurences of the last search
-nnoremap <leader>/             :%s///gni<CR><C-O>
+nnoremap <leader>/             :%s///gn<CR><C-O>
 " Remove trailing whitespace on entire file (with confirms).
 nnoremap <leader><Space>       :%s/\s\+$//gc<CR>
 
