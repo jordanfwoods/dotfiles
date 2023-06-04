@@ -42,7 +42,7 @@ do
                                 cp -rf ~/.tmux/*    ./tmux/
 
   elif [ $dot_file == "vim" ] ; then
-    for vim_dir in $(ls /home/jwoods/.vim/)
+    for vim_dir in $(ls ~/.vim/)
     do
       if $tarball || [ $vim_dir != "plugged" ] ; then
         if [[ ! -d "vim/plugged" ]] ; then mkdir "vim/plugged" ; fi
