@@ -1,6 +1,9 @@
 #!/bin/bash
-dot_list=$(ls /home/jwoods/junk/dotfiles/)
 
+dir='/home/jwoods/junk/dotfiles/'
+[[ ! -d $dir ]] && dir='/Users/jordan/sandbox/dotfiles/'
+
+dot_list=$(ls $dir)
 verbose=false
 tarball=false
 while getopts ":vht" option; do
