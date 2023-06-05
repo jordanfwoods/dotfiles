@@ -1,5 +1,7 @@
 #!/bin/bash
-dot_list=$(/bin/ls /Users/jordan/sandbox/dotfiles/)
+dir='/home/jwoods/junk/dotfiles/'
+[[ ! -d $dir ]] && dir='/Users/jordan/sandbox/dotfiles/'
+dot_list=$(ls $dir)
 
 while getopts ":vht" option; do
   case $option in
@@ -13,9 +15,9 @@ done
 for dot_file in $dot_list; do
   case $dot_file in
     "bash_profile" | "bashrc" | "gitconfig" | "subversion" | "tmux" | "tmux.conf" | "vim" | "vimrc" )
-      cp -r $dot_file ~/.$dot_file;;
+      echo "2: $dot_file";
+      cp -rv $dot_file ~/.$dot_file;;
   esac
-  # echo "2: $dot_file"
   # printf "cp -rf ./%-18s\t~/.%0s\r\n" "$dot_file" "$dot_file"
           # cp -rf ~/.$dot_file ./$dot_file
 done

@@ -312,3 +312,4 @@ complete -W "\`grep -oE '^[a-zA-Z0-9_.-]+\s*:([^=]|$)' ?akefile | sed 's/[^a-zA-
 # Scripts to review from falcon1
 [[ -r /etc/profile.d/bash_completion.sh ]] && . /etc/profile.d/bash_completion.sh
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f ~/.bash_completion/watson ] && source ~/.bash_completion/watson
