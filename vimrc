@@ -213,8 +213,9 @@ command! MakeFWTags  ! ctags --langmap=Verilog:+.sv -R --Verilog-kinds=-prn --ex
 command! MakeTags    ! ctags --langmap=Verilog:+.sv -R --Verilog-kinds=-prn --exclude=@.ctagsignore .
 " 1}}}
 """"""""""""""""""""""""""""""""
-"" GVIM {{{1
+"" GVIM and MAC {{{1
 """"""""""""""""""""""""""""""""
+" GVIM
 if has('gui_running')
   if has('gui_win32')
     set guifont=Consolas:h10:cANSI:qDRAFT " Preferred Font for gvim
@@ -223,6 +224,11 @@ if has('gui_running')
 
   " Toggle gvim Menu / Scrollbars See Function below
   nnoremap <F12>     <Esc>:call ToggleGUIOpts()<cr>
+endif
+
+" MAC
+if has('macunix')
+  if has('mouse') | set mouse=a | endif
 endif
 " 1}}}
 """"""""""""""""""""""""""""""""
