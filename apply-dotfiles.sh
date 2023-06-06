@@ -15,14 +15,7 @@ done
 for dot_file in $dot_list; do
   case $dot_file in
     "bash_profile" | "bashrc" | "gitconfig" | "subversion" | "tmux" | "tmux.conf" | "vim" | "vimrc" )
-      echo "2: $dot_file";
-      cp -rv $dot_file ~/.$dot_file;;
+      [[ -d $dot_file ]] && rm -rf ~/.$dot_file;
+      cp -rfv $dot_file ~/.$dot_file;;
   esac
-  # printf "cp -rf ./%-18s\t~/.%0s\r\n" "$dot_file" "$dot_file"
-          # cp -rf ~/.$dot_file ./$dot_file
 done
-
-    # "bash_aliases")       echo "$option";;
-    # "config")             echo "$option";;
-    # "ctagsignore")        echo "$option";;
-    # "fonts")              echo "$option";;

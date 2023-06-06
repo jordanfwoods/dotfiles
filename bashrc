@@ -60,6 +60,7 @@ shopt -s histappend
 
 # adding /bin causes issues with buildroot
 def_path=/usr/bin:/usr/sbin:/usr/local/bin:$HOME/.local/bin:/var/lib/snapd/snap/bin
+[[ $(uname -s) == "Darwin" ]] && def_path=/bin:$def_path
 PATH=$def_path
 
 # don't put duplicate lines in the history. See bash(1) for more options
