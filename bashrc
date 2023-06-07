@@ -21,7 +21,6 @@ if [ -z ${BRANCH_PROMPT+x} ]; then
 else
   PROMPT_COMMAND="$dot/svnprompt.pl"
   PROMPT_COMMAND="$dot/gitprompt.pl;$PROMPT_COMMAND"
-  # export PROMPT_COMMAND="echo '';$PROMPT_COMMAND"
   export PROMPT_COMMAND="$PROMPT_COMMAND"
 fi
 
