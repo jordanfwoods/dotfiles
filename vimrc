@@ -58,7 +58,7 @@ set showcmd         " display incomplete commands in bottom right
 set nowrap          " Don't wrap text to the next line.
 set laststatus=2    " Display StatusLine always
 set textwidth=0     " Set to not split text into multiple lines. (Used to be 84)
-set colorcolumn=100 " Set Color Column just after columnn of textwidth
+" set colorcolumn=100 " Set Color Column just after columnn of textwidth
 set splitbelow      " New Split Windows open below
 set splitright      " New Vertical Splits open to the right
 
