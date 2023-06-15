@@ -25,6 +25,7 @@ call plug#end()
 set background=dark " gruvbox requires external background to be set.
 if  !empty(globpath(&rtp,'colors/gruvbox.vim'))  | colo gruvbox  | endif " scheme from Plugin
 " if  !empty(globpath(&rtp,'colors/seoul256.vim')) | let g:seoul256_background=233 | colo seoul256 | endif " scheme from Plugin
+hi Normal ctermbg=NONE
 
 " Grab these other vim files I wrote.
 if filereadable(expand("~/.vim/autoload/FancyIncDec.vim")) | source ~/.vim/autoload/FancyIncDec.vim | endif
