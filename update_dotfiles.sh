@@ -8,13 +8,13 @@ verbose=false
 tarball=false
 while getopts ":vht" option; do
   case $option in
-  h) echo "display this help message:         $0 -h";
-     echo "display all update commands:       $0 -v";
-     echo "save to tarball (with vim plugins) $0 -t"; exit;;
+  h) printf "$0 -h \tdisplay this help message\n";
+     printf "$0 -v \tdisplay all update commands\n";
+     printf "$0 -t \tsave to tarball (with vim plugins) and upload to homeserver\n"; exit;;
   v) verbose=true;;
   t) tarball=true;;
   ?) echo "error: option -$OPTARG is not implemented";
-     echo "available options are: -h -v"; exit;;
+     echo "available options are: -h -t -v"; exit;;
   esac
 done
 
