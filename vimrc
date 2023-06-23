@@ -218,9 +218,8 @@ command! MakeTags    ! ctags --langmap=Verilog:+.sv -R --Verilog-kinds=-prn --ex
 """"""""""""""""""""""""""""""""
 " GVIM
 if has('gui_running')
-  if has('gui_win32')
-    set guifont=Consolas:h10:cANSI:qDRAFT " Preferred Font for gvim
-  endif
+  set guifont=Consolas\ NF\ 10 " Since I select the font...
+  " set guifont=Consolas:h10:cANSI:qDRAFT " Preferred Font for gvim
   set guioptions=i " by default, hide gui menus
 
   " Toggle gvim Menu / Scrollbars See Function below
