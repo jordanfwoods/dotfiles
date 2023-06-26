@@ -33,17 +33,17 @@ export PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
 PS1=""                                   # Currently no Newline in default color
 # change color when running as su
 if [ "`id -u`" -eq 0 ]; then
-   PS1="$PS1\[\e[0;31m\]\u\[\e[0m\] "    # display username in bold red
+   PS1="$PS1\[\e[1;31m\]\u\[\e[0m\] "    # display username in bold red
 else
    # PS1="$PS1\[\e[0;34m\]\u\[\e[0m\] "  # display username in bold blue
-   PS1="$PS1\[\e[0;36m\]\u\[\e[0m\] "    # display username in regular cyan
+   PS1="$PS1\[\e[1;34m\]\u\[\e[0m\] "    # display username in regular cyan
 fi
 PS1="$PS1\[\e[38;5;231m\]:\[\e[0m\] "    # colon separator in bold white
-PS1="$PS1\[\e[0;35m\]\h\[\e[0m\] "       # Display hostname in bold purple
+PS1="$PS1\[\e[1;35m\]\h\[\e[0m\] "       # Display hostname in bold purple
 if [ -z ${PATH_PROMPT+x} ]; then
-  PS1="$PS1\[\e[0;33m\]\W\[\e[0m\]"      # display current directory in gold
+  PS1="$PS1\[\e[1;33m\]\W\[\e[0m\]"      # display current directory in gold
 else
-  PS1="$PS1\[\e[0;33m\]\$PWD\[\e[0m\]"   # display full pathname in gold
+  PS1="$PS1\[\e[1;33m\]\$PWD\[\e[0m\]"   # display full pathname in gold
 fi
 if [ -z ${PROMPT1+x} ]; then
   PS1="$PS1 $ "                          # no newline, but '$ ' in defaut color
@@ -186,7 +186,8 @@ alias   diff='colordiff'
 alias scnsht='gnome-screenshot --clipboard --area'
 
 # handy kill command
-alias kviv='kill $(pidof vivado)'
+alias kviv='[[ ! -z $(pidof vivado) ]] && kill $(pidof vivado)'
+alias klibre='[[ ! -z $(pidof oosplash) ]] && kill $(pidof oosplash)'
 # Display USB devices available.
 alias llusb='ls /dev/ttyUSB*'
 # sort files by size in local dir
