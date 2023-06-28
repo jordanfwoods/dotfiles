@@ -22,7 +22,7 @@ scp="jwoods@homeserver:/home/jwoods/lab"
 
 # bash file that makes svn more 'git-like'
 [ -f $dot/svn_patch.sh ] && source $dot/svn_patch.sh $dot
-[ -f $dot/svn-git.sh ] && source $dot/svn-git.sh $dot
+# [ -f $dot/svn-git.sh ] && source $dot/svn-git.sh $dot
 
 ################
 # Vivado Aliases

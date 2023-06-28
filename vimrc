@@ -5,6 +5,7 @@ set nocompatible " always use this feature to bring it to the 21st century...
 syntax on        " enable syntax highlighting
 
 call plug#begin('~/.vim/plugged')
+if exists(":Plug")
   " Tim Pope is the Patron Saint of VIM
   Plug 'tpope/vim-commentary'           " Make Block comments easier (gcc)
   Plug 'tpope/vim-surround'             " Surrounds text in quotes, {}, etc.
@@ -19,6 +20,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'junegunn/seoul256.vim'          " Seoul-256 is a close second.
   " Updated file manager...
   Plug 'preservim/nerdtree'             " Use a capable file manager.
+endif
 call plug#end()
 
 " Colorize the way I want

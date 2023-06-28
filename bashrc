@@ -269,20 +269,31 @@ save5mp() {
   if   [ -z "$2" ];     then path="${path}/vivado_proj/vivado_proj.sdk";
   elif [ "$2" = "fm" ]; then path="${path}_fm/vivado_proj/vivado_proj.sdk"; fi
 
-  # switch into determined path
-  pushd $path > /dev/null
+  if [[ ! -d $path ]]; then
+    echo "$path does not exist!"
+    return 1
+  fi
 
   # find latest created files.
-  local filename=$(ls -t | head -n1 | sed 's/\..*//g')
+  local filename=$(ls -t $path | head -n1 | sed 's/\..*//g')
 
   # remote check-in to correct place in homeserver
   echo "Uploading ${filename}.* to /home/jwoods/lab/5mp/fw/$1/ in homeserver"
-  md5sum $filename.*
-  scp ./$filename.* jwoods@homeserver:/home/jwoods/lab/5mp/fw/$1/
-
-  # pop back to directory we started in
-  popd > /dev/null
+  for i in $path/$filename.*; do
+    # echo "$(md5sum $i | awk '{print $1;}')  ${i##*/}"
+    echo "${i##*/} : $(md5sum $i | awk '{print $1;}')"
+  done
+  scp $path/$filename.* jwoods@homeserver:/home/jwoods/lab/5mp/fw/$1/
 }
+# trying out my own completion function
+_save5mp() {
+  case $3 in
+    "save5mp")   COMPREPLY=( $(compgen -W "spw cl" -- "$2") ) ;;
+    "spw"| "cl") COMPREPLY=( $(compgen -W "fm [Blank]" -- "$2") ) ;;
+    *)           unset COMPREPLY ;;
+  esac
+}
+complete -F _save5mp save5mp
 
 MAKETAGS() {
   local cmd='ctags --langmap=Verilog:+.sv -R --Verilog-kinds=-prn'

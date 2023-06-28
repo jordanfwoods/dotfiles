@@ -34,6 +34,14 @@ alias svnresethead='svn cl --remove --recursive --cl staging_area .'
 [ -f $dir/svn-color.py ] && alias svns="$dir/svn-color.py status"
 
 ##########################
+# source completions for svn and also apply to svncolor
+
+# source svn completions
+[ -f /usr/share/bash-completion/completions/svn ] && source /usr/share/bash-completion/completions/svn
+# Apply svn autocompletions to svncolor
+complete -F _svn -o default -X '@(*/.svn|*/.svn/|.svn|.svn/)' svncolor
+
+##########################
 # Create svnstash like git
 
 export STASHDIR=~/.svnstash
@@ -41,14 +49,14 @@ svnstash() {
   # Help screen
   if [ -z $1 ] || [[ $1 =~ ^(-?-?[Hh](elp)?(ELP)?)$ ]]; then
     echo "svnstash replicates 'git stash' for a svn repo."
-    echo " usage: 'svnstash [save]  <stash_name>' stashes changes [overwriting old stash if same name] and reverts the directory."
-    echo "    or: 'svnstash keep    <stash_name>' creates stash, but does not revert the directory"
-    echo "    or: 'svnstash list'                 lists names of stashed changes."
-    echo "    or: 'svnstash pop     <stash_name>' applies changes and removes stash"
-    echo "    or: 'svnstash apply   <stash_name>' applies changes and keeps stash"
-    echo "    or: 'svnstash peek    <stash_name>' displays the stashed changes"
-    echo "    or: 'svnstash discard <stash_name>' throws away stash without applying changes"
-    echo "    or: 'svnstash drop    <stash_name>' same as 'discard'"
+    echo " usage: 'svnstash [save]  <new_stash_name>' stashes changes [overwriting old stash if same name] and reverts the directory."
+    echo "    or: 'svnstash keep    <new_stash_name>' creates stash, but does not revert the directory"
+    echo "    or: 'svnstash list'                     lists names of stashed changes."
+    echo "    or: 'svnstash pop     <existing_stash>' applies changes and removes stash"
+    echo "    or: 'svnstash apply   <existing_stash>' applies changes and keeps stash"
+    echo "    or: 'svnstash peek    <existing_stash>' displays the stashed changes"
+    echo "    or: 'svnstash discard <existing_stash>' throws away stash without applying changes"
+    echo "    or: 'svnstash drop    <existing_stash>' same as 'discard'"
     return
   fi
 
@@ -81,14 +89,16 @@ svnstash() {
   esac
 }
 
-complete -W "-f help save keep list pop apply peek drop discard \`[ -d $STASHDIR ] && ls $STASHDIR | sed 's/.stash$//'\`" svnstash
-
-##########################
-# source completions for svn and also apply to svncolor
-
-# source svn completions
-[ -f /usr/share/bash-completion/completions/svn ] && source /usr/share/bash-completion/completions/svn
-
-# Apply svn autocompletions to svncolor
-complete -F _svn -o default -X '@(*/.svn|*/.svn/|.svn|.svn/)' svncolor
+# Make autocomplete function for svnstash
+_svnstash_complete() {
+  case $3 in
+    "svnstash")
+      COMPREPLY=( $(compgen -W "help save keep list pop apply peek drop discard" -- "$2") ) ;;
+    "pop" | "apply" | "peek" | "discard" | "drop" )
+      COMPREPLY=( $(compgen -W "\`[ -d $STASHDIR ] && ls $STASHDIR | sed 's/.stash$//'\`" -- "$2") ) ;;
+    *)
+      unset COMPREPLY ;;
+  esac
+}
+complete -F _svnstash_complete svnstash
 
