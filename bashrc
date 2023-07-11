@@ -240,16 +240,21 @@ extract () {
 # dirsize - finds directory sizes and lists them for the current directory
 dirsize ()
 {
-  # ls-list all directories, du-get depth of dirs
-  ls -d */ | du -hx --max-depth=1 2> /dev/null | \
-  # sed-remove './', sort-sort in numberical order
-  sed 's_\./__gi' | sort -rn > /tmp/list
-  # Display in size order.
-  egrep '^ *[0-9.]*G' /tmp/list
-  egrep '^ *[0-9.]*M' /tmp/list
-  egrep '^ *[0-9.]*K' /tmp/list
-  # don't keep list
-  rm -rf /tmp/list
+  wds='.'
+  [[ "$#" -ne "0" ]] && wds=$@
+
+  for cwd in $wds
+  do
+    echo $cwd
+    # ls-list all directories, du-get depth of dirs # sed-remove './', sort-sort in numberical order
+    du -hx --max-depth=1 $cwd 2> /dev/null | sed 's_\./__gi' | sort -rn > /tmp/list
+    # Display in size order.
+    egrep '^ *[0-9.]*G' /tmp/list
+    egrep '^ *[0-9.]*M' /tmp/list
+    egrep '^ *[0-9.]*K' /tmp/list
+    # don't keep list
+    rm -rf /tmp/list
+  done
 }
 
 # procedure to save hdf/ltx/bit files for 5mp camera from CameraFirmware dir.

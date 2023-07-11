@@ -1,0 +1,8 @@
+[options]
+stop_on_start = 1
+date_format = %m/%d/%Y
+time_format = %I:%M:%S %p
+report_current = true
+pager = false
+log_current = true
+week_start = monday
