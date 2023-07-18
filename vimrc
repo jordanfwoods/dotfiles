@@ -189,7 +189,7 @@ inoremap <F10>                 <Esc>:w<CR>
 " Because I am incapable of hitting escape sometimes, and ':w' is uncommon...
 inoremap :w                    <Esc>:w<CR>
 " Auto save and reload vimrc (good for editing vimrc / colorscheme)
-nnoremap <leader><F10>         :w<CR>:source ~/.vimrc<CR>:noh<CR>:echo<CR>
+nnoremap <leader><F10>         :source ~/.vimrc<CR>:noh<CR>:echo<CR>
 
 " Increase / Decrease Tabstop for looking at foreign files.
 nnoremap <F9>                  :set ts+=1<CR>:set sw+=1<CR>:set ts?<CR>
