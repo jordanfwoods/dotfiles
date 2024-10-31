@@ -12,6 +12,9 @@
 " nnoremap <Leader><Tab>         i<Tab><ESC>l
 " " Remove a Tab while in Normal Mode
 " nnoremap <Leader><S-Tab>       hhhdwi<Tab><ESC>l
+" Make chrome more usable
+" nnoremap <leader>w             <C-w>
+" nnoremap <leader>t             :silent! pop<CR>
 
 " - Use :find <filename> to open some stuff
 

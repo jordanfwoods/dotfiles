@@ -26,12 +26,12 @@ Normal Register use:
 5. three read-only registers ":, "., "%
 7. alternate buffer register "#
 7. the expression register "=
-8. The selection and drop registers "*, "+ and "~ 
+8. The selection and drop registers "*, "+ and "~
 9. The black hole register "_
 10. Last search pattern register "/
 
 ".        # Most Recent Inserted Text (Typing before last Exit of insert Mode)
-"%        # File Pathname. 
+"%        # File Pathname.
 "#        # Alternate File.
 "+        # Clipboard Register (If available...)
 ""        # Most Recent Yank ('p' command)

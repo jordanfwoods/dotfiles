@@ -1,0 +1,41 @@
+XTerm.termName: xterm-256color
+xterm*faceName:     Consolas NF
+!xterm*faceName:     Consolas
+!xterm*faceName:     DejaVu Sans Mono
+!xterm*faceName:     monospace
+!xterm*faceSize:      8
+xterm*faceSize:      10
+! This is working on RHEL 6
+xterm*faceSize1:     1
+xterm*faceSize2:     8
+xterm*faceSize3:     9
+xterm*faceSize4:    10
+xterm*faceSize5:    11
+xterm*faceSize6:    12
+! And this for RHEL 7...
+xterm*font1:      -*-terminus-*-*-*-*-1-*-*-*-*-*-*-*
+xterm*font2:      -*-terminus-*-*-*-*-8-*-*-*-*-*-*-*
+xterm*font3:      -*-terminus-*-*-*-*-9-*-*-*-*-*-*-*
+xterm*font4:      -*-terminus-*-*-*-*-10-*-*-*-*-*-*-*
+xterm*font5:      -*-terminus-*-*-*-*-11-*-*-*-*-*-*-*
+xterm*font6:      -*-terminus-*-*-*-*-12-*-*-*-*-*-*-*
+xterm*fontMenu*font1*Label: Size 1
+xterm*fontMenu*font2*Label: Size 8
+xterm*fontMenu*font3*Label: Size 9
+xterm*fontMenu*font4*Label: Size 10
+xterm*fontMenu*font5*Label: Size 11
+xterm*fontMenu*font6*Label: Size 12
+
+xterm*geometry:     128x40
+xterm*saveLines:    10000
+xterm*scrollBar:    false
+xterm*charClass:    33:48,37:48,45-47:48,38:48
+xterm*locale:       true
+xterm*utf8:         1
+
+XTerm.VT100.translations: #override \
+Ctrl <Key> minus:         smaller-vt-font() \n\
+Ctrl <Key> plus:          larger-vt-font() \n\
+Ctrl <Key> KP_Subtract:   smaller-vt-font() \n\
+Ctrl <Key> KP_Add:        larger-vt-font() \n
+

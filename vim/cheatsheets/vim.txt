@@ -91,7 +91,7 @@ In "Command Mode":
                                  and confirm before replacing text.
     :%s/\s\+$//ec                search for unused whitespace at the end of lines
                                  and remove.
-     
+
 Other helpful shell commands:
 
 grep -r -n -i --include \*.vhd <path> "string"

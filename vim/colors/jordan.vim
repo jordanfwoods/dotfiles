@@ -57,7 +57,8 @@ hi Title                   guifg=indianred
 hi Visual         gui=reverse term=reverse  guibg=Black
 "jfw hi Visual    gui=none guifg=khaki guibg=olivedrab
 "jfw
-hi MatchParen     term=reverse guibg=goldenrod242
+hi MatchParen     term=reverse guibg=goldenrod
+" hi MatchParen     term=reverse guibg=goldenrod242
 "hi VisualNOS
 hi WarningMsg              guifg=salmon
 "hi WildMenu
