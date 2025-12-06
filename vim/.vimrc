@@ -264,7 +264,7 @@ endif
 """"""""""""""""""""""""""""""""
 " Grab these other vim files I wrote
 if filereadable(expand(g:vim."/autoload/FancyIncDec.vim")) | exec "source ".g:vim."/autoload/FancyIncDec.vim" | endif
-if filereadable(expand(g:vim."/mine/functions.vim"))       | exec "source ".g:vim."/mine/functions.vim"       | endif
+"if filereadable(expand(g:vim."/mine/functions.vim"))       | exec "source ".g:vim."/mine/functions.vim"       | endif
 if filereadable(expand(g:vim."/mine/autocommands.vim"))    | exec "source ".g:vim."/mine/autocommands.vim"    | endif
 if filereadable(expand(g:vim."/mine/airline.vim"))         | exec "source ".g:vim."/mine/airline.vim"         | endif
 if filereadable(expand(g:vim."/mine/textobj.vim"))         | exec "source ".g:vim."/mine/textobj.vim"         | endif

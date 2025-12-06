@@ -30,7 +30,8 @@ autocmd BufRead,BufNewFile *.xci                   setlocal filetype=xml
 autocmd BufRead,BufNewFile *.veo                   setlocal filetype=verilog_systemverilog
 autocmd BufRead,BufNewFile *.vho                   setlocal filetype=vhdl
 
-augroup dateformats
+if exists(":SpeedDatingFormat")
+   augroup dateformats
    autocmd!
    " Remove Roman Numerals
    autocmd VimEnter * silent execute 'SpeedDatingFormat! %^v'
@@ -39,4 +40,5 @@ augroup dateformats
    autocmd VimEnter * silent execute '1SpeedDatingFormat %a, %d %b %Y'
    autocmd VimEnter * silent execute '1SpeedDatingFormat %m/%d/%Y'
    autocmd VimEnter * silent execute '1SpeedDatingFormat %-I:%M %P'
-augroup END
+   augroup END
+endif

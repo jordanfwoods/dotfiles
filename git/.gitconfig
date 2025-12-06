@@ -1,0 +1,34 @@
+[user]
+	name = Jordan Woods
+	email = jordan.woods@asml.com
+[core]
+	whitespace = trailing-space,space-before-tab,-indent-with-non-tab,tab-in-indent,cr-at-eol
+[color]
+	diff           = always
+[alias]
+	wdiff          = diff --ignore-space-change
+	shame          = for-each-ref --format=' %(align:21,left)%(authorname)%(end)%(align:49,left)%(refname:short)%(end)%(authordate:short)' --sort=authorname
+	shame-tags     = for-each-ref --format=' %(align:21,left)%(authorname)%(end)%(align:62,left)%(refname:short)%(end)%(authordate:short)' --sort=authorname refs/tags/
+	shame-branches = for-each-ref --format=' %(align:21,left)%(authorname)%(end)%(align:62,left)%(refname:short)%(end)%(authordate:short)' --sort=authorname refs/remotes/ refs/heads/ refs/stash
+	; lastadd        = add !:2-$
+   graph          = log --graph --abbrev-commit --date=short --decorate=short --format=format:'%C(bold blue)%h%C(auto) | %C(dim cyan)%ad%C(green) (%ar) %C(auto)| %C(dim red)%an%C(auto)%d | %C(dim white)%s%C(reset)'
+[diff]
+	context = 1
+	; ignoreSubmodules = dirty
+   algorithm = minimal
+; [difftool]
+	; prompt = false
+; [difftool "bc"]
+	; trustExitCode = true
+
+; [merge]
+   ; guitool = bc
+	; tool = vimdiff
+	; tool = bc
+; [mergetool]
+; 	prompt = false
+; [mergetool "bc"]
+; 	trustExitCode = true
+
+[help]
+	autocorrect = 20

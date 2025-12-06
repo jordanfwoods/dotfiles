@@ -120,6 +120,14 @@ function! MarkDebug()
     if     expand("<cWORD>") ==? "signal" | exe "normal! yypciwattribute mark_debug off:lC signal is \"true\";"
     endif
     +1
+    if a:lastline != a:firstline
+       if line('.') == a:lastline
+          if     expand("<cWORD>") ==? "signal" | exe "normal! yypciwattribute mark_debug off:lC signal is \"true\";"
+          endif
+          +1
+       endif
+       +1
+    endif
   endif
 endfunction
 
@@ -161,7 +169,7 @@ com! SvnDiff call s:DiffWithSVNCheckedOut()
 function! s:DiffWithGITCheckedOut()
   let filetype=&ft
   diffthis
-  vnew | exe "%!git diff " . fnameescape( expand("#:p") ) . " | patch -p 1 -Rs -o -"
+  vnew | exe "%!git diff --no-color " . fnameescape( expand("#:p") ) . " | patch -p 1 -Rs -o -"
   exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
   diffthis
   wincmd R
